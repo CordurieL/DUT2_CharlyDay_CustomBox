@@ -7,8 +7,8 @@ Le défi informatique consiste en la programmation d'une application web à part
 - Nom	: Chassard			Prénom :	Gabin	  	gpe dut : Si1
 - Nom	: Cordurié			Prénom :	Lucas	  	gpe dut : Ai2
 - Nom	: Grolet		  	Prénom :	Michel		gpe dut : Si1
-- Nom	: Michelet			Prénom :	Alex			gpe dut : Si1
-- Nom	: Steiner		  	Prénom :	Noé		  	gpe dut : Si1
+- Nom	: Michelet			Prénom :	Alex		gpe dut : Si1
+- Nom	: Steiner		  	Prénom :	Noé		  gpe dut : Si1
 
 # Informations
 
