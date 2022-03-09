@@ -1,31 +1,31 @@
 <?php
 
-require_once 'vendor/autoload.php';
+//require_once __DIR__ .'/vendor/autoload.php';
+$config = require_once __DIR__ . "/src/conf/settings.php";
+
+use mywishlist\controleurs\ControleurAccueil;
+use Illuminate\Database\Capsule\Manager as DB;
 
 session_start();
 
-$configuration = [
-	'settings' => [
-		'displayErrorDetails' => true,
-		'dbconf' => './src/conf.ini']];
+header('Location: index.php');
 
-$c = new Container($configuration);
-$app = new App($c);
-$db = new DB();
-$db->addConnection(parse_ini_file($configuration['settings']['dbconf']));
+$container = new Slim\Container($config);
+$app =new \Slim\App($config);
+
+$db=new DB();
+$config=parse_ini_file('./src/conf/conf.ini');
+if($config) $db->addConnection($config);
 $db->setAsGlobal();
 $db->bootEloquent();
 
 
+// ACCUEIL -----------------------------
+/**
+ * Page d'accueil
+ */
+$app->get('/',
+    ControleurAccueil::class.":displayAccueil")->setName("accueil");
 
-// Routes ////////////////////////////
-$app->get('/', MainController::class . ':afficherAccueil')->setName('Accueil');
 
-
-
-/////////////////////////////////////
-
-
-// Lancement de l'application
-try	$app->run();
-catch (Throwable $e) echo $e->getMessage();
+$app->run();
