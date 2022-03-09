@@ -22,8 +22,7 @@ $db->bootEloquent();
 /**
  * Page d'accueil
  */
-$app->get('/',
-    ControleurAccueil::class.":displayAccueil")->setName("accueil");
+$app->get('/', ControleurAccueil::class.":displayAccueil")->setName("accueil");
 
 
 $app->run();
