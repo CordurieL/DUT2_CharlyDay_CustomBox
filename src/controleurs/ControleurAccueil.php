@@ -6,7 +6,7 @@ use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use charlyday\controleurs\Controleur;
-use charlyday\vue\VueAccueil;/*3236*/
+use charlyday\vues\VueAccueil;
 use charlyday\models\Item;
 use charlyday\models\Liste;
 
@@ -21,8 +21,8 @@ class ControleurAccueil extends Controleur
 	* Accès à l'accueil
 	*/
     function displayAccueil(Request $rq, Response $rs, array $args):Response{
-        /*$v = new VueAccueil($this->container) ;
-		$rs->getBody()->write($v->render(1)) ;*/
+        $v = new VueAccueil($this->container) ;
+		$rs->getBody()->write($v->render(1)) ;
 		return $rs ;
     }
 }

@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
+namespace charlyday\vues;
 
-namespace charlyday\vue;
-use charlyday\vue\Vue;
+use charlyday\vues\Vue;
 use Slim\Container;
 
 class VueAccueil extends Vue
@@ -11,12 +11,16 @@ class VueAccueil extends Vue
 	* Accueil
 	*/
 	private function render_displayAccueil() :String{
-		$html = "";
+		$html = "<h1>Titre</h1>";
         return $html;
 	}
 	
 	public function render($selecteur) :String{
 		switch ($selecteur) {
+			case 1 : {
+				$content = $this->render_displayAccueil();
+				break;
+			}
 			default : {
 				$content = "Pas de contenu<br>";
 				break;
