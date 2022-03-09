@@ -1,6 +1,6 @@
 <?php
 
-//require_once __DIR__ .'/vendor/autoload.php';
+require_once __DIR__ .'/vendor/autoload.php';
 $config = require_once __DIR__ . "/src/conf/settings.php";
 
 use charlyday\controleurs\ControleurAccueil;
