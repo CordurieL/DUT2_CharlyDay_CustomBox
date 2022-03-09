@@ -3,13 +3,15 @@
 require_once __DIR__ .'/vendor/autoload.php';
 $config = require_once __DIR__ . "/src/conf/settings.php";
 
-use charlyday\controleurs\ControleurAccueil;
+use Slim\App;
+use Slim\Container;
 use Illuminate\Database\Capsule\Manager as DB;
+use charlyday\controleurs\ControleurAccueil;
 
 session_start();
 
-$container = new Slim\Container($config);
-$app =new \Slim\App($config);
+$container = new Container($config);
+$app =new App($config);
 
 $db=new DB();
 $config=parse_ini_file('./src/conf/conf.ini');
@@ -18,10 +20,7 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 
-// ACCUEIL -----------------------------
-/**
- * Page d'accueil
- */
+// Routes /////////////
 $app->get('/', ControleurAccueil::class.":displayAccueil")->setName("accueil");
 
 

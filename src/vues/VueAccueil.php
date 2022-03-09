@@ -11,7 +11,9 @@ class VueAccueil extends Vue
 	* Accueil
 	*/
 	private function render_displayAccueil() :String{
-		$html = "<h1>Titre</h1>";
+		$html = "
+			<h1>Accueil</h1>
+		";
         return $html;
 	}
 	
