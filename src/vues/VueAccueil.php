@@ -13,6 +13,9 @@ class VueAccueil extends Vue
 	private function render_displayAccueil() :String{
 		$html = "
 			<h1>Accueil</h1>
+			<form action='".$this->container->router->pathFor('test')."' method='GET'>
+				<input type='submit' value='Test'>
+			</form>
 		";
         return $html;
 	}
