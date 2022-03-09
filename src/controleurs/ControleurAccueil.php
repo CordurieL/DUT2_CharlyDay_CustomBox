@@ -1,14 +1,14 @@
 <?php declare(strict_types = 1);
 
-namespace charly-day\controleurs;
+namespace charlyday\controleurs;
 
 use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use charly-day\controleurs\Controleur;
-use charly-day\vue\VueAccueil;/*3236*/
-use charly-day\models\Item;
-use charly-day\models\Liste;
+use charlyday\controleurs\Controleur;
+use charlyday\vue\VueAccueil;/*3236*/
+use charlyday\models\Item;
+use charlyday\models\Liste;
 
 class ControleurAccueil extends Controleur
 {

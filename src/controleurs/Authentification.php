@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace charly-day\controleurs;
+namespace charlyday\controleurs;
 
-use charly-day\models\Role;
-use charly-day\models\User;
+use charlyday\models\Role;
+use charlyday\models\User;
 
 class Authentification
 {

@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace charly-day\vue;
+namespace charlyday\vue;
 use Slim\Container;
 
 class Vue

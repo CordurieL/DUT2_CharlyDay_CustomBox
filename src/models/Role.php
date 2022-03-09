@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace charly-day\models;
+namespace charlyday\models;
 
 use Illuminate\Database\Eloquent\Model;
 

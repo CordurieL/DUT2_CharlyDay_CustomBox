@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace charly-day\models;
+namespace charlyday\models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
-use charly-day\exceptions\InscriptionException;
+use charlyday\exceptions\InscriptionException;
 
 class User extends Model
 {

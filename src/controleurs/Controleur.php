@@ -1,6 +1,6 @@
 <?php
 
-namespace charly-day\controleurs;
+namespace charlyday\controleurs;
 
 use Slim\Container;
 

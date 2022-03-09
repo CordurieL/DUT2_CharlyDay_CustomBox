@@ -3,12 +3,10 @@
 //require_once __DIR__ .'/vendor/autoload.php';
 $config = require_once __DIR__ . "/src/conf/settings.php";
 
-use mywishlist\controleurs\ControleurAccueil;
+use charlyday\controleurs\ControleurAccueil;
 use Illuminate\Database\Capsule\Manager as DB;
 
 session_start();
-
-header('Location: index.php');
 
 $container = new Slim\Container($config);
 $app =new \Slim\App($config);
