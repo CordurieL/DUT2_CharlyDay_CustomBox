@@ -23,5 +23,6 @@ $db->bootEloquent();
 // Routes /////////////
 $app->get('/', ControleurAccueil::class.":displayAccueil")->setName("accueil");
 
+$app->get('/test', ControleurAccueil::class.":displayTest")->setName("test");
 
 $app->run();

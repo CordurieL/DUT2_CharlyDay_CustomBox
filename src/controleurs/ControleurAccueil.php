@@ -25,6 +25,12 @@ class ControleurAccueil extends Controleur
 		$rs->getBody()->write($v->render(1)) ;
 		return $rs ;
     }
+
+    function displayTest(Request $rq, Response $rs, array $args):Response{
+        $v = new VueAccueil($this->container) ;
+        $rs->getBody()->write($v->render(2)) ;
+        return $rs ;
+    }
 }
 
 

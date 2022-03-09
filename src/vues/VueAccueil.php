@@ -16,11 +16,22 @@ class VueAccueil extends Vue
 		";
         return $html;
 	}
+
+	private function render_displayTest() :String{
+		$html = "
+			<h1>Test</h1>
+		";
+		return $html;
+	}
 	
 	public function render($selecteur) :String{
 		switch ($selecteur) {
 			case 1 : {
 				$content = $this->render_displayAccueil();
+				break;
+			}
+			case 2 : {
+				$content = $this->render_displayTest();
 				break;
 			}
 			default : {
