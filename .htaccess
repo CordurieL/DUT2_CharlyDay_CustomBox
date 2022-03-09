@@ -2,7 +2,7 @@ RewriteEngine On
 #
 # RewriteBase indispensable sur webetu :
 
-RewriteBase /www/grolet4u/charly-day
+# RewriteBase /www/grolet4u/charly-day
 
 
 #
