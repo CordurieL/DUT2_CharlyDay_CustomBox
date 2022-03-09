@@ -21,8 +21,8 @@ class ControleurAccueil extends Controleur
 	* Accès à l'accueil
 	*/
     function displayAccueil(Request $rq, Response $rs, array $args):Response{
-        $v = new VueAccueil($this->container) ;
-		$rs->getBody()->write($v->render(1)) ;
+        /*$v = new VueAccueil($this->container) ;
+		$rs->getBody()->write($v->render(1)) ;*/
 		return $rs ;
     }
 }
