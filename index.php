@@ -8,8 +8,6 @@ use Illuminate\Database\Capsule\Manager as DB;
 
 session_start();
 
-header('Location: index.php');
-
 $container = new Slim\Container($config);
 $app =new \Slim\App($config);
 
@@ -24,8 +22,7 @@ $db->bootEloquent();
 /**
  * Page d'accueil
  */
-$app->get('/',
-    ControleurAccueil::class.":displayAccueil")->setName("accueil");
+$app->get('/', ControleurAccueil::class.":displayAccueil")->setName("accueil");
 
 
 $app->run();
