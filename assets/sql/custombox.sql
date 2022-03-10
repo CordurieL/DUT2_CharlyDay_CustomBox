@@ -33,24 +33,34 @@ CREATE TABLE `user`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `produit` (`id_user`, `titre`, `description`, `categorie`, `poids`)
+INSERT INTO `produit` (`id_produit`, `titre`, `description`, `categorie`, `poids`)
 VALUES (1, 'Crème', 'Une crème hydratante et parfumée qui rend la peau douce', 1, 0.3);
 
-CREATE TABLE `produits_boite`
+CREATE TABLE `commande`
 (
-    `id_produit` int(11) NOT NULL,
-    `id_boite`   int(11) NOT NULL,
-    `quantite`   int(11) NOT NULL
+    `id_commande` int(11)      NOT NULL,
+    `id_user`     int(11)      NOT NULL,
+    `statut`      varchar(255) NOT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-ALTER TABLE `produits_boite`
-    ADD CONSTRAINT FK_produits_boite_produits
+CREATE TABLE `produits_commande`
+(
+    `id_produit`  int(11) NOT NULL,
+    `id_commande` int(11) NOT NULL,
+    `quantite`    int(11) NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+ALTER TABLE `produits_commande`
+    ADD CONSTRAINT FK_produits_commande_produit
         FOREIGN KEY (id_produit) REFERENCES produit (id_produit);
 
-ALTER TABLE `produits_boite`
-    ADD CONSTRAINT FK_produits_boite_boite
-        FOREIGN KEY (id_boite) REFERENCES boite (id_boite);
+ALTER TABLE `produits_commande`
+    ADD CONSTRAINT FK_produits_commande_commande
+        FOREIGN KEY (id_commande) REFERENCES commande (id_commande);
+
+
 
 --
 -- Structure de la table `boite`
