@@ -10,7 +10,9 @@ class VueBoite extends Vue {
 	* Création d'une boite qui amène sur la liste des produits
 	*/
 	private function render_createBox():String{
-		$res="";
+		$res="<p>Votre boîte est créée !<a href=\"".
+				$this->container->router->pathFor('produits')."\">
+				Retour aux produids.</a>";
 		return $res;
 	}
 
@@ -36,7 +38,7 @@ class VueBoite extends Vue {
 	 * Formulaire de création d'une boite
 	 */
 	private function render_formBox(): string {
-		$res = "<div><form action='" . $this->container->router->pathFor('createBox') . "'>
+		$res = "<div><form method=\"POST\" name=\"formboite\" action='" . $this->container->router->pathFor('createBox') . "'>
 				<p><label>Taille : </label><input type=\"text\" name=\"taille\" size=40 required=\"true\"></p>
 				<p><label>Couleur : </label><input type=\"text\" name=\"couleur\" size=40 required=\"true\"></p>
 				<p><label>Message : </label><input type=\"text\" name=\"message\" size=100 required=\"true\"></p>
@@ -65,6 +67,26 @@ class VueBoite extends Vue {
 
 		return $res;
 	}
+	
+	/**
+	* Listes des boites d'un compte
+	*/
+	private function render_contenuBoite():String{
+		if($this->objet!==null){
+			$res="<section><ol>Toutes les objets de la boite :";
+			foreach($this->objet as $l){
+				$res=$res."<li>
+				<p>Titre : $l->titre Description : $l->description
+				Categorie : $l->categorie</p></li>";
+			}
+			$res=$res."</ol></section>";
+		}
+		else{
+			$res="<section><p>Il n'y a actuellement aucune boite.</p></section>";
+		}
+
+		return $res;
+	}
 
 	public function render($selecteur): string {
 		$vueElements = new VueElements($this->container);
@@ -84,6 +106,10 @@ class VueBoite extends Vue {
 			}
 			case 4 : {
 				$content .= $this->render_listesBoites();
+				break;
+			}
+			case 5 : {
+				$content .= $this->render_contenuBoite();
 				break;
 			}
 			default :

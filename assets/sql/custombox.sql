@@ -189,11 +189,14 @@ ALTER TABLE `categorie`
     MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 6;
 
---
+ALTER TABLE `boite`
+    MODIFY `id_boite` int(11) AUTO_INCREMENT NOT NULL,
+
+    --
 -- AUTO_INCREMENT pour la table `produit`
 --
-ALTER TABLE `produit`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    ALTER TABLE `produit`
+    MODIFY `id` int (11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 14;
 
 --

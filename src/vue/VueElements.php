@@ -2,6 +2,8 @@
 
 namespace custombox\vue;
 
+use custombox\models\Boite;
+
 class VueElements extends Vue {
 	function renderHead(string $title): string
     {
@@ -20,10 +22,70 @@ HTML;
 
 	function renderHeader(): string
     {
-		if (isset($_SESSION['id_user']))
+		$url = $this->container->router->pathFor('inscription');
+		if (isset($_SESSION['id_user'])){
 			$url = $this->container->router->pathFor('profil');
-		else
-			$url = $this->container->router->pathFor('inscription');
+			$cond=Boite::where('id_user','=',$_SESSION['id_user'])->first();
+			if($cond!=null){
+				return <<<HTML
+            <header>
+                <nav class="container-large">
+                    <h1>
+                        <a href="/">
+                            <span class="text-base">L'Atelier </span><span class="text-orange">19</span>.<span class="text-green">71</span>
+                        </a>
+                    </h1>
+
+                    <div class="icons-container">
+                        <a href="/contenuBoite">
+                            <img src="/assets/icons/shopping-bag.svg" alt="user icon" class="icon">
+                        </a>
+                        <a href=$url>
+                            <img src="/assets/icons/user.svg" alt="user icon" class="icon">
+                        </a>
+                        
+                    </div>
+
+                   
+
+                </nav>
+            </header>
+            <main>
+HTML;
+			
+			}
+		else{
+			return <<<HTML
+            <header>
+                <nav class="container-large">
+                    <h1>
+                        <a href="/">
+                            <span class="text-base">L'Atelier </span><span class="text-orange">19</span>.<span class="text-green">71</span>
+                        </a>
+                    </h1>
+
+                    <div class="icons-container">
+                        <a href="/creationBoite">
+                            <img src="/assets/icons/shopping-bag.svg" alt="user icon" class="icon">
+                        </a>
+                        <a href=$url>
+                            <img src="/assets/icons/user.svg" alt="user icon" class="icon">
+                        </a>
+                        
+                    </div>
+
+                   
+
+                </nav>
+            </header>
+            <main>
+HTML;
+		}
+		}	
+			
+		else{
+			
+		
 		return <<<HTML
             <header>
                 <nav class="container-large">
@@ -49,6 +111,7 @@ HTML;
             </header>
             <main>
 HTML;
+	}
 	}
 
 	function renderFooter() {

@@ -96,6 +96,12 @@ $app->post('/boite[/]',
  */
 $app->get('/listesBoites[/]',
 	ControleurBoite::class . ":listesBoites")->setName("listesBoites");
+	
+/**
+ * Contenu d'une boite
+ */
+$app->get('/contenuBoite[/]',
+	ControleurBoite::class . ":contenuBoite")->setName("contenuBoite");
 
 // USER -----------------------------------------------
 
@@ -139,13 +145,13 @@ $app->get('/profil[/]',
 /**
  * formulaire Modification de compte
  */
-$app->get('/myProfile/formulaire_Modif[/]',
+$app->get('/profil/modifier[/]',
 	ControleurUser::class . ':formModifCompte')->setName('formModifCompte');
 
 /**
  * Modification de compte
  */
-$app->post('/myProfile/modification[/]',
+$app->post('/profil/modifier[/]',
 	ControleurUser::class . ':modifCompte')->setName('modifCompte');
 
 /**
