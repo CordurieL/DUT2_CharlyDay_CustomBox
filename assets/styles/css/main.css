@@ -106,4 +106,15 @@ header nav .user-icon {
   max-width: 50px;
   min-width: 20px;
 }
+
+.center-logo {
+  padding-top: 30px;
+  margin: 0 auto;
+  width: 200px;
+}
+
+.center-logo img {
+  max-width: 400px;
+  height: auto;
+}
 /*# sourceMappingURL=main.css.map */

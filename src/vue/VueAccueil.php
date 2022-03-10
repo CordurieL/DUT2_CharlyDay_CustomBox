@@ -65,9 +65,13 @@ class VueAccueil extends Vue {
         $html = $vueElem->renderHead("accueil");
 		$html .= $vueElem->renderHeader();
         $html .= <<<HTML
-                <div class="content\">
-					$content
+                <div class="center-logo">
+					<img src="assets/img/logo/logo_grand.png" alt="" srcset="" class="">
 				</div>
+				<div>
+					
+				</div>
+				</main>
 				<footer>
 
 				</footer>
