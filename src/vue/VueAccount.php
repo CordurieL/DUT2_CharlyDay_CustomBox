@@ -37,12 +37,12 @@ class VueAccount extends Vue {
 				<meta charset='utf-8'/>
 				<link rel='stylesheet' media='screen' type='text/css' href='web/css/style.css'/>
 				<link rel='icon' type='image/x-icon' href='../../assets/img/logo/logo_200x200.jpg'>
-				<title>CustomBox</title>
+				<title>CustomBox by L'atelier</title>
 			</head>
 			<body>
 				<header>
 					<nav>
-						<h1><a href =' . $this->container->router->pathFor('accueil') . '>The Wishlist</a></h1>
+						<h1><a href =' . $this->container->router->pathFor('accueil') . '>CustomBox</a></h1>
 					</nav>
 				</header>
 				
