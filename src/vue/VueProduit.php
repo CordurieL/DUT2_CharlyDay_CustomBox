@@ -52,7 +52,6 @@ HTML;
         foreach ($products as $p) {
             $numProd = $p['id_produit'];
             $urlAddPanier = $this->container->router->pathFor('ajouterPanier', ['id_product'=>$numProd]);
-            echo $urlAddPanier;
             $content .= <<<HTML
             <div class='product'>
                 <div class='productLineImage'>
