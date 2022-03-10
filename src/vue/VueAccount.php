@@ -79,17 +79,21 @@ HTML;
 	private function render_connexion(): string {
 		$url = $this->container->router->pathFor('connexion');
 		$inscription = $this->container->router->pathFor('inscription');
-		if (isset($_SESSION['id_user'])) {
-			$user_id = $_SESSION['id_user'];
-		}
-		$user_id = $_SESSION['user_id'];
 		return <<<HTML
-			<section>
+			<section class="form-connexion">
 				<h2>Connexion</h2>
-				<p>Pas de compte ?<a href=$inscription>S'inscrire</a></p>
+				<p>Pas de compte ?
+					<a href=$inscription>S'inscrire</a>
+				</p>
 				<form action='$url' method='POST' name='formConnex' id='formConnex'>
-					<p><label>Adresse email : </label><input type='text' name='email' size=40 required='true'></p>$user_id fr erefre
-					<p><label>Mot de passe : </label><input type='password' name='password' size=60 required='true'></p>
+					<p class="form-connexion__label">
+						<label>Adresse email : </label>
+						<input type='text' name='email' size=40 required='true'>
+					</p>
+					<p class="form-connexion__label">
+						<label>Mot de passe : </label>
+						<input type='password' name='password' size=60 required='true'>
+					</p>
 					<input type='submit' name='submit' value='connexion'>
 				</form>
 			</section>
