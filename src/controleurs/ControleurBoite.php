@@ -10,7 +10,6 @@ use custombox\vue\VueBoite;
 use custombox\vue\VueItem;
 use custombox\models\Boite;
 use custombox\controleurs\Controleur;
-use custombox\controleurs\ControleurBoite;
 use custombox\models\Item;
 use Slim\Container;
 use Slim\Http\Request;
