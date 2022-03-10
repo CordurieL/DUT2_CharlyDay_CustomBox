@@ -12,7 +12,7 @@ class VueAccueil extends Vue {
 	 */
 	private function render_displayAccueil(): string {
 		$html = "<section><h2>Que voulez-vous faire ?</h2>
-			<form action='" . $this->container->router->pathFor('listesPubliques') . "' method='GET'>
+			<form action='" . $this->container->router->pathFor('produits') . "' method='GET'>
 				<input type='submit' value='Consulter les listes publiques'>
 			</form>
 
