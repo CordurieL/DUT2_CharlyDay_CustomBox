@@ -40,6 +40,19 @@ $app->get('/produits[/]',
     ControleurProduit::class . ":displayProducts")->setName("produits");
 
 
+/**
+ * Faire un formulaire pour 
+ */
+$app->get('/createProductForm[/]', 
+    ControleurProduit::class . ":formCreateProduct")->setName("createProductForm");
+
+/**
+ * Voir tous les produits disponibles sur le site 
+ */
+$app->post('/createProduct[/]', 
+    ControleurProduit::class . ":createProduct")->setName("createProduct");
+
+
 // LISTE -----------------------------
 /**
  * Voir toutes les listes publiques

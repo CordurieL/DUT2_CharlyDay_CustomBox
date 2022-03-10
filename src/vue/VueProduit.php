@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 namespace custombox\vue;
+use custombox\models\Categorie;
 
 use Slim\Container;
 
@@ -34,6 +35,27 @@ class VueProduit
         return $content;
     }
 
+    /**
+	 * @return string La chaine html correspondant à un formulaire de creation de produit
+	 */
+	private function render_formulaireCreation(): string {
+
+        $selectBox = "<select name='choixCategorie' class='styleinput'>";
+        foreach($this->objet as $categ){
+            $selectBox = $selectBox . "<option>$categ[nom]</option>";
+        }
+        $selectBox = $selectBox . "</select>";
+
+		return "<section><h2>Création d'un nouveau produit</h2>
+            <form action='" . $this->container->router->pathFor('createProduct') . "' method='POST' name='formCreateProduct' id='formCreateProduct'>
+				<p><label>Nom du produit : </label><input type='text' name='productName' size=40 required='true'></p>
+                <p><label>Description du produit : </label><input type='text' name='productDescription' size=40 required='true'></p>
+				<p><label>Catégorie du produit : </label>$selectBox</p>
+				<p><label>Poids du produit : </label><input type='float' name='productWeight' size=60 required='true'></p>
+				<input type='submit' value='S'inscrire'>
+			</form></section>";
+	}
+
     public function render($selecteur): string
     {
         $content = "";
@@ -41,6 +63,11 @@ class VueProduit
             case 1:
             {
                 $content = $this->displayProducts();
+                break;
+            }
+            case 2 :
+            {
+                $content = $this->render_formulaireCreation();
                 break;
             }
             default:
