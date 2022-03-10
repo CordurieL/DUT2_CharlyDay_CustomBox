@@ -2,16 +2,14 @@
 
 namespace custombox\vue;
 
-class VueElements
-{
+class VueElements {
 
 
-    public function __construct()
-    {
-    }
+	public function __construct() {
+	}
 
-    function renderHead(String $title) {
-        return <<<HTML
+	function renderHead(string $title) {
+		return <<<HTML
         <!DOCTYPE html>
 		<html lang='fr'>
 			<head>
@@ -23,15 +21,18 @@ class VueElements
 			<body>
 HTML;
 
-    }
+	}
 
-    function renderHeader() {
-        return <<<HTML
+	function renderHeader() {
+		if (isset($_SESSION['id_user'])) {
+			$url = $this->container->router->pathFor('inscription');
+		}
+		return <<<HTML
             <header>
                 <nav class="container-large ">
                     <h1>
                         <a href="/">
-                            <span class="text-base">L'Atelier </span><span class="color-text-base">19.71</span>
+                            <span class="text-base">L'Atelier </span><span class="text-orange">19</span>.<span class="text-green">71</span>
                         </a>
                     </h1>
                     <a href="">
@@ -41,6 +42,24 @@ HTML;
                 </nav>
             </header>
             <main>
+HTML;
+	}
+    function renderFooter() {
+        return <<<HTML
+                    <footer>
+                        <nav class="container-large ">
+                            <h1>
+                                <a href="/">
+                                    <span class="text-base">L'Atelier </span><span class="text-orange">19</span>.<span class="text-green">71</span>
+                                </a>
+                            </h1>                       
+                            <a href="" class="text-greyed">CGU</a>
+                            <a href="" class="text-greyed">Qui sommes nous?</a>
+                        </nav>
+                    </footer>
+                </body>
+            <html>
+
 HTML;
     }
 }

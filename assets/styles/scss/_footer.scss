@@ -1,0 +1,18 @@
+footer {
+    background-color: $color-base;
+
+    padding: 20px 0;
+    position: relative;
+    nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+
+
+        a {
+            color: $color-greyed;
+        }
+
+    }
+}

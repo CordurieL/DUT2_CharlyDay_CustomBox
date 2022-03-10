@@ -94,6 +94,7 @@ CREATE TABLE `produit`
     `description` text    NOT NULL,
     `categorie`   int(11) NOT NULL,
     `poids`       float   NOT NULL,
+    `image`        text   NOT NULL,
     primary key (`id_produit`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -113,20 +114,20 @@ CREATE TABLE `produits_boite`
 -- Déchargement des données de la table `produit`
 --
 
-INSERT INTO `produit` (`id_produit`, `titre`, `description`, `categorie`, `poids`)
-VALUES (1, 'Crème', 'Une crème hydratante et parfumée qui rend la peau douce', 1, 0.3),
-       (2, 'Savon', 'Un savon qui respecte la peau', 1, 0.2),
-       (3, 'Shampoing', 'Shampoing doux et démêlant', 1, 0.4),
-       (4, 'Bracelet', 'Un bracelet en tissu aux couleurs plaisantes', 2, 0.15),
-       (5, 'Tableau', 'Aquarelle ou peinture à l\'huile', 3, 0.6),
-       (6, 'Essuie-main', 'Utile au quotidien', 4, 0.45),
-       (7, 'Gel', 'Gel hydroalcoolique et Antibactérien', 4, 0.25),
-       (8, 'Masque', 'masque chirurgical jetable categorie 1', 4, 0.35),
-       (9, 'Gilet', 'Gilet décoré par nos couturières', 5, 0.55),
-       (10, 'Marque page', 'Joli marque page pour accompagner vos lectures favorites', 5, 0.1),
-       (11, 'Sac', 'Sac éco-responsable avec décorations variées', 5, 0.26),
-       (12, 'Surprise', 'Pochette surprise pour faire plaisir aux petits et grands', 5, 0.7),
-       (13, 'T-shirt', 'T-shirt peint à la main et avec pochoir', 5, 0.32);
+INSERT INTO `produit` (`id_produit`, `titre`, `description`, `categorie`, `poids`, `image`)
+VALUES (1, 'Crème', 'Une crème hydratante et parfumée qui rend la peau douce', 1, 0.3, '1.jpg'),
+       (2, 'Savon', 'Un savon qui respecte la peau', 1, 0.2, '2.jpg'),
+       (3, 'Shampoing', 'Shampoing doux et démêlant', 1, 0.4, '3.jpg'),
+       (4, 'Bracelet', 'Un bracelet en tissu aux couleurs plaisantes', 2, 0.15, '4.jpg'),
+       (5, 'Tableau', 'Aquarelle ou peinture à l\'huile', 3, 0.6, '5.jpg'),
+       (6, 'Essuie-main', 'Utile au quotidien', 4, 0.45, '6.jpg'),
+       (7, 'Gel', 'Gel hydroalcoolique et Antibactérien', 4, 0.25, '7.jpg'),
+       (8, 'Masque', 'masque chirurgical jetable categorie 1', 4, 0.35, '8.jpg'),
+       (9, 'Gilet', 'Gilet décoré par nos couturières', 5, 0.55, '9.jpg'),
+       (10, 'Marque page', 'Joli marque page pour accompagner vos lectures favorites', 5, 0.1, '10.jpg'),
+       (11, 'Sac', 'Sac éco-responsable avec décorations variées', 5, 0.26, '11.jpg'),
+       (12, 'Surprise', 'Pochette surprise pour faire plaisir aux petits et grands', 5, 0.7, '12.jpg'),
+       (13, 'T-shirt', 'T-shirt peint à la main et avec pochoir', 5, 0.32, '13.jpg');
 
 --
 -- Index pour les tables déchargées
@@ -164,6 +165,9 @@ ALTER TABLE `produit`
     MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 14;
 
+ALTER TABLE `user`
+    MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 1;
 
 ALTER TABLE `produits_boite`
     ADD FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id_produit`);

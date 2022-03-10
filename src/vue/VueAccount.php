@@ -34,8 +34,8 @@ class VueAccount extends Vue {
 
 	<html lang='fr'>
 			<head>
-				<meta charset=\"utf-8\"/>
-				<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" href=\"web/css/input.css\"/>
+				<meta charset='utf-8'/>
+				<link rel='stylesheet' media='screen' type='text/css' href='web/css/input.css'/>
 				<title>sometext</title>
 			</head>
 			<body>
@@ -45,7 +45,7 @@ class VueAccount extends Vue {
 					</nav>
 				</header>
 				
-                <div class=\"content\">
+                <div class='content'>
 					$content
 				</div>
 				<footer>
@@ -90,20 +90,17 @@ class VueAccount extends Vue {
 	 * @return string La chaine html correspondant à un formulaire de connexion
 	 */
 	private function render_formulaireConnexion(): string {
+		$url = $this->container->router->pathFor('inscription');
 		return "<section><h2>Connexion</h2>
-            <form action=\"" . $this->container->router->pathFor('connexion') . "\" method=\"POST\" name=\"formConnex\" id=\"formConnex\">
-				<p><label>Pseudo : </label><input type=\"text\" name=\"username\" size=40 required=\"true\"></p>
-				<p><label>Password : </label><input type=\"password\" name=\"password\" size=60 required=\"true\"></p>
-				<input type=\"submit\" value=\"Connexion\">
+            <form action='" . $this->container->router->pathFor('connexion') . "' method='POST' name='formConnex' id='formConnex'>
+				<p><label>Pseudo : </label><input type='text' name='username' size=40 required='true'></p>
+				<p><label>Password : </label><input type='password' name='password' size=60 required='true'></p>
+				<input type='submit' value='Connexion'>
 			</form></section>";
 	}
 
-	private function render_connexion(): string {
-		return "<a href =\"..\">Accueil</a> <script>window.alert(\"Vous êtes connecté\")</script>";
-	}
-
 	private function render_deconnexion(): string {
-		return "<a href =\"..\">Accueil</a> <script>window.alert(\"Vous êtes déconnecté\")</script>";
+		return "<a href ='..'>Accueil</a> <script>window.alert('Vous êtes déconnecté')</script>";
 	}
 
 	private function render_profile(): string {

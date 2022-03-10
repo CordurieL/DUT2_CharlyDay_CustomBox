@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace custombox\vue;
+use custombox\models\Categorie;
 
 use Slim\Container;
 
@@ -26,7 +27,7 @@ class VueProduit
 			<span class='productLineTitle'>Nom de produit</span>
 			<span = class='productLineDescr'>Descriptif</span>
 			<span class ='productLineCateg'>Catégorie</span>
-			<span class='productLineWeight'>Poids</span>
+			<span class='productLineWeight'>Poids (Kg)</span>
 		</div><br><hr><br>";
         foreach ($products as $p) {
             $content .= "<div class='productLine'><span class='productLineTitle'>$p[titre]</span><span = class='productLineDescr'>$p[description]</span><span class ='productLineCateg'>$p[categorie]</span><span class='productLineWeight'>$p[poids]</span></div><br>";
@@ -35,6 +36,27 @@ class VueProduit
         return $content;
     }
 
+    /**
+	 * @return string La chaine html correspondant à un formulaire de creation de produit
+	 */
+	private function render_formulaireCreation(): string {
+
+        $selectBox = "<select name='choixCategorie' class='styleinput'>";
+        foreach($this->objet as $categ){
+            $selectBox = $selectBox . "<option>$categ[nom]</option>";
+        }
+        $selectBox = $selectBox . "</select>";
+
+		return "<section><h2>Création d'un nouveau produit</h2>
+            <form action='" . $this->container->router->pathFor('createProduct') . "' method='POST' name='formCreateProduct' id='formCreateProduct'>
+				<p><label>Nom du produit : </label><input type='text' name='productName' size=40 required='true'></p>
+                <p><label>Description du produit : </label><input type='text' name='productDescription' size=40 required='true'></p>
+				<p><label>Catégorie du produit : </label>$selectBox</p>
+				<p><label>Poids du produit : </label><input type='float' name='productWeight' size=60 required='true'></p>
+				<input type='submit' value='S'inscrire'>
+			</form></section>";
+	}
+
     public function render($selecteur): string
     {
         $content = "";
@@ -42,6 +64,11 @@ class VueProduit
             case 1:
             {
                 $content = $this->displayProducts();
+                break;
+            }
+            case 2 :
+            {
+                $content = $this->render_formulaireCreation();
                 break;
             }
             default:
