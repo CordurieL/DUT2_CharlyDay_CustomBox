@@ -38,38 +38,52 @@ class VueAccount extends Vue {
 		$url = $this->container->router->pathFor('inscription');
 		$connection = $this->container->router->pathFor('connexion');
 		return <<<HTML
-			<form action='$url' method='POST' class="form-inscription">
-			    <h2>INSCRIPTION</h2>
-			    
-			    <p>Déjà un compte ? <a href=$connection>Se connecter</a></p>
-			    
-				<div class="form-inscription__label">
-					<label>Entrez votre prénom</label>
-					<input required type='text' name='prenom' placeholder='Prénom'><br>
-				</div>
+<div class="form-inscription">
+    <div class="inscription-left">
+        <h3>INFORMATIONS</h3>
 
-			    <div class="form-inscription__label">
-					<label>Entrez votre nom</label>
-					<input required ='text' name='nom' placeholder='Nom'><br>
-				</div>
+        <p>Si vous avez déja un compte, connectez vous</p>
+        <a href="/connexion" class="connexion-inscription">connexion</a>
 
-				<div class="form-inscription__label">
-			    	<label>Entrez votre adresse e-mail</label>
-			    	<input required type='text' name='email' placeholder='Adresse e-mail'><br>
-				</div>
-			
-				<div class="form-inscription__label">
-			 		<label>Entrez un mot de passe</label>
-			    	<input required type='password' name='password' placeholder='Mot de passe'><br>
-				</div>
-			    
-				<div class="form-inscription__label">
-			    	<label>Entrez à nouveau le mot de passe</label>
-			    	<input required type='password' name='password2' placeholder='Mot de passe'><br>
-				</div>
-				
-			    <button type='submit' name='submit' value='inscription'>S'inscrire</button>
-			</form>
+		<img src="/assets/img/logo/logo_grand.png" alt="" srcset="">
+    </div>
+    <div class="inscription-right">
+        <form action='$url' method='POST' class="">
+            <h1>INSCRIPTION</h1>
+
+            <div class="inscription-nom-prenom">
+                <div class="form-inscription__label">
+                    <label>Prénom</label>
+                    <input required type='text' name='prenom' placeholder='Prénom'><br>
+                </div>
+            
+                <div class="form-inscription__label">
+                    <label>Nom</label>
+                    <input required='text' name='nom' placeholder='Nom'><br>
+                </div>
+            </div>
+            <div class="inscription-email">
+                <div class="form-inscription__label">
+                    <label>E-mail</label>
+                    <input required type='text' name='email' placeholder='Adresse e-mail'><br>
+                </div>
+            </div>
+
+        <div class="inscription-mdp">
+            <div class="form-inscription__label">
+                <label>Mot de passe</label>
+                <input required type='password' name='password' placeholder='Mot de passe'><br>
+            </div>
+        
+            <div class="form-inscription__label">
+                <label>Confirmer</label>
+                <input required type='password' name='password2' placeholder='Mot de passe'><br>
+            </div>
+        </div>
+        <button type='submit' name='submit' value='inscription'>S'inscrire</button>
+        </form>
+    </div>
+</div>
 HTML;
 	}
 
