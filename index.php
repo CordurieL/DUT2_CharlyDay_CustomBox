@@ -34,10 +34,10 @@ $app->get('/',
 
 // PRODUITS ------------------------------
 /**
- * Voir tous les produits disponibles sur le site 
+ * Voir tous les produits disponibles sur le site
  */
-$app->get('/produits[/]', 
-    ControleurProduit::class . ":displayProducts")->setName("produits");
+$app->get('/produits[/]',
+	ControleurProduit::class . ":displayProducts")->setName("produits");
 
 // BOITES  -------------------------------
 /**
@@ -231,8 +231,8 @@ $app->post('/item/participer_cagnotte/{id}[/]',
 /**
  * Formulaire inscription
  */
-$app->get('/formulaireInscription[/]',
-	ControleurUser::class . ':formulaireInscription')->setName('formInscription');
+$app->get('/inscription[/]',
+	ControleurUser::class . ':inscription')->setName('formInscription');
 
 /**
  * Inscription
