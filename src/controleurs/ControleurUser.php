@@ -47,23 +47,37 @@ class ControleurUser {
 	 */
 	public function formulaireInscription(Request $rq, Response $rs, array $args): Response {
 		$vue = new VueAccount($this->container);
-		$rs->write($vue->render(1));
-		return $rs;
-	}
-
-	/**
-	 * Inscrit un utilisateur
-	 */
-	public function inscription(Request $rq, Response $rs, array $args): Response {
-		$data = $rq->getParsedBody();
-		$username = filter_var($data['username'], FILTER_SANITIZE_STRING);
-		$password = filter_var($data['password'], FILTER_SANITIZE_STRING);
-		$email = filter_var($data['email'], FILTER_SANITIZE_STRING);
-		try {
-			Authentification::createUser($username, $password, 'Createur', $email);
-			$rs->write("Utilisateur " . $username . " inscrit");
-		} catch (InscriptionException $e1) {
-			$rs->write($e1->getMessage());
+		$html = $vue->render(1);
+		$rs->getBody()->write($html);
+		// Si le formulaire a été soumis :
+		if (isset($_POST['submit'])) {
+			// Si le bouton "S'inscrire" a été cliqué :
+			if ($_POST['submit'] == 'inscription') {
+				$donnees = User::select('email')
+					->where('email', $_POST['email'])
+					->get();
+				// Si l'email est pas déjà présent dans la base de données :
+				if ($donnees == []) {
+					echo "<p class='erreur'>Vous êtes déjà inscrit avec cette adresse mail.</p>";
+				} else {
+					if ($_POST['password'] != $_POST['password2']) {
+						echo "<p class='erreur'>Les mots de passe ne correspondent pas.</p>";
+					} else {
+						$email = htmlspecialchars($_POST['email']);
+						$prenom = htmlspecialchars($_POST['prenom']);
+						$nom = htmlspecialchars($_POST['nom']);
+						// Création de l'utilisateur par le modèle :
+						$u = new User();
+						$u->email = $email;
+						$u->prenom = $prenom;
+						$u->nom = $nom;
+						$u->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+						$u->save();
+						$_SESSION['user_id'] = $u->user_id;
+						$rs = $rs->withRedirect($this->container->router->pathFor('Accueil', ['token' => $args['token']]));
+					}
+				}
+			}
 		}
 		return $rs;
 	}

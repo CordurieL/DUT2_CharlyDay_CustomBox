@@ -34,11 +34,17 @@ $app->get('/',
 
 // PRODUITS ------------------------------
 /**
- * Voir tous les produits disponibles sur le site 
+ * Voir tous les produits disponibles sur le site
  */
-$app->get('/produits[/]', 
-    ControleurProduit::class . ":displayProducts")->setName("produits");
+$app->get('/produits[/]',
+	ControleurProduit::class . ":displayProducts")->setName("produits");
 
+// BOITES  -------------------------------
+/**
+ * Voir toutes les boites
+ */
+$app->get('/boites[/]', 
+    ControleurBoite::class . ":displayBox")->setName("boites");
 
 // LISTE -----------------------------
 /**
@@ -225,8 +231,8 @@ $app->post('/item/participer_cagnotte/{id}[/]',
 /**
  * Formulaire inscription
  */
-$app->get('/formulaireInscription[/]',
-	ControleurUser::class . ':formulaireInscription')->setName('formInscription');
+$app->get('/inscription[/]',
+	ControleurUser::class . ':inscription')->setName('formInscription');
 
 /**
  * Inscription
@@ -274,6 +280,6 @@ $app->post('/myProfile/modification[/]',
  * Suppression de compte
  */
 $app->post('/myProfile/deleteAccount[/]',
-	ControleurUser::class . ':supprimerCompte')->setName('supprimerCompte');
+	ControleurUser::class . ':supprimerCompte')->setName('supprimerCompte');																		
 
 $app->run();
