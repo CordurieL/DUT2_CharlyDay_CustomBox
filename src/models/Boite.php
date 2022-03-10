@@ -27,6 +27,28 @@ class Boite extends Model {
        
         $this->save();
 	}
+	
+	/**
+	* Permet de modifier une boite
+	*/
+	public function modifyBox($taille=null,$couleur=null,$message=null){
+		if($taille!=null){
+			$taille=filter_var($taille,FILTER_SANITIZE_STRING);
+			$this->taille=$taille;
+		}
+		
+		if($couleur!=null){
+			$couleur=filter_var($couleur,FILTER_SANITIZE_STRING);
+			$this->couleur=$couleur;
+		}
+		
+		if($message!=null){
+			$message=filter_var($message,FILTER_SANITIZE_STRING);
+			$this->message=$message;
+		}
+		
+        $this->save();
+	}
 }
 
 

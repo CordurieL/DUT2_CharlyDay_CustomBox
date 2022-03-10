@@ -30,9 +30,24 @@ class ControleurBoite extends Controleur {
 		
 		$param=$rq->getParsedBody();
 		$box=new Boite();
-		$box=$box->createBox($param['taille'],$param['couleur'],$param['message']);
+		$box->createBox($param['taille'],$param['couleur'],$param['message']);
 		$v = new VueListe($this->container,$box);
 		$rs->getBody()->write($v->render(1)) ;
+		
+		return $rs ;
+	}
+	
+	/**
+	* Permet de modifier une boite
+	*/
+	public function modifyBox(Request $rq, Response $rs, array $args) :Response{
+		$container = $this->container ;
+		
+		$param=$rq->getParsedBody();
+		$box=Boite::where('id_boite','=',$param['id_boite'])->first();
+		$box->modifyBox($param['taille'],$param['couleur'],$param['message']);
+		$v = new VueListe($this->container,$box);
+		$rs->getBody()->write($v->render(3)) ;
 		
 		return $rs ;
 	}
