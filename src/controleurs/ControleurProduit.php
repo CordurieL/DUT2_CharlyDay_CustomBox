@@ -16,6 +16,16 @@ class ControleurProduit extends Controleur {
 	public function __construct(Container $c) {
 		parent::__construct($c);
 	}
+
+	/**
+	 * Affichage de l ensemble des produits
+	 */
+	function displayProducts(Request $rq, Response $rs, array $args): Response {
+		$products = Produit::all();
+		$v = new VueProduit($this->container, $products);
+		$rs->getBody()->write($v->render(1));
+		return $rs;
+	}
 }
 
 
