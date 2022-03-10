@@ -11,10 +11,10 @@ class VueAccount extends Vue {
 		$content = $vueElements->renderHead("Account") . $vueElements->renderHeader();
 		switch ($selecteur) {
 			case 1:
-				$content = $this->render_inscription();
+				$content .= $this->render_inscription();
 				break;
 			case 2:
-				$content = $this->render_connexion();
+				$content .= $this->render_connexion();
 				break;
 			case 5 :
 				$content .= $this->render_accessDenied();
