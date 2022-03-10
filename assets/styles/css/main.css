@@ -14,7 +14,6 @@ a, a:visited {
   text-decoration: none;
   decoration: none;
   text-decoration: none;
-  color: inherit;
 }
 
 strong {
@@ -66,6 +65,10 @@ main {
 /** == TEXT COLORIZE == */
 .text-green {
   color: #47ACA4;
+}
+
+.text-orange {
+  color: #E77441;
 }
 
 .text-green-pastel {
@@ -169,5 +172,29 @@ header nav .user-icon {
   transition: -webkit-box-shadow 0.5s ease 0s;
   transition: box-shadow 0.5s ease 0s;
   transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
+}
+
+footer {
+  background-color: white;
+  padding: 20px 0;
+  position: relative;
+}
+
+footer nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 30px;
+}
+
+footer nav a {
+  color: #828282;
 }
 /*# sourceMappingURL=main.css.map */

@@ -17,7 +17,8 @@ class Authentification {
 	 * Crée un utilisateur
 	 * @param $username String nom d'utilisateur
 	 * @param $password String mot de passe
-	 * @param $roleId string label du role à donner
+	 * @param $role
+	 * @param $email
 	 * @throws InscriptionException si le mot de passe ne correspond pas aux prérequis
 	 */
 	public static function createUser($username, $password, $role, $email) {

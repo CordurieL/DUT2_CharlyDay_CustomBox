@@ -57,12 +57,9 @@ class VueAccueil extends Vue {
 					</div>
 				</div>
 				</main>
-				<footer>
-
-				</footer>
-			</body>
-		<html>
 HTML;
+
+		$html .= $vueElem->renderFooter();
 
 		return $html;
 

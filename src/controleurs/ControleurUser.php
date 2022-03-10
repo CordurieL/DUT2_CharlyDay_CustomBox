@@ -45,7 +45,7 @@ class ControleurUser {
 	/**
 	 * Créé un formulaire d'inscription pour un utilisateur
 	 */
-	public function formulaireInscription(Request $rq, Response $rs, array $args): Response {
+	public function inscription(Request $rq, Response $rs, array $args): Response {
 		$vue = new VueAccount($this->container);
 		$html = $vue->render(1);
 		$rs->getBody()->write($html);
@@ -73,8 +73,8 @@ class ControleurUser {
 						$u->nom = $nom;
 						$u->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 						$u->save();
-						$_SESSION['user_id'] = $u->user_id;
-						$rs = $rs->withRedirect($this->container->router->pathFor('Accueil', ['token' => $args['token']]));
+						$_SESSION['id_user'] = $u->id_user;
+						$rs = $rs->withRedirect($this->container->router->pathFor('accueil', ['token' => $args['token']]));
 					}
 				}
 			}
@@ -146,7 +146,7 @@ class ControleurUser {
 	/**
 	 * Voir les infos de son compte
 	 */
-	public function voirCompte(Request $rq, Response $rs, array $args): Response {
+	public function voirProfil(Request $rq, Response $rs, array $args): Response {
 		try {
 			Authentification::checkAccessRights(Authentification::$CREATOR_RIGHTS);
 			$userid = $_SESSION['profile']['userid'];

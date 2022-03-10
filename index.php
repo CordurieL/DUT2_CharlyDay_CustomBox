@@ -39,13 +39,93 @@ $app->get('/',
 $app->get('/produits[/]',
 	ControleurProduit::class . ":displayProducts")->setName("produits");
 
+<<<<<<< HEAD
+
+/**
+ * Faire un formulaire pour 
+ */
+$app->get('/createProductForm[/]', 
+    ControleurProduit::class . ":formCreateProduct")->setName("createProductForm");
+
+/**
+ * Voir tous les produits disponibles sur le site 
+ */
+$app->post('/createProduct[/]', 
+    ControleurProduit::class . ":createProduct")->setName("createProduct");
+
+
+// LISTE -----------------------------
+=======
 // BOITES  -------------------------------
+>>>>>>> 491e8a8ca5325e01be81997c2e58b9f51e19afa9
 /**
  * Voir toutes les boites
  */
 $app->get('/boites[/]', 
     ControleurBoite::class . ":displayBox")->setName("boites");
 
-																		
+/**
+ * Donner de l'argent pour une cagnotte
+ */
+$app->post('/item/participer_cagnotte/{id}[/]',
+	ControleurProduit::class . ':giveCagnotte')->setName('donner_cagnotte');
+
+
+// USER -----------------------------------------------
+
+
+/**
+ * Formulaire inscription
+ */
+$app->get('/inscription[/]',
+	ControleurUser::class . ':inscription')->setName('formInscription');
+
+/**
+ * Inscription
+ */
+$app->post('/inscription[/]',
+	ControleurUser::class . ':inscription')->setName('inscription');
+
+/**
+ * Formulaire connexion
+ */
+$app->get('/formulaireConnexion[/]',
+	ControleurUser::class . ':formulaireConnexion')->setName('formConnexion');
+
+/**
+ * Connexion
+ */
+$app->post('/connexion[/]',
+	ControleurUser::class . ':connexion')->setName('connexion');
+
+/**
+ * Deconnexion
+ */
+$app->get('/deconnexion[/]',
+	ControleurUser::class . ':deconnexion')->setName('deconnexion');
+
+/**
+ * Voir profil
+ */
+$app->get('/profil[/]',
+	ControleurUser::class . ':voirProfil')->setName('voirProfil');
+
+/**
+ * formulaire Modification de compte
+ */
+$app->get('/myProfile/formulaire_Modif[/]',
+	ControleurUser::class . ':formModifCompte')->setName('formModifCompte');
+
+/**
+ * Modification de compte
+ */
+$app->post('/myProfile/modification[/]',
+	ControleurUser::class . ':modifCompte')->setName('modifCompte');
+
+/**
+ * Suppression de compte
+ */
+$app->post('/myProfile/deleteAccount[/]',
+	ControleurUser::class . ':supprimerCompte')->setName('supprimerCompte');
 
 $app->run();
