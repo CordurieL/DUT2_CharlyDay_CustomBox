@@ -99,7 +99,7 @@ header nav {
           align-items: center;
 }
 
-header nav .user-icon {
+header nav .icon {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -108,6 +108,23 @@ header nav .user-icon {
   height: fit-content;
   max-width: 100px;
   min-width: 20px;
+}
+
+.icons-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 50px;
 }
 
 .products-container {
