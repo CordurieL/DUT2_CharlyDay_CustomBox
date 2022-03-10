@@ -86,17 +86,23 @@ class ControleurUser {
 		$vue = new VueAccount($this->container);
 		$html = $vue->render(2);
 		$rs->getBody()->write($html);
+		echo "frezfrrgezrs";
 		// Si le formulaire a été soumis :
 		if (isset($_POST['submit'])) {
 			// Si le bouton Connexion a été cliqué :
 			if ($_POST['submit'] == 'connexion') {
-				$email = htmlspecialchars($_POST['email']);
 				$pass = $_POST['password'];
 				$user = User::where('email', $_POST['email'])->first();
 				// Si l'utilisateur existe :
+				echo $user;
+				echo $pass;
+				echo "frezfrrgezrs";
 				if ($user != []) {
+					echo "<p class='erreur'>Le mot de pagtrgeruoyiferzyhgrsse est incorrect.</p>";
+
 					if (password_verify($pass, $user['password'])) {
-						$_SESSION['id_user'] = $user['id_user'];
+						$_SESSION['id_user'] = $user->id_user;
+						echo "<p class='erreur'>Le mot de pagtrgeruoyiferzyhgrsse est incorrect.</p>";
 						$rs = $rs->withRedirect($this->container->router->pathFor('voirProfil', ['token' => $args['token']]));
 					} else {
 						echo "<p class='erreur'>Le mot de passe est incorrect.</p>";

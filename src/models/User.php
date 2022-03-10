@@ -9,15 +9,11 @@ use custombox\exceptions\InscriptionException;
 class User extends Model {
 
 	protected $table = "user";
-	protected $primaryKey = "userid";
+	protected $primaryKey = "id_user";
 	public $timestamps = false;
 
 	public function role() {
 		return $this->belongsTo(Role::class, 'roleid');
-	}
-
-	public function listes() {
-		return $this->hasMany(Liste::class, 'user_id');
 	}
 
 	/**

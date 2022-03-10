@@ -33,24 +33,20 @@ class VueBoite extends Vue {
 	}
 	
 	/**
-	* Modification d'une boite
+	* Creation d'une boite de commande
 	*/
-	private function render_modifyBox():String{
+	private function render_createBox():String{
 		return $res;
 	}
 
 	public function render($selecteur): string {
 		switch ($selecteur) {
 			case 1 : {
-				$content = $this->render_createBox();
-				break;
-			}
-			case 2 : {
 				$content = $this->render_displayBox();
 				break;
 			}
-			case 3 : {
-				$content = $this->render_modifyBox();
+			case 2 : {
+				$content = $this->render_createBox();
 				break;
 			}
 			default :

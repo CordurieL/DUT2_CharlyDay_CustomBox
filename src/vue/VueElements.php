@@ -3,13 +3,14 @@
 namespace custombox\vue;
 
 class VueElements extends Vue {
-	function renderHead(string $title) {
+	function renderHead(string $title): string
+    {
 		return <<<HTML
         <!DOCTYPE html>
 		<html lang='fr'>
 			<head>
 				<meta charset="UTF-8"/>
-				<link rel="stylesheet" href="assets/styles/css/main.min.css"/>
+				<link rel="stylesheet" href="/assets/styles/css/main.min.css"/>
 				  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<title>$title</title>
 			</head>
@@ -17,7 +18,8 @@ class VueElements extends Vue {
 HTML;
 	}
 
-	function renderHeader() {
+	function renderHeader(): string
+    {
 		if (isset($_SESSION['id_user']))
 			$url = $this->container->router->pathFor('profil');
 		else
@@ -31,7 +33,7 @@ HTML;
                         </a>
                     </h1>
                     <a href=$url>
-                        <img src="assets/icons/user.svg" alt="user icon" class="user-icon">
+                        <img src="/assets/icons/user.svg" alt="user icon" class="user-icon">
                     </a>
                    
                 </nav>

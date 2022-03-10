@@ -30,4 +30,12 @@ class Produit extends Model
         $this->poids = $productWeight;
         $this->save();
     }
+
+    /**
+     * fonction qui permet de set l image du produit
+     */
+    public function setImage($imageName){
+        $this->image = $imageName;
+        $this->save();
+    }
 }
