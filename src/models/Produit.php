@@ -23,8 +23,10 @@ class Produit extends Model
         $this->id_produit = Produit::max('id_produit') + 1;
         $this->titre = $productName;
         $this->description = $productDescription;
-        $categorie = Categorie::where('nom', '=', $productCategory)->first()->get("id_categorie")->toArray()[0]["id_categorie"];
-        $this->categorie = $categorie;
+
+		//$categorie = Categorie::where('nom', '=', $productCategory)->get("id_categorie")->toArray()[0]["id_categorie"];
+		$categorie = Categorie::where('nom', '=', $productCategory)->first();
+        $this->categorie = $categorie->id_categorie;
         $this->poids = $productWeight;
         $this->save();
     }

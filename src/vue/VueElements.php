@@ -2,12 +2,7 @@
 
 namespace custombox\vue;
 
-class VueElements {
-
-
-	public function __construct() {
-	}
-
+class VueElements extends Vue {
 	function renderHead(string $title) {
 		return <<<HTML
         <!DOCTYPE html>
@@ -20,32 +15,33 @@ class VueElements {
 			</head>
 			<body>
 HTML;
-
 	}
 
 	function renderHeader() {
-		if (isset($_SESSION['id_user'])) {
+		if (isset($_SESSION['id_user']))
+			$url = $this->container->router->pathFor('profil');
+		else
 			$url = $this->container->router->pathFor('inscription');
-		}
 		return <<<HTML
             <header>
-                <nav class="container-large ">
+                <nav class="container-large">
                     <h1>
                         <a href="/">
                             <span class="text-base">L'Atelier </span><span class="text-orange">19</span>.<span class="text-green">71</span>
                         </a>
                     </h1>
-                    <a href="">
+                    <a href=$url>
                         <img src="assets/icons/user.svg" alt="user icon" class="user-icon">
                     </a>
-                    
+                   
                 </nav>
             </header>
             <main>
 HTML;
 	}
-    function renderFooter() {
-        return <<<HTML
+
+	function renderFooter() {
+		return <<<HTML
                     <footer>
                         <nav class="container-large ">
                             <h1>
@@ -61,5 +57,5 @@ HTML;
             <html>
 
 HTML;
-    }
+	}
 }
