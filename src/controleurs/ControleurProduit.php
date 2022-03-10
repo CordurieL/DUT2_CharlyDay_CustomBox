@@ -63,8 +63,34 @@ class ControleurProduit extends Controleur
         $productWeight = filter_var($data['productWeight'], FILTER_SANITIZE_NUMBER_FLOAT);
         $newProduct = new Produit();
 
-        $newProduct->createProduct($productName, $productDescription, $productCategory, $productWeight);
-        
+		// on cree le produit
+		$newProduct->createProduct($productName, $productDescription, $productCategory, $productWeight);
+
+		/**
+		 * en cas d upload de fichier on verifie que c est bien une image
+		 */
+		if(isset($_FILES["file_img"])){
+			// si une image etait donnee par upload on va verifier qu elle est recevable
+			$image_name = $_FILES['file_img']['name'];
+			$image_temp_name = $_FILES['file_img']['tmp_name'];
+			$image_type = $_FILES['file_img']['type'];
+			$repertoire = getcwd() . "/assets/img/produits/";
+			$fichierAutorisee = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+		
+			// on verifie l extension
+			$extension = pathinfo($image_name, PATHINFO_EXTENSION);
+			if(array_key_exists($extension, $fichierAutorisee)){
+				
+				// on verifie le type de fichier
+				if(in_array($image_type, $fichierAutorisee)){
+		
+					$nom_image = $newProduct->id_produit . "." . $extension;
+					move_uploaded_file($image_temp_name, $repertoire . $nom_image);
+				}
+			}
+			$newProduct->setImage($nom_image);
+		}
+
         // on revoie sur la page ou sont tous les produits
         return($rs->withRedirect($this->container->router->pathFor("produits")));
     }
