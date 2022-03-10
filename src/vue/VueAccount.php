@@ -23,7 +23,7 @@ class VueAccount extends Vue {
 				$content .= $this->render_formModifCompte();
 				break;
 			case 7 :
-				$content = $this->render_profil();
+				$content .= $this->render_profil();
 				break;
 			default:
 				$content .= "Pas de contenu disponible";
@@ -124,10 +124,39 @@ HTML;
 		$user = User::where('id_user', '=', $_SESSION['id_user'])->get()->toArray();
 		return <<<HTML
 			<section>
-				<h2>Mon compte</h2>
-				<h3>{$user->prenom} {$user->nom}</h3>
-			</section>
-		HTML;
+    <h2>Mon compte</h2>
+    <h3>{$user->prenom} {$user->nom}</h3>
+</section>
+<div>
+	<form action="" method="post" class="form-profil">
+		<div>
+			<label for="name">Nom</label>
+			<input type="text" name="name" id="">
+		</div>
+		<div>
+			<label for="name">Prénom</label>
+			<input type="text" name="name" id="">
+		</div>
+		<div>
+			<label for="name">Email</label>
+			<input type="text" name="name" id="">
+		</div>
+		<div>
+			<label for="name">Mot de passe</label>
+			<input type="text" name="name" id="">
+		</div>
+		<div>
+			<label for="name">Confirmer mot de passe</label>
+			<input type="text" name="name" id="">
+		</div>
+		<div>
+			<button type="submit">Sauvegarder</button>
+		</div>
+	</form>
+
+
+</div>
+HTML;
 	}
 
 	private function render_modifCompte() { }
