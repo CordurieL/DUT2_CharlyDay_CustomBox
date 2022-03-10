@@ -10,6 +10,7 @@ class VueBoite extends Vue {
 	* Création d'une boite qui amène sur la liste des produits
 	*/
 	private function render_createBox():String{
+		$res="";
 		return $res;
 	}
 		
@@ -36,7 +37,7 @@ class VueBoite extends Vue {
 	* Formulaire de création d'une boite
 	*/
 	private function render_formBox():String{
-		$res="<div><form action='".$this->container->router->pathFor('createBox')."'>
+		$res="<div><form method=\"POST\" name=\"formboite\"action='".$this->container->router->pathFor('createBox')."'>
 				<p><label>Taille : </label><input type=\"text\" name=\"taille\" size=40 required=\"true\"></p>
 				<p><label>Couleur : </label><input type=\"text\" name=\"couleur\" size=40 required=\"true\"></p>
 				<p><label>Message : </label><input type=\"text\" name=\"message\" size=100 required=\"true\"></p>

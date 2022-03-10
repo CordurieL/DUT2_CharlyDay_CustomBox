@@ -10,7 +10,7 @@ use custombox\vue\VueBoite;
 use custombox\vue\VueItem;
 use custombox\models\Boite;
 use custombox\controleurs\Controleur;
-use custombox\controleurs\ControleurBOite;
+use custombox\controleurs\ControleurBoite;
 use custombox\models\Item;
 use Slim\Container;
 use Slim\Http\Request;
@@ -28,18 +28,19 @@ class ControleurBoite extends Controleur {
 	public function createBox(Request $rq, Response $rs, array $args) :Response{
 		$container = $this->container ;
 		
-		/*$userid = $_SESSION['profile']['userid'];
-		if(isset($param['profile']['userid'])){
+		$param=$rq->getParsedBody();
+		$box=new Boite();
+		
+		$userid = $_SESSION['id_user'];
+		if(isset($param['id_user'])){
             $publique = true;
         }
         else{
             $publique = false;
-        }*/
+        }
 		
-		$param=$rq->getParsedBody();
-		$box=new Boite();
 		$box->createBox($param['taille'],$param['couleur'],$param['message']);
-		$v = new VueListe($this->container,$box);
+		$v = new VueBoite($this->container,$box);
 		$rs->getBody()->write($v->render(2)) ;
 		
 		return $rs ;
@@ -62,6 +63,19 @@ class ControleurBoite extends Controleur {
 	* Permet d'afficher toutes les boites
 	*/
 	public function displayBox(Request $rq, Response $rs, array $args) :Response{
+		$container = $this->container ;
+		
+		$items=Boite::all();
+		$v = new VueBoite($this->container,$items);
+		$rs->getBody()->write($v->render(1)) ;
+		
+		return $rs ;
+	}
+	
+	/**
+	* Permet d'afficher toutes les boites
+	*/
+	public function listesBoites(Request $rq, Response $rs, array $args) :Response{
 		$container = $this->container ;
 		
 		$items=Boite::all();
