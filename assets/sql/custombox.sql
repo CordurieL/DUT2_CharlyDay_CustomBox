@@ -185,9 +185,6 @@ ALTER TABLE `produits_boite`
     ADD FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id_produit`);
 
 ALTER TABLE `boite`
-    ADD FOREIGN KEY (`id_boite`) REFERENCES `boite` (`id_boite`);
-
-ALTER TABLE `boite`
     ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 ALTER TABLE `boite`
