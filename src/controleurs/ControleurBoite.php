@@ -81,6 +81,22 @@ class ControleurBoite extends Controleur {
 
 		return $rs;
 	}
+	
+	/**
+	 * Permet d'afficher la boite
+	 */
+	public function contenuBoite(Request $rq, Response $rs, array $args): Response {
+		$container = $this->container;
+
+		$userid = $_SESSION['id_user'];
+		if (isset($param['id_user'])) {
+			$items = Boite->where('id_user', '=', $param['id_user'])->first();
+			$v = new VueBoite($this->container, $items);
+			$rs->getBody()->write($v->render(5));
+        }
+
+		return $rs;
+	}
 }
 
 
