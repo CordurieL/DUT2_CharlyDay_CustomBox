@@ -20,14 +20,13 @@ class ControleurBoite extends Controleur {
 	public function __construct(Container $c) {
 		parent::__construct($c);
 	}
-	
-	
+
 	/**
-	* Permet de créer une boite
-	*/
-	public function createBox(Request $rq, Response $rs, array $args) :Response{
-		$container = $this->container ;
-		
+	 * Permet de créer une boite
+	 */
+	public function createBox(Request $rq, Response $rs, array $args): Response {
+		$container = $this->container;
+
 		/*$userid = $_SESSION['profile']['userid'];
 		if(isset($param['profile']['userid'])){
             $publique = true;
@@ -35,12 +34,25 @@ class ControleurBoite extends Controleur {
         else{
             $publique = false;
         }*/
+
+		$param = $rq->getParsedBody();
+		$box = new Boite();
+		$box->createBox($param['taille'], $param['couleur'], $param['message']);
+		$v = new VueListe($this->container, $box);
+		$rs->getBody()->write($v->render(2));
+
+		return $rs;
+	}
+
+	/**
+	* Permet de créer une boite
+	*/
+	public function formBox(Request $rq, Response $rs, array $args) :Response{
+		$container = $this->container ;
 		
 		$param=$rq->getParsedBody();
-		$box=new Boite();
-		$box->createBox($param['taille'],$param['couleur'],$param['message']);
-		$v = new VueListe($this->container,$box);
-		$rs->getBody()->write($v->render(2)) ;
+		$v = new VueBoite($this->container,null);
+		$rs->getBody()->write($v->render(3)) ;
 		
 		return $rs ;
 	}
@@ -58,13 +70,3 @@ class ControleurBoite extends Controleur {
 		return $rs ;
 	}
 }
-
-
-
-
-
-
-
-
-
-

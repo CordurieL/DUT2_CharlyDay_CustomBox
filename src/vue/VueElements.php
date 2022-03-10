@@ -32,6 +32,7 @@ HTML;
                             <span class="text-base">L'Atelier </span><span class="text-orange">19</span>.<span class="text-green">71</span>
                         </a>
                     </h1>
+
                     <div class="icons-container">
                         <a href=$url>
                             <img src="/assets/icons/shopping-bag.svg" alt="user icon" class="icon">
@@ -43,6 +44,7 @@ HTML;
                     </div>
 
                    
+
                 </nav>
             </header>
             <main>

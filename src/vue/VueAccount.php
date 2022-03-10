@@ -135,41 +135,12 @@ HTML;
 	}
 
 	private function render_profil(): string {
-		$user = User::where('id_user', '=', $_SESSION['id_user'])->get()->toArray();
+		$user = User::where('id_user', '=', $_SESSION['id_user'])->first()->toArray();
 		return <<<HTML
 			<section>
     <h2>Mon compte</h2>
-    <h3>{$user->prenom} {$user->nom}</h3>
-</section>
-<div>
-	<form action="" method="post" class="form-profil">
-		<div>
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="">
-		</div>
-		<div>
-			<label for="name">Prénom</label>
-			<input type="text" name="name" id="">
-		</div>
-		<div>
-			<label for="name">Email</label>
-			<input type="text" name="name" id="">
-		</div>
-		<div>
-			<label for="name">Mot de passe</label>
-			<input type="text" name="name" id="">
-		</div>
-		<div>
-			<label for="name">Confirmer mot de passe</label>
-			<input type="text" name="name" id="">
-		</div>
-		<div>
-			<button type="submit">Sauvegarder</button>
-		</div>
-	</form>
-
-
-</div>
+    <h3>{$user['prenom']} {$user['nom']}</h3>
+	<a href={$user['email']}>{$user['email']}</a>
 HTML;
 	}
 
