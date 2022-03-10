@@ -5,10 +5,28 @@ namespace custombox\vue;
 use custombox\vue\Vue;
 use Slim\Container;
 
-class VueCategorie extends Vue {
+class VueTypebox extends Vue {
+	/**
+	* Création d'une boite qui amène sur la liste des produits
+	*/
+	private function render_createTypebox():String{
+		return $res;
+	}
+	
+	private function render_modifyTypebox():String{
+		return $res;
+	}
 
 	public function render($selecteur): string {
 		switch ($selecteur) {
+			case 1 : {
+				$content = $this->render_createTypebox();
+				break;
+			}
+			case 2 : {
+				$content = $this->render_modifyTypebox();
+				break;
+			}
 			default :
 			{
 				$content = "Pas de contenu<br>";
@@ -22,7 +40,7 @@ class VueCategorie extends Vue {
 		<html lang='fr'>
 			<head>
 				<meta charset=\"utf-8\"/>
-				<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" href=\"web/css/style.css\"/>
+				<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" href=\"web/css/input.css\"/>
 				<title>sometext</title>
 			</head>
 			<body>
