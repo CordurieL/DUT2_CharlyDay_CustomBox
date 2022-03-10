@@ -3,7 +3,8 @@
 namespace custombox\vue;
 
 class VueElements extends Vue {
-	function renderHead(string $title) {
+	function renderHead(string $title): string
+    {
 		return <<<HTML
         <!DOCTYPE html>
 		<html lang='fr'>
@@ -17,7 +18,8 @@ class VueElements extends Vue {
 HTML;
 	}
 
-	function renderHeader() {
+	function renderHeader(): string
+    {
 		if (isset($_SESSION['id_user']))
 			$url = $this->container->router->pathFor('profil');
 		else

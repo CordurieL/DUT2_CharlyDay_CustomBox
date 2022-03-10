@@ -21,19 +21,31 @@ class VueProduit
     public function displayProducts() : string
     {
         $products = $this->objet;
-        $content = "
-		<input type=\"text\" id=\"rechercheProduit\" placeholder=\"Rechercher un produit\"/>
-		<div id=\"products-list\">
-		<div class='productLine' id='productLineRef'>
-			<span class='productLineTitle'>Nom de produit</span>
-			<span = class='productLineDescr'>Descriptif</span>
-			<span class ='productLineCateg'>Catégorie</span>
-			<span class='productLineWeight'>Poids (Kg)</span>
-		</div><br><hr><br>";
+        $content = <<<HTML
+		<input type="text" id="" placeholder="Rechercher un produit"/>
+		<div id="\">
+		<div class='' id=''>
+			<div class=''>Nom de produit</div>
+			<div = class=''>Descriptif</div>
+			<div class =''>Catégorie</div>
+			<div class=''>Poids (Kg)</div>
+		</div>"
+        <div class="products-container container-large">
+HTML;
         foreach ($products as $p) {
-            $content .= "<div class='productLine'><span class='productLineTitle'>$p[titre]</span><span = class='productLineDescr'>$p[description]</span><span class ='productLineCateg'>$p[categorie]</span><span class='productLineWeight'>$p[poids]</span><span class='productLineImage'><img src='../assets/img/produits/$p[image]' style='max-width: 300px' alt='Image du produit $p[titre]'/></span></div><br>";
+            $content .= <<<HTML
+            <div class='product'>
+                <div class='productLineImage'>
+                    <img src='../assets/img/produits/$p[image]' style='max-width: 300px' alt='Image du produit $p[titre]'>
+                </div>
+                <div class=''>$p[titre]</div>
+                <div = class=''>$p[description]</div>
+                <div class =''>$p[categorie]</div>
+                <div class=''>$p[poids]</div>
+            </div>
+HTML;
         }
-        $content .= "</div>";
+            $content .= "</div>";
         return $content;
     }
 
@@ -63,47 +75,26 @@ class VueProduit
 
     public function render($selecteur): string
     {
-        $content = "";
+        $vueItem = new VueElements($this->container);
+        $content = $vueItem->renderHead("Produits") . $vueItem->renderHeader();
         switch ($selecteur) {
             case 1:
             {
-                $content = $this->displayProducts();
+                $content .= $this->displayProducts();
                 break;
             }
             case 2 :
             {
-                $content = $this->render_formulaireCreation();
+                $content .= $this->render_formulaireCreation();
                 break;
             }
             default:
             {
-                $content = "Pas de contenu<br>";
+                $content .= "Pas de contenu<br>";
                 break;
             }
         }
 
-        return
-            "<!DOCTYPE html>
-
-		<html lang='fr'>
-			<head>
-				<meta charset=\"utf-8\"/>
-				<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" href=\"../assets/styles/css/main.css\"/>				<title>sometext</title>
-			</head>
-			<body>
-				<header>
-					<nav>
-						<h1><a href =" . $this->container->router->pathFor("accueil") . ">The Wishlist</a></h1>
-					</nav>
-				</header>
-				
-                <div class=\"content\">
-					$content
-				</div>
-				<footer>
-
-				</footer>
-			</body>
-		<html>";
+        return $content . $vueItem->renderFooter();
     }
 }

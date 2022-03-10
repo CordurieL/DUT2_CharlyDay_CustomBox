@@ -110,6 +110,68 @@ header nav .user-icon {
   min-width: 20px;
 }
 
+.products-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+.product {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #93C8C4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-width: 200px;
+  min-height: 300px;
+}
+
+.product:hover {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
+}
+
+.product:not(:hover) {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
+}
+
+.productLineImage {
+  max-width: 200px;
+  height: auto;
+}
+
 .form-inscription {
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -194,6 +256,7 @@ header nav .user-icon {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 10px;
+  padding-bottom: 40px;
 }
 
 .container-products-accueil .category-image-acceuil {
