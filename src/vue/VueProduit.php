@@ -26,7 +26,7 @@ class VueProduit
 			<span class='productLineTitle'>Nom de produit</span>
 			<span = class='productLineDescr'>Descriptif</span>
 			<span class ='productLineCateg'>Catégorie</span>
-			<span class='productLineWeight'>Poids</span>
+			<span class='productLineWeight'>Poids (Kg)</span>
 		</div><br><hr><br>";
         foreach ($products as $p) {
             $content .= "<div class='productLine'><span class='productLineTitle'>$p[titre]</span><span = class='productLineDescr'>$p[description]</span><span class ='productLineCateg'>$p[categorie]</span><span class='productLineWeight'>$p[poids]</span></div><br>";
