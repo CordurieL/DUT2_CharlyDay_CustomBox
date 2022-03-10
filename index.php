@@ -7,6 +7,7 @@ use custombox\controleurs\ControleurProduit;
 use custombox\controleurs\ControleurUser;
 use custombox\controleurs\ControleurBoite;
 use custombox\controleurs\ControleurAccueil;
+use custombox\controleurs\ControleurCategorie;
 use Illuminate\Database\Capsule\Manager as DB;
 
 session_start();
