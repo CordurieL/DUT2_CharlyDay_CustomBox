@@ -73,12 +73,11 @@ class VueBoite extends Vue {
 	*/
 	private function render_contenuBoite():String{
 		if($this->objet!==null){
-			$res="<section><ol>Toutes vos boites :";
+			$res="<section><ol>Toutes les objets de la boite :";
 			foreach($this->objet as $l){
-				$res=$res."<li><a href=\"".
-				$this->container->router->pathFor('listesPersos')."\">
-				<p>Numéro : $l->id_boite Etat : $l->etat
-				Message : $l->message Poids max : $l->poidsmax Taille : $l->taille</p></li></a>";
+				$res=$res."<li>
+				<p>Titre : $l->titre Description : $l->description
+				Categorie : $l->categorie</p></li>";
 			}
 			$res=$res."</ol></section>";
 		}

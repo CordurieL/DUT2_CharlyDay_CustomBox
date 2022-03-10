@@ -13,7 +13,7 @@ class VueProduit
     protected $container;
     protected array $tab;
 
-    public function __construct(Container $c, $ob = null, $t = null)
+    public function __construct(Container $c, $ob = null, $t = [])
     {
         $this->container = $c;
         $this->objet = $ob;
@@ -50,6 +50,9 @@ class VueProduit
         <div class="products-container container-large">
 HTML;
         foreach ($products as $p) {
+            $numProd = $p['id_produit'];
+            $urlAddPanier = $this->container->router->pathFor('ajouterPanier', ['id_product'=>$numProd]);
+            echo $urlAddPanier;
             $content .= <<<HTML
             <div class='product'>
                 <div class='productLineImage'>
@@ -59,12 +62,14 @@ HTML;
                 <div class=''>$p[description]</div>
                 <div class =''>$p[categorie]</div>
                 <div class=''>$p[poids]</div>
+                    <a href='$urlAddPanier' name='addButton'>Ajouter</a>
             </div>
 HTML;
         }
         $content .= "</div>";
         return $content;
     }
+
 
     /**
      * @return string La chaine html correspondant à un formulaire de creation de produit

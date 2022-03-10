@@ -9,8 +9,8 @@ use custombox\vue\VueAccount;
 use custombox\vue\VueBoite;
 use custombox\vue\VueItem;
 use custombox\models\Boite;
+use custombox\models\produits_boite;
 use custombox\controleurs\Controleur;
-use custombox\controleurs\ControleurBoite;
 use custombox\models\Item;
 use Slim\Container;
 use Slim\Http\Request;
@@ -30,8 +30,8 @@ class ControleurBoite extends Controleur {
 		$box = new Boite();
 
 		$userid = $_SESSION['id_user'];
-		if (isset($param['id_user'])) {
-			$box->createBox($param['taille'], $param['couleur'], $param['message'], $param['id_user']);
+		if (isset($_SESSION['id_user'])) {
+			$box->createBox($param['taille'], $param['couleur'], $param['message'], $_SESSION['id_user']);
 		} else {
 			$box->createBox($param['taille'], $param['couleur'], $param['message']);
 		}
@@ -73,8 +73,8 @@ class ControleurBoite extends Controleur {
 		$container = $this->container;
 
 		$userid = $_SESSION['id_user'];
-		if (isset($param['id_user'])) {
-			$items = Boite->where('id_user', '=', $param['id_user'])->get();
+		if (isset($_SESSION['id_user'])) {
+			$items = Boite->where('id_user', '=', $_SESSION['id_user'])->get();
 			$v = new VueBoite($this->container, $items);
 			$rs->getBody()->write($v->render(4));
         }
@@ -89,9 +89,10 @@ class ControleurBoite extends Controleur {
 		$container = $this->container;
 
 		$userid = $_SESSION['id_user'];
-		if (isset($param['id_user'])) {
-			$items = Boite->where('id_user', '=', $param['id_user'])->first();
-			$v = new VueBoite($this->container, $items);
+		if (isset($_SESSION['id_user'])) {
+			$items = Boite::where('id_user', '=', $_SESSION['id_user'])->first();
+			$ob=produits_boite::where('id_user', '=', $_SESSION['id_user'])->get();
+			$v = new VueBoite($this->container, $ob);
 			$rs->getBody()->write($v->render(5));
         }
 
