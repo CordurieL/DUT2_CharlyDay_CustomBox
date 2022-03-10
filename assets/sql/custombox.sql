@@ -41,11 +41,12 @@ DROP TABLE IF EXISTS `boite`;
 CREATE TABLE `boite`
 (
     `id_boite` int(11) NOT NULL,
-  `taille` text NOT NULL,
-  `poidsmax` float NOT NULL,
-  `message` varchar(120) NOT NULL,
-  `couleur` varchar(40) NOT NULL,
-  `id_user` int(10) NOT NULL,
+    `taille` text NOT NULL,
+    `poidsmax` float NOT NULL,
+    `message` varchar(120) NOT NULL,
+    `couleur` varchar(40) NOT NULL,
+    `id_user` int(10) NOT NULL,
+    `id_modele` int(10) NOT NULL,
     primary key (`id_boite`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -60,6 +61,14 @@ VALUES (1, 'petite', 0.7),
        (3, 'grande', 3.2);
 
 -- --------------------------------------------------------
+
+
+CREATE TABLE `typebox` (
+  `id_modele` int(2) NOT NULL,
+  `designation` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `poidsmax` float NOT NULL,
+  `poidsobjetmax` float NOT NULL
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Structure de la table `categorie`
@@ -179,7 +188,10 @@ ALTER TABLE `boite`
     ADD FOREIGN KEY (`id_boite`) REFERENCES `boite` (`id_boite`);
 
 ALTER TABLE `boite`
-    ADD FOREIGN KEY (`id_user`) REFERENCES `boite` (`id_user`);
+    ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+ALTER TABLE `boite`
+    ADD FOREIGN KEY (`id_modele`) REFERENCES `typebox` (`id_modele`);
 
 ALTER TABLE `produit`
     ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`categorie`) REFERENCES `categorie` (`id_categorie`);
