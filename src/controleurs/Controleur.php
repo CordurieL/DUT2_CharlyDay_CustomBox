@@ -1,17 +1,16 @@
 <?php
 
-namespace mywishlist\controleurs;
+namespace custombox\controleurs;
 
 use Slim\Container;
 
-abstract class Controleur{
-	
+abstract class Controleur {
+
 	protected $container;
 
-    public function __construct(Container $c)
-    {
-        $this->container = $c;
-    }
+	public function __construct(Container $c) {
+		$this->container = $c;
+	}
 }
 
 

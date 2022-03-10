@@ -1,15 +1,15 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
-namespace mywishlist\vue;
+namespace custombox\vue;
+
 use Slim\Container;
 
-class Vue
-{
+class Vue {
 	protected $objet;
-    protected $container;
+	protected $container;
 
-	public function __construct(Container $c, $ob=null){
-        $this->container = $c;
-		$this->objet=$ob;
+	public function __construct(Container $c, $ob = null) {
+		$this->container = $c;
+		$this->objet = $ob;
 	}
 }

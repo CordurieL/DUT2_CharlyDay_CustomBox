@@ -1,18 +1,17 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
-namespace mywishlist\models;
+namespace custombox\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
-{
+class Role extends Model {
 
-    protected $table = "role";
-    protected $primaryKey = "roleid";
-    public $timestamps = false;
+	protected $table = "role";
+	protected $primaryKey = "roleid";
+	public $timestamps = false;
 
-    public function users(){
-        return $this->hasMany(User::class, 'roleid');
-    }
+	public function users() {
+		return $this->hasMany(User::class, 'roleid');
+	}
 
 }
