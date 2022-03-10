@@ -45,7 +45,7 @@ HTML;
             </div>
 HTML;
         }
-            $content .= "</div>";
+        $content .= "</div>";
         return $content;
     }
 
@@ -60,7 +60,7 @@ HTML;
         }
         $selectBox = $selectBox . "</select>";
 
-		return "<section><h2>Création d'un nouveau produit</h2>
+        return "<section><h2>Création d'un nouveau produit</h2>
             <form action='" . $this->container->router->pathFor('createProduct') . "' method='POST' name='formCreateProduct' id='formCreateProduct' enctype='multipart/form-data'>
 				<p><label>Nom du produit : </label><input type='text' name='productName' size=40 required='true'></p>
                 <p><label>Description du produit : </label><input type='text' name='productDescription' size=40 required='true'></p>
@@ -95,6 +95,19 @@ HTML;
             }
         }
 
+        $vueElem = new VueElements($this->container);
+
+        $html = $vueElem->renderHead("Produits");
+        $html .= $vueElem->renderHeader();
+
+        $html .=
+           "	
+                <div class=\"content\">
+					$content
+				</div>
+				</main>";
         return $content . $vueItem->renderFooter();
+
+        return $html;
     }
 }
