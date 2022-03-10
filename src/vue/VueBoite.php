@@ -10,7 +10,9 @@ class VueBoite extends Vue {
 	* Création d'une boite qui amène sur la liste des produits
 	*/
 	private function render_createBox():String{
-		$res="";
+		$res="<p>Votre boîte est créée !<a href=\"".
+				$this->container->router->pathFor('produits')."\">
+				Retour aux produids.</a>";
 		return $res;
 	}
 		

@@ -93,6 +93,12 @@ $app->post('/boite[/]',
  */
 $app->get('/listesBoites[/]',
 	ControleurBoite::class . ":listesBoites")->setName("listesBoites");
+	
+/**
+ * Contenu d'une boite
+ */
+$app->get('/contenuBoite/{id_boite}[/]',
+	ControleurBoite::class . ":listesBoites")->setName("listesBoites");
 
 // USER -----------------------------------------------
 

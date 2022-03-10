@@ -85,7 +85,21 @@ class ControleurBoite extends Controleur {
 		return $rs ;
 	}
 	
-	
+	/**
+	* Permet d'afficher toutes les boites d'un compte
+	*/
+	public function listesBoites(Request $rq, Response $rs, array $args) :Response{
+		$container = $this->container ;
+		
+		$userid = $_SESSION['id_user'];
+		if(isset($param['id_user'])){
+            $items=Boite->where('id_user','=',$param['id_user'])->get();
+			$v = new VueBoite($this->container,$items);
+			$rs->getBody()->write($v->render(4)) ;
+        }
+		
+		return $rs ;
+	}
 }
 
 
