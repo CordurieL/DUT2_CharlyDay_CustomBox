@@ -2,10 +2,10 @@
 
 namespace custombox\controleurs;
 
-use mywishlist\exceptions\AuthException;
-use mywishlist\exceptions\InscriptionException;
-use mywishlist\models\Role;
-use mywishlist\models\User;
+use custombox\exceptions\AuthException;
+use custombox\exceptions\InscriptionException;
+use custombox\models\Role;
+use custombox\models\User;
 
 class Authentification {
 

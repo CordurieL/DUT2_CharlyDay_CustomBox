@@ -3,10 +3,10 @@
 require_once __DIR__ . '/vendor/autoload.php';
 $config = require_once __DIR__ . "/src/conf/settings.php";
 
-use mywishlist\controleurs\ControleurItem;
-use mywishlist\controleurs\ControleurUser;
-use mywishlist\controleurs\ControleurListe;
-use mywishlist\controleurs\ControleurAccueil;
+use custombox\controleurs\ControleurItem;
+use custombox\controleurs\ControleurUser;
+use custombox\controleurs\ControleurListe;
+use custombox\controleurs\ControleurAccueil;
 use Illuminate\Database\Capsule\Manager as DB;
 
 session_start();

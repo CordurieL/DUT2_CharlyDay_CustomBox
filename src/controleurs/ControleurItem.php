@@ -2,12 +2,12 @@
 
 namespace custombox\controleurs;
 
-use mywishlist\exceptions\AuthException;
-use mywishlist\models\Item;
-use mywishlist\vue\VueAccount;
-use mywishlist\vue\VueItem;
-use mywishlist\controleurs\Controleur;
-use mywishlist\models\Liste;
+use custombox\exceptions\AuthException;
+use custombox\models\Item;
+use custombox\vue\VueAccount;
+use custombox\vue\VueItem;
+use custombox\controleurs\Controleur;
+use custombox\models\Liste;
 use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;

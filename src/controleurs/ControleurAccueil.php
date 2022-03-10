@@ -5,8 +5,8 @@ namespace custombox\controleurs;
 use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use mywishlist\controleurs\Controleur;
-use mywishlist\vue\VueAccueil;
+use custombox\controleurs\Controleur;
+use custombox\vue\VueAccueil;
 
 /*3236*/
 

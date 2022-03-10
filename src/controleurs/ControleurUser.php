@@ -3,13 +3,13 @@
 namespace custombox\controleurs;
 
 use Illuminate\Support\Facades\Auth;
-use mywishlist\exceptions\AuthException;
-use mywishlist\exceptions\InscriptionException;
-use mywishlist\models\Liste;
-use mywishlist\models\Role;
-use mywishlist\models\User;
-use mywishlist\vue\VueAccount;
-use mywishlist\vue\VueParticipant;
+use custombox\exceptions\AuthException;
+use custombox\exceptions\InscriptionException;
+use custombox\models\Liste;
+use custombox\models\Role;
+use custombox\models\User;
+use custombox\vue\VueAccount;
+use custombox\vue\VueParticipant;
 use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;

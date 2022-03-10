@@ -2,7 +2,7 @@
 
 namespace custombox\vue;
 
-use mywishlist\vue\Vue;
+use custombox\vue\Vue;
 use Slim\Container;
 
 class VueListe extends Vue {

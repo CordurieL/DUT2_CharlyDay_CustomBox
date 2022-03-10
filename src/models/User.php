@@ -4,7 +4,7 @@ namespace custombox\models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
-use mywishlist\exceptions\InscriptionException;
+use custombox\exceptions\InscriptionException;
 
 class User extends Model {
 
