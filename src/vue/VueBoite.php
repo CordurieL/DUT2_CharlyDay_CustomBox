@@ -67,56 +67,32 @@ class VueBoite extends Vue {
 	}
 
 	public function render($selecteur): string {
+		$vueElements = new VueElements($this->container);
+        $content = $vueElements->renderHead("Boites") . $vueElements->renderHeader();
 		switch ($selecteur) {
-			case 1 :
-			{
-				$content = $this->render_displayBox();
+			case 1 : {
+				$content .= $this->render_displayBox();
 				break;
 			}
-			case 2 :
-			{
-				$content = $this->render_createBox();
+			case 2 : {
+				$content .= $this->render_createBox();
 				break;
 			}
-			case 3 :
-			{
-				$content = $this->render_formBox();
+			case 3 : {
+				$content .= $this->render_formBox();
 				break;
 			}
 			case 4 : {
-				$content = $this->render_listesBoites();
+				$content .= $this->render_listesBoites();
 				break;
 			}
 			default :
 			{
-				$content = "Pas de contenu<br>";
+				$content .= "Pas de contenu<br>";
 				break;
 			}
 		}
 
-		return
-			"<!DOCTYPE html>
-
-		<html lang='fr'>
-			<head>
-				<meta charset=\"utf-8\"/>
-				<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" href=\"web/css/input.css\"/>
-				<title>sometext</title>
-			</head>
-			<body>
-				<header>
-					<nav>
-						<h1><a href =" . $this->container->router->pathFor("accueil") . ">The Wishlist</a></h1>
-					</nav>
-				</header>
-				
-                <div class=\"content\">
-					$content
-				</div>
-				<footer>
-
-				</footer>
-			</body>
-		<html>";
+		return $content . $vueElements->renderFooter();
 	}
 }
