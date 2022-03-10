@@ -157,5 +157,10 @@ $app->post('/myProfile/modification[/]',
 $app->post('/myProfile/deleteAccount[/]',
 	ControleurUser::class . ':supprimerCompte')->setName('supprimerCompte');
 
+/**
+ * Liste des commandes - administrateur
+ */
+$app->get('/listeCommandes[/]',
+	ControleurUser::class . ':listeCommandes')->setName('listeCommandes');
 
 $app->run();

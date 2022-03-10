@@ -34,7 +34,7 @@ HTML;
                     </h1>
 
                     <div class="icons-container">
-                        <a href=$url>
+                        <a href="/creationBoite">
                             <img src="/assets/icons/shopping-bag.svg" alt="user icon" class="icon">
                         </a>
                         <a href=$url>
@@ -53,6 +53,7 @@ HTML;
 
 	function renderFooter() {
 		return <<<HTML
+                </main>
                     <footer>
                         <nav class="container-large ">
                             <h1>

@@ -114,7 +114,7 @@ HTML;
 						<label>Mot de passe : </label>
 						<input type='password' name='password' size=60 required='true'>
 					</p>
-        	<button type='submit' name='submit' value='inscription'>S'inscrire</button>
+        	<button type='submit' name='submit' value='connexion'>Se connecter</button>
         </form>
     </div>
 </div>
@@ -143,10 +143,17 @@ HTML;
 
 	private function render_profil(): string {
 		$user = User::where('id_user', '=', $_SESSION['id_user'])->first()->toArray();
+		$a = '';
+		if ($user['admin'] == 1) {
+			$admin = "Administrateur";
+			$a = "<a href='" . $this->container->router->pathFor('listeCommandes') . "'>Administration</a>";
+		} else {
+			$admin = "Utilisateur";
+		}
 		return <<<HTML
 			<section>
     <h2>Mon compte</h2>
-    <h3>{$user['prenom']} {$user['nom']}</h3>
+    <h3>{$user['prenom']} {$user['nom']} ({$admin})</h3>
 	<a href={$user['email']}>{$user['email']}</a>
 HTML;
 	}
