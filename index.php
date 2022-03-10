@@ -5,7 +5,7 @@ $config = require_once __DIR__ . "/src/conf/settings.php";
 
 use custombox\controleurs\ControleurItem;
 use custombox\controleurs\ControleurUser;
-use custombox\controleurs\ControleurListe;
+use custombox\controleurs\ControleurBoite;
 use custombox\controleurs\ControleurAccueil;
 use Illuminate\Database\Capsule\Manager as DB;
 
