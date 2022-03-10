@@ -33,6 +33,7 @@ img {
 body {
   font-family: 'Aileron', sans-serif;
   background-color: #F7F7F7;
+  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -40,7 +41,6 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-height: 100vh;
 }
 
 main {
@@ -108,6 +108,61 @@ header nav .user-icon {
   height: fit-content;
   max-width: 100px;
   min-width: 20px;
+}
+
+.form-inscription {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0 auto;
+  margin-top: 30px;
+  background-color: #47ACA4;
+  padding: 20px;
+  border-radius: 5px 5px 5px 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form-inscription input {
+  border-radius: 5px;
+  padding: 10px 15px;
+  background-color: white;
+}
+
+.form-inscription__label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 5px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 5px;
+  padding: 5px;
+}
+
+.form-inscription__label label {
+  text-align: left;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+}
+
+.form-inscription button {
+  padding: 10px 15px;
+  background: #E77441;
+  border: 0 none;
+  cursor: pointer;
+  border-radius: 5px 5px 5px 5px;
+  color: white;
 }
 
 .center-logo {

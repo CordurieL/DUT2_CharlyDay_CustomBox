@@ -1,0 +1,40 @@
+.form-inscription {
+    width: max-content;
+    margin: 0 auto;
+    margin-top: 30px;
+    background-color: $color-green;
+    padding: 20px;
+    border-radius: 5px 5px 5px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    input {
+        border-radius: 5px;
+        padding: 10px 15px;
+        background-color: $color-base;
+    }
+
+    &__label {
+        
+        label {
+            text-align: left;
+            justify-content: left;
+        }
+        display: flex;
+        border-radius: 5px;
+        flex-direction: column;
+        gap: 5px;
+        padding: 5px;
+    }
+
+    button {
+        padding: 10px 15px;
+        background: $color-orange;
+        border: 0 none;
+        cursor: pointer;
+        border-radius: 5px 5px 5px 5px;
+        color: $color-base;
+    }
+}

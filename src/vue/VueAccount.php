@@ -6,84 +6,74 @@ use custombox\vue\Vue;
 use Slim\App;
 
 class VueAccount extends Vue {
+
 	public function render($selecteur): string {
+		$vueElements = new VueElements();
+        $content = $vueElements->renderHead("Account") . $vueElements->renderHeader();
 		switch ($selecteur) {
 			case 1:
-				$content = $this->render_formulaireInscription();
+				$content .= $this->render_formulaireInscription();
 				break;
 			case 2:
-				$content = $this->render_formulaireConnexion();
+				$content .= $this->render_formulaireConnexion();
 				break;
 			case 3 :
-				$content = $this->render_connexion();
+				$content .= $this->render_connexion();
 				break;
 			case 4 :
-				$content = $this->render_profile();
+				$content .= $this->render_profile();
 				break;
 			case 5 :
-				$content = $this->render_accessDenied();
+				$content .= $this->render_accessDenied();
 				break;
 			case 6 :
-				$content = $this->render_formModifCompte();
+				$content .= $this->render_formModifCompte();
 				break;
 			default:
-				$content = "Pas de contenu disponible";
+				$content .= "Pas de contenu disponible";
 		}
-		return
-			"<!DOCTYPE html>
-
-	<html lang='fr'>
-			<head>
-				<meta charset='utf-8'/>
-				<link rel='stylesheet' media='screen' type='text/css' href='web/css/input.css'/>
-				<title>sometext</title>
-			</head>
-			<body>
-				<header>
-					<nav>
-						<h1><a href=''>CustomBox</a></h1>
-					</nav>
-				</header>
-				
-                <div class='content'>
-					$content
-				</div>
-				<footer>
-					
-				</footer>
-			</body>
-		<html>";
-	}
+        return $content . $vueElements->renderFooter();
+    }
 
 	/**
 	 * @return string La chaine html correspondant à un formulaire d'inscription
 	 */
 	private function render_formulaireInscription(): string {
 		$url = $this->container->router->pathFor('inscription');
-		return "
-			<form action='$url' method='POST'>
+		return <<<HTML
+			<form action='$url' method='POST' class="form-inscription">
 			    <h2>INSCRIPTION</h2>
 			    
 			    <p>Pas de compte ? <a href=''>Se connecter</a></p>
 			    
-			    <label>Entrez votre prénom</label>
-			    <input required type='text' name='prenom' placeholder='Prénom'><br>
-			    
-			    <label>Entrez votre nom</label>
-			    <input required ='text' name='nom' placeholder='Nom'><br>
+				<div class="form-inscription__label">
+					<label>Entrez votre prénom</label>
+					<input required type='text' name='prenom' placeholder='Prénom'><br>
+				</div>
+
+			    <div class="form-inscription__label">
+					<label>Entrez votre nom</label>
+					<input required ='text' name='nom' placeholder='Nom'><br>
+				</div>
+
+				<div class="form-inscription__label">
+			    	<label>Entrez votre adresse e-mail</label>
+			    	<input required type='text' name='email' placeholder='Adresse e-mail'><br>
+				</div>
 			
-			    <label>Entrez votre adresse e-mail</label>
-			    <input required type='text' name='email' placeholder='Adresse e-mail'><br>
-			
-			    <label>Entrez un mot de passe</label>
-			    <input required type='password' name='password' placeholder='Mot de passe'><br>
+				<div class="form-inscription__label">
+			 		<label>Entrez un mot de passe</label>
+			    	<input required type='password' name='password' placeholder='Mot de passe'><br>
+				</div>
 			    
-			    <label>Entrez à nouveau le mot de passe</label>
-			    <input required type='password' name='password2' placeholder='Mot de passe'><br>
-					
+				<div class="form-inscription__label">
+			    	<label>Entrez à nouveau le mot de passe</label>
+			    	<input required type='password' name='password2' placeholder='Mot de passe'><br>
+				</div>
+				
 			    <button type='submit' name='submit' value='inscription'>S'inscrire</button>
 			</form>
-		";
+HTML;
 	}
 
 	/**

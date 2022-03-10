@@ -37,9 +37,9 @@ img {
 body {
     font-family: 'Aileron', sans-serif;
     background-color: #F7F7F7;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
 main {
@@ -76,6 +76,8 @@ main {
 
 
 @import 'header';
+
+@import 'inscription';
 
 @import 'accueil';
 
