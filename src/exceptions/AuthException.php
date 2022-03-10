@@ -1,19 +1,17 @@
 <?php
 
-namespace mywishlist\exceptions;
+namespace custombox\exceptions;
 
 use Exception;
 use JetBrains\PhpStorm\Pure;
 
-class AuthException extends Exception
-{
+class AuthException extends Exception {
 
-    /**
-     * @param string $string
-     */
-    public function __construct(string $string)
-    {
-        parent::__construct($string);
-    }
+	/**
+	 * @param string $string
+	 */
+	public function __construct(string $string) {
+		parent::__construct($string);
+	}
 
 }
