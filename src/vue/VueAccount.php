@@ -2,7 +2,7 @@
 
 namespace custombox\vue;
 
-use custombox\vue\Vue;
+use customboxvue\Vue;
 use Slim\App;
 
 class VueAccount extends Vue {
