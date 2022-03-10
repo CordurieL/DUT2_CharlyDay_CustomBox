@@ -10,8 +10,8 @@ use custombox\vue\VueAccueil;
 
 /*3236*/
 
-use mywishlist\models\Item;
-use mywishlist\models\Liste;
+use custombox\models\Item;
+use custombox\models\Liste;
 
 class ControleurAccueil extends Controleur {
 	public function __construct(Container $c) {
