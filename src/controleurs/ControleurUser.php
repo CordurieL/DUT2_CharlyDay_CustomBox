@@ -166,17 +166,22 @@ class ControleurUser {
 	 * fonction qui permet de modifier son compte
 	 */
 	public function modifCompte(Request $rq, Response $rs, array $args): Response {
+
+		$user = User::where('id_user', '=', $_SESSION['id_user'])->first();
+
 		// on recupere les donnees du post
 		$data = $rq->getParsedBody();
 		$newNom = filter_var($data['nom'], FILTER_SANITIZE_EMAIL);
 		$newPrenom = filter_var($data['prenom'], FILTER_SANITIZE_EMAIL);
-		$newEmail = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
+		$newEmail = $user->email;
+		if(filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+			$newEmail = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
+		}
 		$newPassword = null;
 		if(isset($_POST['password'])){
 			$newPassword = filter_var($data['email'], FILTER_SANITIZE_URL);
 		}
 
-		$user = User::where('id_user', '=', $_SESSION['id_user'])->first();
 		$user->modifyUser($newNom, $newPrenom, $newEmail, $newPassword);
 
 		$vue = new VueAccount($this->container, $user);
