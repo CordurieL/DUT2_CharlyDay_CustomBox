@@ -54,7 +54,7 @@ class ControleurTypebox extends Controleur {
 		$box=Boite::where('id_boite','=',$param['id_boite'])->first();
 		$box->modifyBox($param['taille'],$param['couleur'],$param['message']);
 		$v = new VueListe($this->container,$box);
-		$rs->getBody()->write($v->render(3)) ;
+		$rs->getBody()->write($v->render(2)) ;
 		
 		return $rs ;
 	}

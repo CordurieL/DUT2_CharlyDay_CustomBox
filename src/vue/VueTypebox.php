@@ -12,11 +12,19 @@ class VueTypebox extends Vue {
 	private function render_createTypebox():String{
 		return $res;
 	}
+	
+	private function render_modifyTypebox():String{
+		return $res;
+	}
 
 	public function render($selecteur): string {
 		switch ($selecteur) {
 			case 1 : {
 				$content = $this->render_createTypebox();
+				break;
+			}
+			case 2 : {
+				$content = $this->render_modifyTypebox();
 				break;
 			}
 			default :
