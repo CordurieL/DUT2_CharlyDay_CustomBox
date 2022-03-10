@@ -33,4 +33,20 @@ class User extends Model {
 		}
 
 	}
+
+	public function modifyUser($nom, $prenom, $email, $password){
+		if($this->nom != $nom){
+			$this->nom = $nom;
+		}
+		if($this->prenom != $prenom){
+			$this->prenom = $prenom;
+		}
+		if($this->email != $email){
+			$this->email = $email;
+		}
+		if(isset($password)){
+			$this->password = password_hash($password, PASSWORD_DEFAULT);
+		}
+		$this->save();
+	}
 }

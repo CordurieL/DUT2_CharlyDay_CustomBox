@@ -124,13 +124,13 @@ $app->get('/profil[/]',
 /**
  * formulaire Modification de compte
  */
-$app->get('/myProfile/formulaire_Modif[/]',
+$app->get('/profil/modifier[/]',
 	ControleurUser::class . ':formModifCompte')->setName('formModifCompte');
 
 /**
  * Modification de compte
  */
-$app->post('/myProfile/modification[/]',
+$app->post('/profil/modifier[/]',
 	ControleurUser::class . ':modifCompte')->setName('modifCompte');
 
 /**

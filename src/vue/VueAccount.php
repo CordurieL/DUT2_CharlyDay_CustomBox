@@ -105,10 +105,11 @@ HTML;
 	}
 
 	private function render_formModifCompte(): string {
+		$compte = $this->objet;
 		$html = "<section><h2>Modifier mon compte</h2>
         <form action='" . $this->container->router->pathFor('modifCompte') . "' method='POST'>
         <ul>
-            <li><input type='text' name='email' placeholder='email'></li>
+            <li><input type='text' name='email' value='$compte->email'></li>
             <li><input type='password' name='password' placeholder='password'></li>
             <li> <input type='submit' name='enter' value='Modifier mon compte'></li>
         </ul>    
@@ -121,12 +122,22 @@ HTML;
 	}
 
 	private function render_profil(): string {
-		$user = User::where('id_user', '=', $_SESSION['id_user'])->first()->toArray();
+		$user = User::where('id_user', '=', $_SESSION['id_user'])->first();
+		$url = $this->container->router->pathFor('modifCompte');
 		return <<<HTML
-			<section>
-    <h2>Mon compte</h2>
-    <h3>{$user['prenom']} {$user['nom']}</h3>
-	<a href={$user['email']}>{$user['email']}</a>
+		<section>
+			<h2>Modifier mon compte</h2>
+        	<form action =$url method='POST'>
+        	<ul>
+				<input type='hidden' value='$user->id_user' name='id_user'>
+				<li><label>Mon nom : </label><input type='nom' name='nom' value='$user->nom'></li>
+				<li><label>Mon prenom : </label><input type='prenom' name='prenom' value='$user->prenom'></li>
+            	<li><label>Mon email : </label><input type='text' name='email' value='$user->email'></li>
+            	<li><label>Mon nouveau mot de passe (optionel)</label><input type='password' name='password' placeholder='new password'></li>
+            	<li><label></label><input type='submit' name='enter' value='Modifier mon compte'></li>
+        	</ul>    
+        	</form>
+		</section>
 HTML;
 	}
 

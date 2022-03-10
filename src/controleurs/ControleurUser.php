@@ -165,42 +165,33 @@ class ControleurUser {
 	 * Modifier les infos de son compte
 	 */
 	public function formModifCompte(Request $rq, Response $rs, array $args): Response {
-		try {
-			Authentification::checkAccessRights(Authentification::$CREATOR_RIGHTS);
-			$userid = $_SESSION['profile']['userid'];
-			$user = User::firstWhere('userid', $userid);
-			$v = new VueAccount($this->container, $user);
-			$rs->write($v->render(6));
-		} catch (AuthException $e1) {
-			$v = new VueAccount($this->container);
-			$rs->write($v->render(5));
-		}
+		$vue = new VueAccount($this->container);
+		$html = $vue->render(6);
+		$rs->getBody()->write($html);
 		return $rs;
 	}
 
+	/**
+	 * fonction qui permet de modifier son compte
+	 */
 	public function modifCompte(Request $rq, Response $rs, array $args): Response {
-		try {
-			Authentification::checkAccessRights(Authentification::$CREATOR_RIGHTS);
-			$data = $rq->getParsedBody();
-			$newMail = filter_var($data['email'], FILTER_SANITIZE_STRING);
-			$newPassword = filter_var($data['password'], FILTER_SANITIZE_STRING);
-			$user = User::firstWhere('userid', $_SESSION['profile']['userid']);
-			$user->password = $newPassword;
-			$user->email = $newMail;
-			$user->save();
-			if (strlen($newPassword) != 0) {
-				Authentification::deconnexion();
-				$url = $this->container->router->pathFor('formConnexion');
-			} else {
-				$this->container->router->pathFor('formConnexion');
-				$url = $this->container->router->pathFor('profil');
-			}
-			$rs = $rs->withStatus(302)->withHeader('Location', $url);
-		} catch (AuthException $e1) {
-			$v = new VueAccount($this->container);
-			$rs->write($v->render(5));
+		// on recupere les donnees du post
+		$data = $rq->getParsedBody();
+		$newNom = filter_var($data['nom'], FILTER_SANITIZE_EMAIL);
+		$newPrenom = filter_var($data['prenom'], FILTER_SANITIZE_EMAIL);
+		$newEmail = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
+		$newPassword = null;
+		if(isset($_POST['password'])){
+			$newPassword = filter_var($data['email'], FILTER_SANITIZE_URL);
 		}
-		return $rs;
+
+		$user = User::where('id_user', '=', $_SESSION['id_user'])->first();
+		$user->modifyUser($newNom, $newPrenom, $newEmail, $newPassword);
+
+		$vue = new VueAccount($this->container, $user);
+		$html = $vue->render(7);
+		$rs->getBody()->write($html);
+		return($rs);
 	}
 
 	public function supprimerCompte(Request $rq, Response $rs, array $args): Response {
