@@ -1,11 +1,45 @@
 .center-logo {
     padding-top: 30px;
+    padding-bottom: 60px;
     margin: 0 auto;
     width: 200px; 
 
     img {
         max-width: 400px;
         height: auto;
+        
     }
 
 }
+
+.container-products-accueil {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    .category-image-acceuil {
+    
+        max-width: 400px;
+        height: auto;
+    }
+    img {
+        width: fit-content;
+        height: fit-content;
+
+        border-radius: 6px;
+
+        &:hover {
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+            transition: box-shadow 0.5s ease 0s;
+    
+        }
+    
+        &:not(:hover) {
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+            transition: box-shadow 0.5s ease 0s;
+        }
+    }
+}
+
