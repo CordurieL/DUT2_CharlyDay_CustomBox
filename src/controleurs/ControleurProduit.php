@@ -106,4 +106,60 @@ class ControleurProduit extends Controleur
         // on revoie sur la page ou sont tous les produits
         return($rs->withRedirect($this->container->router->pathFor("produits")));
     }
+
+	/**
+	 * fonction qui permet d afficher le formulaire pour modifier un produit
+	 * @return string morceau html qui contient le formulaire de modification
+	 */
+	public function formModifyProduct(Request $rq, Response $rs, array $args): Response{
+		$produit = Produit::where('id_produit', '=', $args['id_product'])->first();
+		$vue = new VueProduit($this->container, $produit);
+        $html = $vue->render(3);
+        $rs->getBody()->write($html);
+        return($rs);
+	}
+
+	/**
+	 * fonction qui permet de modifier un item
+	 */
+	public function modifyProduct(Request $rq, Response $rs, array $args): Response{
+		// on recupere les nouvelles donnees du produit
+        $data = $rq->getParsedBody();
+        $productName = filter_var($data['productName'], FILTER_SANITIZE_STRING);
+		$productId = $data['id_product'];
+
+		// on modifie l item
+		$product = Produit::where('id_produit', '=', $productId)->first();
+
+		var_dump($product);
+		$product->modify($productName);
+
+		/**
+		 * en cas d upload de fichier on verifie que c est bien une image
+		 */
+		if(isset($_FILES["file_img"])){
+			// si une image etait donnee par upload on va verifier qu elle est recevable
+			$image_name = $_FILES['file_img']['name'];
+			$image_temp_name = $_FILES['file_img']['tmp_name'];
+			$image_type = $_FILES['file_img']['type'];
+			$repertoire = getcwd() . "/assets/img/produits/";
+			$fichierAutorisee = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+		
+			// on verifie l extension
+			$extension = pathinfo($image_name, PATHINFO_EXTENSION);
+			if(array_key_exists($extension, $fichierAutorisee)){
+				
+				// on verifie le type de fichier
+				if(in_array($image_type, $fichierAutorisee)){
+		
+					$nom_image = $product->id_produit . "." . $extension;
+					move_uploaded_file($image_temp_name, $repertoire . $nom_image);
+				}
+			}
+			$product->setImage($nom_image);
+		}
+
+        // on revoie sur la page ou sont tous les produits
+        return($rs->withRedirect($this->container->router->pathFor("produits")));
+	}
 }

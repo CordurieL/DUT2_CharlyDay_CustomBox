@@ -31,6 +31,18 @@ class Produit extends Model
         $this->save();
     }
 
+    
+    /**
+     * fonction qui permet de modifier un produit deja existant
+     */
+    public function modify($productName){
+        
+        if($this->titre != $productName){
+            $this->titre = $productName;
+            $this->save();
+        }
+    }
+
     /**
      * fonction qui permet de set l image du produit
      */

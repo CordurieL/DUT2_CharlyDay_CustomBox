@@ -86,7 +86,6 @@ class ControleurUser {
 		$vue = new VueAccount($this->container);
 		$html = $vue->render(2);
 		$rs->getBody()->write($html);
-		echo "frezfrrgezrs";
 		// Si le formulaire a été soumis :
 		if (isset($_POST['submit'])) {
 			// Si le bouton Connexion a été cliqué :
@@ -94,16 +93,13 @@ class ControleurUser {
 				$pass = $_POST['password'];
 				$user = User::where('email', $_POST['email'])->first();
 				// Si l'utilisateur existe :
-				echo $user;
-				echo $pass;
-				echo "frezfrrgezrs";
 				if ($user != []) {
-					echo "<p class='erreur'>Le mot de pagtrgeruoyiferzyhgrsse est incorrect.</p>";
+					echo "<p class='erreur'>Le mot de passe est incorrect.</p>";
 
 					if (password_verify($pass, $user['password'])) {
 						$_SESSION['id_user'] = $user->id_user;
 						echo "<p class='erreur'>Le mot de pagtrgeruoyiferzyhgrsse est incorrect.</p>";
-						$rs = $rs->withRedirect($this->container->router->pathFor('voirProfil', ['token' => $args['token']]));
+						$rs = $rs->withRedirect($this->container->router->pathFor('profil', ['token' => $args['token']]));
 					} else {
 						echo "<p class='erreur'>Le mot de passe est incorrect.</p>";
 					}
@@ -114,15 +110,6 @@ class ControleurUser {
 		}
 		return $rs;
 	}
-
-	public function deconnexion(Request $rq, Response $rs, array $args): Response {
-		Authentification::deconnexion();
-		$rs->write("Vous êtes déconnecté");
-		$url = $this->container->router->pathFor('accueil');
-		$rs = $rs->withStatus(302)->withHeader('Location', $url);
-		return $rs;
-	}
-
 
 	/**
 	 * Crée un utilisateur
@@ -160,8 +147,8 @@ class ControleurUser {
 	 */
 	public function voirProfil(Request $rq, Response $rs, array $args): Response {
 		$vue = new VueAccount($this->container);
-		if (isset($_SESSION['id_user'])) $rs->write($vue->render(4));
-		else $rs->write($vue->render(7));
+		if (isset($_SESSION['id_user'])) $rs->write($vue->render(7));
+		else $rs->write($vue->render(5));
 		return $rs;
 	}
 
@@ -197,7 +184,7 @@ class ControleurUser {
 				$url = $this->container->router->pathFor('formConnexion');
 			} else {
 				$this->container->router->pathFor('formConnexion');
-				$url = $this->container->router->pathFor('voirProfil');
+				$url = $this->container->router->pathFor('profil');
 			}
 			$rs = $rs->withStatus(302)->withHeader('Location', $url);
 		} catch (AuthException $e1) {

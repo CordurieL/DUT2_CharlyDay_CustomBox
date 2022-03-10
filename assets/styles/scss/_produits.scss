@@ -1,4 +1,5 @@
 .products-container {
+    padding-top: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,16 +9,31 @@
     padding-bottom: 40px;
 }
 
+.search-product {
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: $color-base;
+    border: $color-green-pastel solid;
+}
+
 .product {
-    padding: 10px;
     border-radius: 5px;
     background-color: $color-green-pastel;
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    justify-content: space-between;
     align-items: center;
+    gap: 10px;
     min-width: 200px;
     min-height: 300px;
+    max-width: 200px;
+    max-height: fit-content;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 6px 6px 0 0;
+    }
 
     &:hover {
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
@@ -31,8 +47,4 @@
     }
 }
 
-.productLineImage {
-    max-width: 200px;
-    height: auto;
-}
 

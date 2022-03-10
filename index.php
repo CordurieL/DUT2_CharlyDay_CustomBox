@@ -44,16 +44,29 @@ $app->post('/produits[/]',
 
 
 /**
- * Faire un formulaire pour
+ * Faire un formulaire pour creer un nouveau produit
  */
-$app->get('/createProductForm[/]',
+$app->get('/creerProduit[/]',
 	ControleurProduit::class . ":formCreateProduct")->setName("createProductForm");
 
 /**
- * Voir tous les produits disponibles sur le site
+ * redirection qui permet de creer le produit et retourner sur l affichage des produits
  */
 $app->post('/createProduct[/]',
 	ControleurProduit::class . ":createProduct")->setName("createProduct");
+
+
+/**
+ * Faire un formulaire pour pouvoir modifier un produit
+ */
+$app->get('/modifierProduit/{id_product}',
+	ControleurProduit::class . ":formModifyProduct")->setName("modifyProductForm");
+
+/**
+ * redirection qui permet de retourner sur la page des items apres en avoir modifier un
+ */
+$app->post('/modifyProduct[/]',
+	ControleurProduit::class . ":modifyProduct")->setName("modifyProduct");
 
 
 // BOITES  -------------------------------
@@ -64,10 +77,22 @@ $app->get('/boites[/]',
 	ControleurBoite::class . ":displayBox")->setName("boites");
 
 /**
- * Donner de l'argent pour une cagnotte
+ * Accès à la création d'une boite
  */
-$app->post('/item/participer_cagnotte/{id}[/]',
-	ControleurProduit::class . ':giveCagnotte')->setName('donner_cagnotte');
+$app->get('/creationBoite[/]',
+	ControleurBoite::class . ":formBox")->setName("formBoite");
+	
+/**
+ * Création de la boite
+ */
+$app->post('/boite[/]',
+	ControleurBoite::class . ":createBox")->setName("createBox");
+	
+/**
+ * Liste des boites lorsque connecté
+ */
+$app->get('/listesBoites[/]',
+	ControleurBoite::class . ":listesBoites")->setName("listesBoites");
 
 // USER -----------------------------------------------
 
@@ -126,5 +151,10 @@ $app->post('/myProfile/modification[/]',
 $app->post('/myProfile/deleteAccount[/]',
 	ControleurUser::class . ':supprimerCompte')->setName('supprimerCompte');
 
+/**
+ * Liste des commandes - administrateur
+ */
+$app->get('/listeCommandes[/]',
+	ControleurUser::class . ':listeCommandes')->setName('listeCommandes');
 
 $app->run();
