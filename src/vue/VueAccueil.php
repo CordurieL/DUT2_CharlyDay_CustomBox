@@ -3,7 +3,7 @@
 
 namespace custombox\vue;
 
-use mywishlist\vue\Vue;
+use custombox\vue\Vue;
 use Slim\Container;
 
 class VueAccueil extends Vue {
