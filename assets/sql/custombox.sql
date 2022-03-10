@@ -164,6 +164,9 @@ ALTER TABLE `produit`
     MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 14;
 
+ALTER TABLE `user`
+    MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 1;
 
 ALTER TABLE `produits_boite`
     ADD FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id_produit`);

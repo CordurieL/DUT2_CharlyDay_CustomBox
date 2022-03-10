@@ -255,8 +255,8 @@ $app->get('/deconnexion[/]',
 /**
  * Voir profil
  */
-$app->get('/myProfile[/]',
-	ControleurUser::class . ':voirCompte')->setName('voirProfil');
+$app->get('/profil[/]',
+	ControleurUser::class . ':voirProfil')->setName('voirProfil');
 
 /**
  * formulaire Modification de compte

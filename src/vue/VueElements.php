@@ -2,16 +2,14 @@
 
 namespace custombox\vue;
 
-class VueElements
-{
+class VueElements {
 
 
-    public function __construct()
-    {
-    }
+	public function __construct() {
+	}
 
-    function renderHead(String $title) {
-        return <<<HTML
+	function renderHead(string $title) {
+		return <<<HTML
         <!DOCTYPE html>
 		<html lang='fr'>
 			<head>
@@ -23,10 +21,13 @@ class VueElements
 			<body>
 HTML;
 
-    }
+	}
 
-    function renderHeader() {
-        return <<<HTML
+	function renderHeader() {
+		if (isset($_SESSION['id_user'])) {
+			$url = $this->container->router->pathFor('inscription');
+		}
+		return <<<HTML
             <header>
                 <nav class="container-large ">
                     <h1>
@@ -42,5 +43,5 @@ HTML;
             </header>
             <main>
 HTML;
-    }
+	}
 }
