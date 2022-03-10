@@ -10,7 +10,7 @@ use custombox\vue\VueBoite;
 use custombox\vue\VueItem;
 use custombox\models\Boite;
 use custombox\controleurs\Controleur;
-use custombox\controleurs\ControleurBOite;
+use custombox\controleurs\ControleurBoite;
 use custombox\models\Item;
 use Slim\Container;
 use Slim\Http\Request;
@@ -22,6 +22,18 @@ class ControleurBoite extends Controleur {
 	}
 
 	/**
+<<<<<<< HEAD
+	* Permet de créer une boite
+	*/
+	public function createBox(Request $rq, Response $rs, array $args) :Response{
+		$container = $this->container ;
+		
+		$param=$rq->getParsedBody();
+		$box=new Boite();
+		
+		$userid = $_SESSION['id_user'];
+		if(isset($param['id_user'])){
+=======
 	 * Permet de créer une boite
 	 */
 	public function createBox(Request $rq, Response $rs, array $args): Response {
@@ -29,10 +41,20 @@ class ControleurBoite extends Controleur {
 
 		/*$userid = $_SESSION['profile']['userid'];
 		if(isset($param['profile']['userid'])){
+>>>>>>> 509e58b5658824fb3e55a42e03091eee4bb9dcbe
             $publique = true;
         }
         else{
             $publique = false;
+<<<<<<< HEAD
+        }
+		
+		$box->createBox($param['taille'],$param['couleur'],$param['message']);
+		$v = new VueBoite($this->container,$box);
+		$rs->getBody()->write($v->render(2)) ;
+		
+		return $rs ;
+=======
         }*/
 
 		$param = $rq->getParsedBody();
@@ -42,6 +64,7 @@ class ControleurBoite extends Controleur {
 		$rs->getBody()->write($v->render(2));
 
 		return $rs;
+>>>>>>> 509e58b5658824fb3e55a42e03091eee4bb9dcbe
 	}
 
 	/**
@@ -69,4 +92,31 @@ class ControleurBoite extends Controleur {
 		
 		return $rs ;
 	}
+<<<<<<< HEAD
+	
+	/**
+	* Permet d'afficher toutes les boites
+	*/
+	public function listesBoites(Request $rq, Response $rs, array $args) :Response{
+		$container = $this->container ;
+		
+		$items=Boite::all();
+		$v = new VueBoite($this->container,$items);
+		$rs->getBody()->write($v->render(1)) ;
+		
+		return $rs ;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+=======
+}
+>>>>>>> 509e58b5658824fb3e55a42e03091eee4bb9dcbe
