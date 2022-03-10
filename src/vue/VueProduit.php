@@ -22,14 +22,7 @@ class VueProduit
     {
         $products = $this->objet;
         $content = <<<HTML
-		<input type="text" id="" placeholder="Rechercher un produit"/>
-		<div id="\">
-		<div class='' id=''>
-			<div class=''>Nom de produit</div>
-			<div = class=''>Descriptif</div>
-			<div class =''>Catégorie</div>
-			<div class=''>Poids (Kg)</div>
-		</div>"
+		<input type="text" class = "search-product"id="" placeholder="Rechercher un produit"/>
         <div class="products-container container-large">
 HTML;
         foreach ($products as $p) {

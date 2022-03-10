@@ -99,7 +99,7 @@ HTML;
         <h3>INFORMATIONS</h3>
 
         <p>Si vous n'avez pas de compte, enregistrez vous</p>
-        <a href="/connexion" class="connexion-inscription">S'enregistrer</a>
+        <a href="/inscription" class="connexion-inscription">S'enregistrer</a>
 
 		<img src="/assets/img/logo/logo_grand.png" alt="" srcset="">
     </div>
