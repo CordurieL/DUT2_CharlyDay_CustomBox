@@ -158,20 +158,22 @@ HTML;
     <div class="profil-right">
         <form action='$url' method='POST' class="">
             <h1>MES INFORMATIONS</h1>
-			<div class="profil-inscription__label profil-nom-prenom">
-				<div>
-				<label for="nom">Mon nom : </label>
-				<input type='nom' name='nom' value='$user->nom'>
+			<div class="profil-nom-prenom">
+				<div class="form-profil__label">
+					<label for="nom">Mon nom : </label>
+					<input type='nom' name='nom' value='$user->nom'>
 				</div>
-				<div>
-				<label for="prenom">Mon prenom : </label><input type='prenom' name='prenom' value='$user->prenom'>
+				<div class="form-profil__label">
+					<label for="prenom">Mon prenom : </label>
+					<input type='prenom' name='prenom' value='$user->prenom'>
 				</div>
-
-
+			</div>
+			<div>
 
 			</div>
-			<div class="profil-inscription__label">
-				<label for="email">Mon email : </label><input type='text' name='email' value='$user->email'></li>
+			<div class="form-profil__label">
+				<label for="email">Mon email : </label>
+				<input type='text' name='email' value='$user->email'></li>
 			</div>
 			<div>
 				<label for="password">Mon nouveau mot de passe (optionel)</label><input type='password' name='password' placeholder='new password'>
