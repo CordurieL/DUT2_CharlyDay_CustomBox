@@ -6,6 +6,8 @@ namespace custombox\vue;
 use custombox\vue\Vue;
 use Slim\Container;
 
+define('SCRIPT_ROOT', str_replace(dirname(getcwd()) . DIRECTORY_SEPARATOR, (((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/')), getcwd()));
+
 class VueAccueil extends Vue {
 	/**
 	 * Accueil
@@ -22,11 +24,11 @@ class VueAccueil extends Vue {
 			</form>";
 		// Si l'utilisateur n'est pas connecté :
 		if (!isset($_SESSION['profile'])) {
-			$html .= "<form action = \"" . $this->container->router->pathFor('formInscription') . "\" method='GET'>
-			    <input type='submit' value=\"S'inscrire\">
+			$html .= "<form action = '" . $this->container->router->pathFor('formInscription') . "' method='GET'>
+			    <input type='submit' value='S'inscrire'>
             </form>
-            <form action=\"" . $this->container->router->pathFor('formConnexion') . "\" method='GET'>
-			    <input type='submit' value=\"Se connecter\">
+            <form action='" . $this->container->router->pathFor('formConnexion') . "' method='GET'>
+			    <input type='submit' value='Se connecter'>
             </form></section>
 		";
 		} // Si il est connecté
@@ -59,14 +61,14 @@ class VueAccueil extends Vue {
 				break;
 			}
 		}
-
+		$logo = SCRIPT_ROOT . '/assets/img/logo/logo_200x200.jpg';
 		return
 			"<!DOCTYPE html>
-
 		<html lang='fr'>
 			<head>
-				<meta charset=\"utf-8\"/>
-				<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" href=\"web/css/style.css\"/>
+				<meta charset='utf-8'/>
+				<link rel='stylesheet' media='screen' type='text/css' href='web/css/style.css'/>
+				<link rel='icon' type='image/x-icon' href='$logo'>
 				<title>sometext</title>
 			</head>
 			<body>
@@ -76,7 +78,7 @@ class VueAccueil extends Vue {
 					</nav>
 				</header>
 				
-                <div class=\"content\">
+                <div class='content'>
 					$content
 				</div>
 				<footer>
