@@ -111,15 +111,6 @@ class ControleurUser {
 		return $rs;
 	}
 
-	public function deconnexion(Request $rq, Response $rs, array $args): Response {
-		Authentification::deconnexion();
-		$rs->write("Vous êtes déconnecté");
-		$url = $this->container->router->pathFor('accueil');
-		$rs = $rs->withStatus(302)->withHeader('Location', $url);
-		return $rs;
-	}
-
-
 	/**
 	 * Crée un utilisateur
 	 * @param $username String nom d'utilisateur

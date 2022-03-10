@@ -16,10 +16,14 @@ class Boite extends Model {
 	/**
 	* Permet de creer une boite
 	*/
-	public function createBox($taille,$couleur,$message){
+	public function createBox($taille,$couleur,$message,$id=null){
 		$taille=filter_var($taille,FILTER_SANITIZE_STRING);
 		$couleur=filter_var($couleur,FILTER_SANITIZE_STRING);
 		$message=filter_var($message,FILTER_SANITIZE_STRING);
+		if($id!=null){
+			$iduser=filter_var($id,FILTER_SANITIZE_NUMBER_INT);
+			$this->id_user=$iduser;
+		}
 		
         $this->taille=$taille;
 		$this->couleur=$couleur;

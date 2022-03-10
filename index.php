@@ -77,10 +77,28 @@ $app->get('/boites[/]',
 	ControleurBoite::class . ":displayBox")->setName("boites");
 
 /**
- * Donner de l'argent pour une cagnotte
+ * Accès à la création d'une boite
  */
-$app->post('/item/participer_cagnotte/{id}[/]',
-	ControleurProduit::class . ':giveCagnotte')->setName('donner_cagnotte');
+$app->get('/creationBoite[/]',
+	ControleurBoite::class . ":formBox")->setName("formBoite");
+	
+/**
+ * Création de la boite
+ */
+$app->post('/boite[/]',
+	ControleurBoite::class . ":createBox")->setName("createBox");
+	
+/**
+ * Liste des boites lorsque connecté
+ */
+$app->get('/listesBoites[/]',
+	ControleurBoite::class . ":listesBoites")->setName("listesBoites");
+	
+/**
+ * Contenu d'une boite
+ */
+$app->get('/contenuBoite/{id_boite}[/]',
+	ControleurBoite::class . ":listesBoites")->setName("listesBoites");
 
 // USER -----------------------------------------------
 
@@ -139,5 +157,10 @@ $app->post('/profil/modifier[/]',
 $app->post('/myProfile/deleteAccount[/]',
 	ControleurUser::class . ':supprimerCompte')->setName('supprimerCompte');
 
+/**
+ * Liste des commandes - administrateur
+ */
+$app->get('/listeCommandes[/]',
+	ControleurUser::class . ':listeCommandes')->setName('listeCommandes');
 
 $app->run();
