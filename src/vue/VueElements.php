@@ -31,7 +31,7 @@ HTML;
                 <nav class="container-large ">
                     <h1>
                         <a href="/">
-                            <span class="text-base">L'Atelier </span><span class="color-text-base">19.71</span>
+                            <span class="text-base">L'Atelier </span><span class="text-orange">19</span>.<span class="text-green">71</span>
                         </a>
                     </h1>
                     <a href="">
