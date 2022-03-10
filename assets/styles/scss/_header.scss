@@ -13,11 +13,19 @@ header {
         align-items: center;
 
         
-        .user-icon {
+        .icon {
             width: fit-content;
             height: fit-content;
             max-width: 100px;
             min-width: 20px;
         }
     }
+}
+
+.icons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
 }
