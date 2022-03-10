@@ -60,29 +60,22 @@ class VueAccueil extends Vue {
 			}
 		}
 
-		return
-			"<!DOCTYPE html>
+        $vueElem = new VueElements();
 
-		<html lang='fr'>
-			<head>
-				<meta charset=\"utf-8\"/>
-				<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" href=\"web/css/style.css\"/>
-				<title>sometext</title>
-			</head>
-			<body>
-				<header>
-					<nav>
-						<h1><a href =" . $this->container->router->pathFor("accueil") . ">The Wishlist</a></h1>
-					</nav>
-				</header>
-				
-                <div class=\"content\">
+        $html = $vueElem->renderHead("accueil");
+		$html .= $vueElem->renderHeader();
+        $html .= <<<HTML
+                <div class="content\">
 					$content
 				</div>
 				<footer>
 
 				</footer>
 			</body>
-		<html>";
+		<html>
+HTML;
+
+		return $html;
+
 	}
 }
