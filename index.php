@@ -1,30 +1,272 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ .'/vendor/autoload.php';
 $config = require_once __DIR__ . "/src/conf/settings.php";
 
-use Slim\App;
-use Slim\Container;
+use mywishlist\controleurs\ControleurItem;
+use mywishlist\controleurs\ControleurUser;
+use mywishlist\controleurs\ControleurListe;
+use mywishlist\controleurs\ControleurAccueil;
 use Illuminate\Database\Capsule\Manager as DB;
-use charlyday\controleurs\ControleurAccueil;
-
-header('Location: index.php');
 
 session_start();
 
-$container = new Container($config);
-$app = new App($config);
+header('Location: index.php');
 
-$db = new DB();
-$config = parse_ini_file('./src/conf/conf.ini');
-if ($config) $db->addConnection($config);
+$container = new Slim\Container($config);
+$app =new \Slim\App($config);
+
+$db=new DB();
+$config=parse_ini_file('./src/conf/conf.ini');
+if($config) $db->addConnection($config);
 $db->setAsGlobal();
 $db->bootEloquent();
 
 
-// Routes /////////////
-$app->get('/', ControleurAccueil::class . ":displayAccueil")->setName("accueil");
+// ACCUEIL -----------------------------
+/**
+ * Page d'accueil
+ */
+$app->get('/',
+    ControleurAccueil::class.":displayAccueil")->setName("accueil");
 
-$app->get('/test', ControleurAccueil::class . ":displayTest")->setName("test");
+
+// LISTE -----------------------------
+/**
+* Voir toutes les listes publiques
+*/
+$app->get('/listesPubliques[/]',
+    ControleurListe::class.":publicLists")->setName("listesPubliques");
+
+/**
+ * Voir les listes personnelles créées
+ */
+
+$app->get('/listes_persos[/]',
+    ControleurListe::class.':myLists')->setName('listesPersos');
+
+/**
+ * Affiche une liste
+ */
+$app->get('/liste/{no}[/]',
+    ControleurListe::class.":afficheListe")->setName("liste");
+
+/**
+ * Affiche une liste partagée
+ */
+
+$app->get('/listePartagee/{sharedToken}[/]',
+    ControleurListe::class.":afficheListePartagee")->setName("sharedList");
+
+/**
+ * Formulaire d'ajout de liste
+ */
+
+$app->get('/formulaire_liste[/]',
+    ControleurListe::class.':formAddList')->setName("formAjouterListe");
+
+/**
+ * Ajout de liste
+ */
+
+$app->post('/ajouter_liste[/]',
+    ControleurListe::class.':addList')->setName("ajoutListe");
+
+
+/**
+ * Formulaire modification d'une liste
+ */
+
+$app->get('/liste/formulaire_modif_liste/{no}[/]',
+    ControleurListe::class.':formModifyList')->setName("formModifyList");
+
+
+/**
+ * Modification d'une liste
+ */
+
+$app->post('/liste/formulaire_modif_liste/modifier_liste/{no}[/]',
+    ControleurListe::class.':modifyList')->setName("modifListe");
+
+
+/**
+ * Formulaire suppression d'une liste
+ */
+
+$app->get('/liste/formulaire_modif_liste/formulaire_supprimer_liste/{no}[/]',
+    ControleurListe::class.':formDeleteList')->setName("formDeleteList");
+
+
+/**
+ * Suppression d'une liste
+ */
+
+$app->post('/liste/formulaire_modif_liste/formulaire_supprimer_liste/supprimer_liste/{no}[/]',
+    ControleurListe::class.':deleteList')->setName("deleteList");
+
+/**
+ * Partager une liste 7524
+ */
+
+$app->get('/liste/formulaire_modif_liste/partager_liste/{no}[/]',
+    ControleurListe::class.':shareList')->setName("shareList");
+
+/**
+ * Formulaire accès liste partagée
+ */
+
+$app->get('/acces_partage[/]',
+    ControleurListe::class.':formCheckList')->setName('formCheckList');
+
+/**
+ * Accès liste partagée
+ */
+
+
+$app->get('/acces_partage/voir_liste_partagee[/]',
+    ControleurListe::class.':checkList')->setName('checkList');
+
+/**
+ * Ajoute un message à une liste
+
+ */
+$app->post('/liste/formulaire_modif_liste/ajouterMessage/{no}[/]',
+    ControleurListe::class.':ajouterMessage')->setName("ajouterMessageListe");
+
+/**
+ * Rendre une liste publique
+ */
+$app->post('/liste/formulaire_modif_liste/{no}/publique/{token}[/]',
+    ControleurListe::class.':putPublic')->setName('publique');
+
+/**
+ * Valide une liste
+ */
+$app->post('/liste/formulaire_modif_liste/{no}/valide/{token}[/]',
+    ControleurListe::class.':valider')->setName('valide');
+
+
+
+// ITEMS ----------------------------------------------
+
+
+/**
+* Voir un item en particulier
+*/
+
+$app->get('/item/{id}[/]',
+    ControleurItem::class.':getItem')->setName("item");
+
+/**
+* Réservation d'item
+*/
+
+$app->post('/item/reserver/{id}[/]',
+    ControleurItem::class.':reservItem')->setName("reserver");
+
+/**
+ * Formulaire ajout d'un item a une liste
+ */
+
+$app->get('/liste/{no}/formulaireAjoutItem[/]',
+    ControleurItem::class.':formAddItem')->setName("formAddItemList");
+
+/**
+* Ajout d'item a une liste
+*/
+
+$app->post('/liste/{no}/ajouter_item[/]',
+    ControleurItem::class.':addItem')->setName("AddItemList");
+
+/**
+* Formulaire de modification d'un item
+*/
+
+$app->get('/liste/formulaire_modif_liste/{no}/formulaire_modification_item/{id}[/]',
+    ControleurItem::class.':formModifyItem')->setName('formModifItem');
+
+
+/**
+* Modification d'un item
+*/
+
+$app->post('/liste/formulaire_modif_liste/formulaire_modification_item/modifier_item/{id}[/]',
+    ControleurItem::class.':modifyItem')->setName('modifItem');
+
+/**
+* Suppression d'un item
+*/
+$app->post('/liste/formulaire_modif_liste/supprimer_item/{no}[/]',
+    ControleurItem::class.':deleteItem')->setName('deleteItem');
+		
+/**
+* Ajouter une cagnotte
+*/
+$app->post('/liste/formulaire_modif_liste/formulaire_modification_item/ajout_cagnotte/{id}[/]',
+	ControleurItem::class.':addCagnotte')->setName('cagnotte');
+	
+/**
+* Donner de l'argent pour une cagnotte
+*/
+$app->post('/item/participer_cagnotte/{id}[/]',
+	ControleurItem::class.':giveCagnotte')->setName('donner_cagnotte');
+
+
+// USER -----------------------------------------------
+
+
+/**
+ * Formulaire inscription
+ */
+$app->get('/formulaireInscription[/]',
+    ControleurUser::class.':formulaireInscription')->setName('formInscription');
+
+/**
+ * Inscription
+ */
+$app->post('/inscription[/]',
+    ControleurUser::class.':inscription')->setName('inscription');
+
+/**
+ * Formulaire connexion
+ */
+$app->get('/formulaireConnexion[/]',
+    ControleurUser::class.':formulaireConnexion')->setName('formConnexion');
+
+/**
+ * Connexion
+ */
+$app->post('/connexion[/]',
+    ControleurUser::class.':connexion')->setName('connexion');
+
+/**
+ * Deconnexion
+ */
+$app->get('/deconnexion[/]',
+    ControleurUser::class.':deconnexion')->setName('deconnexion');
+
+/**
+ * Voir profil
+ */
+$app->get('/myProfile[/]',
+	ControleurUser::class.':voirCompte')->setName('voirProfil');
+
+/**
+ * formulaire Modification de compte
+ */
+$app->get('/myProfile/formulaire_Modif[/]',
+    ControleurUser::class.':formModifCompte')->setName('formModifCompte');
+
+/**
+ * Modification de compte
+ */
+$app->post('/myProfile/modification[/]',
+    ControleurUser::class.':modifCompte')->setName('modifCompte');
+
+/**
+ * Suppression de compte
+ */
+$app->post('/myProfile/deleteAccount[/]',
+    ControleurUser::class.':supprimerCompte')->setName('supprimerCompte');
 
 $app->run();

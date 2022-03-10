@@ -1,6 +1,6 @@
 <?php
 
-namespace charlyday\controleurs;
+namespace mywishlist\controleurs;
 
 use Slim\Container;
 

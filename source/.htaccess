@@ -1,5 +1,0 @@
-RewriteEngine On
-
-RewriteRule ^ index.php [QSA,L]
-
-RedirectPermanent /wishlist https://webetu.iutnc.univ-lorraine.fr/www/chassar16u/wishlist/htaccess/
