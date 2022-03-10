@@ -2,9 +2,6 @@
 
 namespace custombox\vue;
 
-use custombox\vue\Vue;
-use Slim\App;
-
 class VueAccount extends Vue {
 
 	public function render($selecteur): string {
@@ -12,22 +9,19 @@ class VueAccount extends Vue {
         $content = $vueElements->renderHead("Account") . $vueElements->renderHeader();
 		switch ($selecteur) {
 			case 1:
-				$content .= $this->render_formulaireInscription();
+				$content = $this->render_inscription();
 				break;
 			case 2:
-				$content .= $this->render_formulaireConnexion();
-				break;
-			case 3 :
-				$content .= $this->render_connexion();
-				break;
-			case 4 :
-				$content .= $this->render_profile();
+				$content = $this->render_connexion();
 				break;
 			case 5 :
 				$content .= $this->render_accessDenied();
 				break;
 			case 6 :
 				$content .= $this->render_formModifCompte();
+				break;
+			case 7 :
+				$content = $this->render_profil();
 				break;
 			default:
 				$content .= "Pas de contenu disponible";
@@ -38,13 +32,14 @@ class VueAccount extends Vue {
 	/**
 	 * @return string La chaine html correspondant à un formulaire d'inscription
 	 */
-	private function render_formulaireInscription(): string {
+	private function render_inscription(): string {
 		$url = $this->container->router->pathFor('inscription');
+		$connection = $this->container->router->pathFor('connexion');
 		return <<<HTML
 			<form action='$url' method='POST' class="form-inscription">
 			    <h2>INSCRIPTION</h2>
 			    
-			    <p>Pas de compte ? <a href=''>Se connecter</a></p>
+			    <p>Déjà un compte ? <a href=$connection>Se connecter</a></p>
 			    
 				<div class="form-inscription__label">
 					<label>Entrez votre prénom</label>
@@ -79,34 +74,20 @@ HTML;
 	/**
 	 * @return string La chaine html correspondant à un formulaire de connexion
 	 */
-	private function render_formulaireConnexion(): string {
-		$url = $this->container->router->pathFor('inscription');
-		return "<section><h2>Connexion</h2>
-            <form action='" . $this->container->router->pathFor('connexion') . "' method='POST' name='formConnex' id='formConnex'>
-				<p><label>Pseudo : </label><input type='text' name='username' size=40 required='true'></p>
-				<p><label>Password : </label><input type='password' name='password' size=60 required='true'></p>
-				<input type='submit' value='Connexion'>
-			</form></section>";
-	}
-
-	private function render_deconnexion(): string {
-		return "<a href ='..'>Accueil</a> <script>window.alert('Vous êtes déconnecté')</script>";
-	}
-
-	private function render_profile(): string {
-		$html = "<section><h2>Mon compte</h2>
-        <form action='" . $this->container->router->pathFor('formModifCompte') . "'>
-            <input type='submit' name='enter' value='Modifier mon compte'>
-        </form>
-        <form action='" . $this->container->router->pathFor('supprimerCompte') . " ' method='post'>
-            <input type='submit' name='enter' value='Supprimer mon compte'>
-        </form>
-        <p><ul>
-            <li>Mon nom : " . $this->objet->username . "</li>    
-            <li>Mon email : " . $this->objet->email . "</li>
-        </ul></p></section>
-        ";
-		return $html;
+	private function render_connexion(): string {
+		$url = $this->container->router->pathFor('connexion');
+		$inscription = $this->container->router->pathFor('inscription');
+		return <<<HTML
+			<section>
+				<h2>Connexion</h2>
+				<p>Pas de compte ?<a href=$inscription>S'inscrire</a></p>
+				<form action='$url' method='POST' name='formConnex' id='formConnex'>
+					<p><label>Adresse email : </label><input type='text' name='email' size=40 required='true'></p>
+					<p><label>Mot de passe : </label><input type='password' name='password' size=60 required='true'></p>
+					<input type='submit' value='Connexion'>
+				</form>
+			</section>
+		HTML;
 	}
 
 	private function render_accessDenied(): string {
@@ -123,6 +104,18 @@ HTML;
         </ul>    
         </form></section>";
 		return $html;
+	}
+
+	private function render_deconnexion(): string {
+		return "<a href ='..'>Accueil</a> <script>window.alert('Vous êtes déconnecté')</script>";
+	}
+
+	private function render_profil(): string {
+		return <<<HTML
+			<section>
+				<h2>Mon compte</h2>
+			</section>
+		HTML;
 	}
 
 	private function render_modifCompte() { }

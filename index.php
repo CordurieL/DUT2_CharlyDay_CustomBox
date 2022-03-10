@@ -56,8 +56,8 @@ $app->post('/createProduct[/]',
 /**
  * Voir toutes les boites
  */
-$app->get('/boites[/]', 
-    ControleurBoite::class . ":displayBox")->setName("boites");
+$app->get('/boites[/]',
+	ControleurBoite::class . ":displayBox")->setName("boites");
 
 /**
  * Donner de l'argent pour une cagnotte
@@ -81,10 +81,10 @@ $app->post('/inscription[/]',
 ControleurUser::class . ':inscription')->setName('inscription');
 
 /**
-* Formulaire connexion
-*/
-$app->get('/formulaireConnexion[/]',
-ControleurUser::class . ':formulaireConnexion')->setName('formConnexion');
+ * Formulaire connexion
+ */
+$app->get('/connexion[/]',
+ControleurUser::class . ':connexion')->setName('formConnexion');
 
 /**
 * Connexion

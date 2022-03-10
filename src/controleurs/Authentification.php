@@ -36,7 +36,6 @@ class Authentification {
 		// si ok : hacher $password
 		password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
 
-
 		// créer et enregistrer l'utilisateur
 		$roleId = Role::firstWhere('label', $role)->roleid;
 		$user = new User();

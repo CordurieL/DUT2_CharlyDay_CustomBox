@@ -82,23 +82,29 @@ class ControleurUser {
 		return $rs;
 	}
 
-	public function formulaireConnexion(Request $rq, Response $rs, array $args): Response {
-		$vue = new VueAccount($this->container);
-		$rs->write($vue->render(2));
-		return $rs;
-	}
-
-
 	public function connexion(Request $rq, Response $rs, array $args): Response {
 		$vue = new VueAccount($this->container);
-		$data = $rq->getParsedBody();
-		$username = filter_var($data['username'], FILTER_SANITIZE_STRING);
-		$password = filter_var($data['password'], FILTER_SANITIZE_STRING);
-		try {
-			Authentification::authenticate($username, $password);
-			$rs->write($vue->render(3));
-		} catch (AuthException $e1) {
-			$rs->write($e1->getMessage());
+		$html = $vue->render(2);
+		$rs->getBody()->write($html);
+		// Si le formulaire a été soumis :
+		if (isset($_POST['submit'])) {
+			// Si le bouton Connexion a été cliqué :
+			if ($_POST['submit'] == 'connexion') {
+				$email = htmlspecialchars($_POST['email']);
+				$pass = $_POST['password'];
+				$user = User::where('email', $_POST['email'])->first();
+				// Si l'utilisateur existe :
+				if ($user != []) {
+					if (password_verify($pass, $user['password'])) {
+						$_SESSION['id_user'] = $user['id_user'];
+						$rs = $rs->withRedirect($this->container->router->pathFor('voirProfil', ['token' => $args['token']]));
+					} else {
+						echo "<p class='erreur'>Le mot de passe est incorrect.</p>";
+					}
+				} else {
+					echo "<p class='erreur'>Aucun compte ne correspond à cet email.</p>";
+				}
+			}
 		}
 		return $rs;
 	}
@@ -147,16 +153,9 @@ class ControleurUser {
 	 * Voir les infos de son compte
 	 */
 	public function voirProfil(Request $rq, Response $rs, array $args): Response {
-		try {
-			Authentification::checkAccessRights(Authentification::$CREATOR_RIGHTS);
-			$userid = $_SESSION['profile']['userid'];
-			$user = User::firstWhere('userid', $userid);
-			$vue = new VueAccount($this->container, $user);
-			$rs->write($vue->render(4));
-		} catch (AuthException $e1) {
-			$v = new VueAccount($this->container);
-			$rs->write($v->render(5));
-		}
+		$vue = new VueAccount($this->container);
+		if (isset($_SESSION['id_user'])) $rs->write($vue->render(4));
+		else $rs->write($vue->render(7));
 		return $rs;
 	}
 
