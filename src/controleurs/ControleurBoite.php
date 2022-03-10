@@ -22,49 +22,26 @@ class ControleurBoite extends Controleur {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet de créer une boite
-	*/
-	public function createBox(Request $rq, Response $rs, array $args) :Response{
-		$container = $this->container ;
-		
-		$param=$rq->getParsedBody();
-		$box=new Boite();
-		
-		$userid = $_SESSION['id_user'];
-		if(isset($param['id_user'])){
-=======
 	 * Permet de créer une boite
 	 */
 	public function createBox(Request $rq, Response $rs, array $args): Response {
 		$container = $this->container;
 
-		/*$userid = $_SESSION['profile']['userid'];
-		if(isset($param['profile']['userid'])){
->>>>>>> 509e58b5658824fb3e55a42e03091eee4bb9dcbe
+		$userid = $_SESSION['id_user'];
+		if(isset($param['id_user'])){
             $publique = true;
         }
         else{
             $publique = false;
-<<<<<<< HEAD
         }
 		
+		$param=$rq->getParsedBody();
+		$box=new Boite();
 		$box->createBox($param['taille'],$param['couleur'],$param['message']);
 		$v = new VueBoite($this->container,$box);
 		$rs->getBody()->write($v->render(2)) ;
 		
 		return $rs ;
-=======
-        }*/
-
-		$param = $rq->getParsedBody();
-		$box = new Boite();
-		$box->createBox($param['taille'], $param['couleur'], $param['message']);
-		$v = new VueListe($this->container, $box);
-		$rs->getBody()->write($v->render(2));
-
-		return $rs;
->>>>>>> 509e58b5658824fb3e55a42e03091eee4bb9dcbe
 	}
 
 	/**
@@ -92,20 +69,6 @@ class ControleurBoite extends Controleur {
 		
 		return $rs ;
 	}
-<<<<<<< HEAD
-	
-	/**
-	* Permet d'afficher toutes les boites
-	*/
-	public function listesBoites(Request $rq, Response $rs, array $args) :Response{
-		$container = $this->container ;
-		
-		$items=Boite::all();
-		$v = new VueBoite($this->container,$items);
-		$rs->getBody()->write($v->render(1)) ;
-		
-		return $rs ;
-	}
 }
 
 
@@ -117,6 +80,6 @@ class ControleurBoite extends Controleur {
 
 
 
-=======
-}
->>>>>>> 509e58b5658824fb3e55a42e03091eee4bb9dcbe
+
+
+
