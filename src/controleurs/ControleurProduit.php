@@ -51,6 +51,25 @@ class ControleurProduit extends Controleur
         return $rs;
     }
 
+    public function ajouterPanier(Request $rq, Response $rs, array $args): Response
+    {
+        $id = $args['id_product'];
+        if (isset($_COOKIE['panier'])) {
+            $panier = unserialize($_COOKIE['panier']);
+            $panier[] = $id;
+        } else {
+            $panier = [$id];
+        }
+        setcookie(
+            "panier",
+            serialize($panier),
+            time() + (100 * 365 * 24 * 60 * 60), //expire dans 100 ans
+        "/"
+        );
+        $rs = $rs->withRedirect($this->container->router->pathFor('produits'));
+        return $rs;
+    }
+
     /**
      * cree un formulaire pour que l administrateur puisse creer un nouveau produit
      * @return string chaine html qui contient le formulaire

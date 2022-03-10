@@ -42,6 +42,9 @@ $app->get('/produits[/]',
 $app->post('/produits[/]',
 	ControleurProduit::class . ":displayProducts")->setName("searchProduits");
 
+$app->get('/ajoutProduitPanier/{id_product}',
+	ControleurProduit::class . ":ajouterPanier")->setName("ajouterPanier");
+
 
 /**
  * Faire un formulaire pour creer un nouveau produit
