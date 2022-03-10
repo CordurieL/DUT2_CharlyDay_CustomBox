@@ -7,10 +7,11 @@
   padding: 0;
   border: 0;
   text-align: center;
-  color: #2C2C2C;
+  color: #2c2c2c;
 }
 
-a, a:visited {
+a,
+a:visited {
   text-decoration: none;
   decoration: none;
   text-decoration: none;
@@ -21,7 +22,8 @@ strong {
   font-weight: 600;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
@@ -32,22 +34,22 @@ img {
 }
 
 body {
-  font-family: 'Aileron', sans-serif;
-  background-color: #F7F7F7;
+  font-family: "Aileron", sans-serif;
+  background-color: #f7f7f7;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   min-height: 100vh;
 }
 
 main {
   -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 /* === Containers === */
@@ -65,11 +67,11 @@ main {
 
 /** == TEXT COLORIZE == */
 .text-green {
-  color: #47ACA4;
+  color: #47aca4;
 }
 
 .text-green-pastel {
-  color: #93C8C4;
+  color: #93c8c4;
 }
 
 header {
@@ -86,14 +88,14 @@ header nav {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 header nav .user-icon {
@@ -107,3 +109,41 @@ header nav .user-icon {
   min-width: 20px;
 }
 /*# sourceMappingURL=main.css.map */
+
+.productLine {
+  width: auto;
+  height: 25px;
+  line-height: 25px;
+  margin-bottom: 5px;
+  padding: 5px;
+  padding-left: 10px;
+  border-style: solid;
+  border-radius: 0.2em;
+  border-color: white;
+  border-width: 1px;
+  display: grid;
+  grid-template-columns: 15% 45% 15% 15%;
+  grid-gap: 3%;
+  background-color: #8b8b8b;
+}
+
+.productLine > .productLineTitle {
+  grid-column: 1;
+}
+
+.productLine > .productLineDescr {
+  grid-column: 2;
+}
+
+.productLine > .productLineCateg {
+  grid-column: 3;
+}
+
+.productLine > .productLineWeight {
+  grid-column: 4;
+}
+
+#productLineRef {
+  height: 50px;
+  background-color: #b3b3b3;
+}
