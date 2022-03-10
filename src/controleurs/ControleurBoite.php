@@ -91,7 +91,7 @@ class ControleurBoite extends Controleur {
 		$userid = $_SESSION['id_user'];
 		if (isset($_SESSION['id_user'])) {
 			$items = Boite::where('id_user', '=', $_SESSION['id_user'])->first();
-			$ob=produits_boite::where('id_user', '=', $_SESSION['id_user'])->get();
+			$ob=produits_boite::where('id_boite', '=',$items->id_boite)->get();
 			$v = new VueBoite($this->container, $ob);
 			$rs->getBody()->write($v->render(5));
         }
