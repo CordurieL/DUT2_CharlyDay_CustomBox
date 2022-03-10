@@ -43,6 +43,9 @@ CREATE TABLE `boite`
     `id_boite` int(11) NOT NULL,
     `taille`   text    NOT NULL,
     `poidsmax` float   NOT NULL,
+    `couleur` text   NOT NULL,`
+    `message` text   NOT NULL,
+    `id_user` text   NOT NULL,
     primary key (`id_boite`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -174,6 +177,9 @@ ALTER TABLE `produits_boite`
 
 ALTER TABLE `produits_boite`
     ADD FOREIGN KEY (`id_boite`) REFERENCES `boite` (`id_boite`);
+
+ALTER TABLE `boite`
+    ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 ALTER TABLE `produit`
     ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`categorie`) REFERENCES `categorie` (`id_categorie`);
