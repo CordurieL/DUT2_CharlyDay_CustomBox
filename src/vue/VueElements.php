@@ -35,7 +35,6 @@ HTML;
                     <a href=$url>
                         <img src="/assets/icons/user.svg" alt="user icon" class="user-icon">
                     </a>
-                   
                 </nav>
             </header>
             <main>

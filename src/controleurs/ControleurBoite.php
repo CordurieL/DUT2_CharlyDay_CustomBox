@@ -46,6 +46,19 @@ class ControleurBoite extends Controleur {
 	}
 	
 	/**
+	* Permet de créer une boite
+	*/
+	public function formBox(Request $rq, Response $rs, array $args) :Response{
+		$container = $this->container ;
+		
+		$param=$rq->getParsedBody();
+		$v = new VueBoite($this->container,null);
+		$rs->getBody()->write($v->render(3)) ;
+		
+		return $rs ;
+	}
+	
+	/**
 	* Permet d'afficher toutes les boites
 	*/
 	public function displayBox(Request $rq, Response $rs, array $args) :Response{

@@ -33,9 +33,15 @@ class VueBoite extends Vue {
 	}
 	
 	/**
-	* Creation d'une boite de commande
+	* Formulaire de création d'une boite
 	*/
-	private function render_createBox():String{
+	private function render_formBox():String{
+		$res="<div><form action='".$this->container->router->pathFor('createBox')."'>
+				<p><label>Taille : </label><input type=\"text\" name=\"taille\" size=40 required=\"true\"></p>
+				<p><label>Couleur : </label><input type=\"text\" name=\"couleur\" size=40 required=\"true\"></p>
+				<p><label>Message : </label><input type=\"text\" name=\"message\" size=100 required=\"true\"></p>
+				<input type='submit' name='ajouterBoite' value='Créer une boite'>
+			</form></div>";
 		return $res;
 	}
 
@@ -47,6 +53,10 @@ class VueBoite extends Vue {
 			}
 			case 2 : {
 				$content = $this->render_createBox();
+				break;
+			}
+			case 3 : {
+				$content = $this->render_formBox();
 				break;
 			}
 			default :
