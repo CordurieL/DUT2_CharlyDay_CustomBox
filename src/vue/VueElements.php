@@ -33,7 +33,7 @@ HTML;
                         </a>
                     </h1>
                     <a href=$url>
-                        <img src="assets/icons/user.svg" alt="user icon" class="user-icon">
+                        <img src="/assets/icons/user.svg" alt="user icon" class="user-icon">
                     </a>
                    
                 </nav>
