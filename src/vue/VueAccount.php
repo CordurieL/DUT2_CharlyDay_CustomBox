@@ -5,8 +5,8 @@ namespace custombox\vue;
 class VueAccount extends Vue {
 
 	public function render($selecteur): string {
-		$vueElements = new VueElements();
-        $content = $vueElements->renderHead("Account") . $vueElements->renderHeader();
+		$vueElements = new VueElements($this->container);
+		$content = $vueElements->renderHead("Account") . $vueElements->renderHeader();
 		switch ($selecteur) {
 			case 1:
 				$content = $this->render_inscription();
@@ -26,8 +26,8 @@ class VueAccount extends Vue {
 			default:
 				$content .= "Pas de contenu disponible";
 		}
-        return $content . $vueElements->renderFooter();
-    }
+		return $content . $vueElements->renderFooter();
+	}
 
 	/**
 	 * @return string La chaine html correspondant à un formulaire d'inscription

@@ -11,7 +11,7 @@ class VueAccueil extends Vue {
 	 * Accueil
 	 */
 	private function render_displayAccueil(): string {
-		$html="";
+		$html = "";
 		return $html;
 	}
 
@@ -29,11 +29,11 @@ class VueAccueil extends Vue {
 			}
 		}
 
-        $vueElem = new VueElements();
+		$vueElem = new VueElements($this->container);
 
-        $html = $vueElem->renderHead("accueil");
+		$html = $vueElem->renderHead("accueil");
 		$html .= $vueElem->renderHeader();
-        $html .= <<<HTML
+		$html .= <<<HTML
                 <div class="center-logo">
 					<img src="assets/img/logo/logo_grand.png" alt="" srcset="" class="">
 				</div>
