@@ -48,13 +48,13 @@ class VueProduit
         }
         $selectBox = $selectBox . "</select>";
 
-        return "<section><h2>Création d'un nouveau produit</h2>
-            <form action='" . $this->container->router->pathFor('createProduct') . "' method='POST' name='formCreateProduct' id='formCreateProduct'>
+		return "<section><h2>Création d'un nouveau produit</h2>
+            <form action='" . $this->container->router->pathFor('createProduct') . "' method='POST' name='formCreateProduct' id='formCreateProduct' enctype='multipart/form-data'>
 				<p><label>Nom du produit : </label><input type='text' name='productName' size=40 required='true'></p>
                 <p><label>Description du produit : </label><input type='text' name='productDescription' size=40 required='true'></p>
 				<p><label>Catégorie du produit : </label>$selectBox</p>
 				<p><label>Poids du produit : </label><input type='float' name='productWeight' size=60 required='true'></p>
-				<input type='submit' value='S'inscrire'>
+				<input type='submit' value='Confirmer'>
 			</form></section>";
     }
 
