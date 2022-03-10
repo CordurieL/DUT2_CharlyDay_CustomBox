@@ -127,8 +127,6 @@ HTML;
     <h2>Mon compte</h2>
     <h3>{$user['prenom']} {$user['nom']}</h3>
 	<a href={$user['email']}>{$user['email']}</a>
-
-	<a href='../modifCompte'>Modifier mon compte</a>
 HTML;
 	}
 
