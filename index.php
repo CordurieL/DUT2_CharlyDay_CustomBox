@@ -97,8 +97,8 @@ $app->get('/listesBoites[/]',
 /**
  * Contenu d'une boite
  */
-$app->get('/contenuBoite/{id_boite}[/]',
-	ControleurBoite::class . ":listesBoites")->setName("listesBoites");
+$app->get('/contenuBoite[/]',
+	ControleurBoite::class . ":contenuBoite")->setName("contenuBoite");
 
 // USER -----------------------------------------------
 
