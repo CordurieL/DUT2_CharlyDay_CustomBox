@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace custombox\vue;
 use custombox\models\Categorie;
@@ -83,8 +84,7 @@ class VueProduit
 		<html lang='fr'>
 			<head>
 				<meta charset=\"utf-8\"/>
-				<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" href=\"../assets/css/style.css\"/>
-				<title>sometext</title>
+				<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" href=\"../assets/styles/css/main.css\"/>				<title>sometext</title>
 			</head>
 			<body>
 				<header>

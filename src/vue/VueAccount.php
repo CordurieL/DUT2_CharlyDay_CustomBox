@@ -32,17 +32,16 @@ class VueAccount extends Vue {
 		return
 			"<!DOCTYPE html>
 
-		<html lang='fr'>
+	<html lang='fr'>
 			<head>
 				<meta charset='utf-8'/>
-				<link rel='stylesheet' media='screen' type='text/css' href='web/css/style.css'/>
-				<link rel='icon' type='image/x-icon' href='../../assets/img/logo/logo_200x200.jpg'>
-				<title>CustomBox</title>
+				<link rel='stylesheet' media='screen' type='text/css' href='web/css/input.css'/>
+				<title>sometext</title>
 			</head>
 			<body>
 				<header>
 					<nav>
-						<h1><a href =' . $this->container->router->pathFor('accueil') . '>The Wishlist</a></h1>
+						<h1><a href=''>CustomBox</a></h1>
 					</nav>
 				</header>
 				
@@ -60,29 +59,44 @@ class VueAccount extends Vue {
 	 * @return string La chaine html correspondant à un formulaire d'inscription
 	 */
 	private function render_formulaireInscription(): string {
-		return "<section><h2>Inscription</h2>
-            <form action='" . $this->container->router->pathFor('inscription') . "' method='POST' name='formInscr' id='formInscr'>
-				<p><label>Pseudo : </label><input type='text' name='username' size=40 required='true'></p>
-				<p><label>Adresse email : </label><input type='text' name='email' size=40 required='true'></p>
-				<p><label>Password : </label><input type='password' name='password' size=60 required='true'></p>
-				<input type='submit' value='S'inscrire'>
-			</form></section>";
+		$url = $this->container->router->pathFor('inscription');
+		return "
+			<form action='$url' method='POST'>
+			    <h2>INSCRIPTION</h2>
+			    
+			    <p>Pas de compte ? <a href=''>Se connecter</a></p>
+			    
+			    <label>Entrez votre prénom</label>
+			    <input required type='text' name='prenom' placeholder='Prénom'><br>
+			    
+			    <label>Entrez votre nom</label>
+			    <input required ='text' name='nom' placeholder='Nom'><br>
+			
+			    <label>Entrez votre adresse e-mail</label>
+			    <input required type='text' name='email' placeholder='Adresse e-mail'><br>
+			
+			    <label>Entrez un mot de passe</label>
+			    <input required type='password' name='password' placeholder='Mot de passe'><br>
+			    
+			    <label>Entrez à nouveau le mot de passe</label>
+			    <input required type='password' name='password2' placeholder='Mot de passe'><br>
+					
+			    <button type='submit' name='submit' value='inscription'>S'inscrire</button>
+			</form>
+		";
 	}
 
 	/**
 	 * @return string La chaine html correspondant à un formulaire de connexion
 	 */
 	private function render_formulaireConnexion(): string {
+		$url = $this->container->router->pathFor('inscription');
 		return "<section><h2>Connexion</h2>
             <form action='" . $this->container->router->pathFor('connexion') . "' method='POST' name='formConnex' id='formConnex'>
 				<p><label>Pseudo : </label><input type='text' name='username' size=40 required='true'></p>
 				<p><label>Password : </label><input type='password' name='password' size=60 required='true'></p>
 				<input type='submit' value='Connexion'>
 			</form></section>";
-	}
-
-	private function render_connexion(): string {
-		return "<a href ='..'>Accueil</a> <script>window.alert('Vous êtes connecté')</script>";
 	}
 
 	private function render_deconnexion(): string {

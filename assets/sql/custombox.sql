@@ -18,59 +18,32 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `custombox`
+-- Base de données : `charlyday`
 --
 
 -- --------------------------------------------------------
-
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`
 (
     `id_user`  int(11)      NOT NULL,
     `nom`      varchar(255) NOT NULL,
     `prenom`   varchar(255) NOT NULL,
     `email`    varchar(255) NOT NULL,
-    `password` varchar(255) NOT NULL
+    `password` varchar(255) NOT NULL,
+    primary key (`id_user`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
-
-INSERT INTO `produit` (`id_produit`, `titre`, `description`, `categorie`, `poids`)
-VALUES (1, 'Crème', 'Une crème hydratante et parfumée qui rend la peau douce', 1, 0.3);
-
-CREATE TABLE `commande`
-(
-    `id_commande` int(11)      NOT NULL,
-    `id_user`     int(11)      NOT NULL,
-    `statut`      varchar(255) NOT NULL
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
-CREATE TABLE `produits_commande`
-(
-    `id_produit`  int(11) NOT NULL,
-    `id_commande` int(11) NOT NULL,
-    `quantite`    int(11) NOT NULL
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
-ALTER TABLE `produits_commande`
-    ADD CONSTRAINT FK_produits_commande_produit
-        FOREIGN KEY (id_produit) REFERENCES produit (id_produit);
-
-ALTER TABLE `produits_commande`
-    ADD CONSTRAINT FK_produits_commande_commande
-        FOREIGN KEY (id_commande) REFERENCES commande (id_commande);
-
-
 
 --
 -- Structure de la table `boite`
 --
-
+DROP TABLE IF EXISTS `boite`;
 CREATE TABLE `boite`
 (
     `id_boite` int(11) NOT NULL,
     `taille`   text    NOT NULL,
-    `poidsmax` float   NOT NULL
+    `poidsmax` float   NOT NULL,
+    primary key (`id_boite`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
@@ -88,11 +61,12 @@ VALUES (1, 'petite', 0.7),
 --
 -- Structure de la table `categorie`
 --
-
+DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE `categorie`
 (
     `id_categorie` int(11) NOT NULL,
-    `nom`          text    NOT NULL
+    `nom`          text    NOT NULL,
+    primary key (`id_categorie`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
@@ -112,16 +86,28 @@ VALUES (1, 'Beauté'),
 --
 -- Structure de la table `produit`
 --
-
+DROP TABLE IF EXISTS `produit`;
 CREATE TABLE `produit`
 (
     `id_produit`  int(11) NOT NULL,
     `titre`       text    NOT NULL,
     `description` text    NOT NULL,
     `categorie`   int(11) NOT NULL,
-    `poids`       float   NOT NULL
+    `poids`       float   NOT NULL,
+    primary key (`id_produit`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+
+DROP TABLE IF EXISTS `produits_boite`;
+CREATE TABLE `produits_boite`
+(
+    `id_produit` int(11) NOT NULL,
+    `id_boite`   int(11) NOT NULL,
+    `quantite`   int(11) NOT NULL,
+    primary key (`id_produit`, `id_boite`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 
 --
 -- Déchargement des données de la table `produit`
@@ -146,23 +132,11 @@ VALUES (1, 'Crème', 'Une crème hydratante et parfumée qui rend la peau douce'
 -- Index pour les tables déchargées
 --
 
---
--- Index pour la table `boite`
---
-ALTER TABLE `boite`
-    ADD PRIMARY KEY (`id_boite`);
-
---
--- Index pour la table `categorie`
---
-ALTER TABLE `categorie`
-    ADD PRIMARY KEY (`id_categorie`);
 
 --
 -- Index pour la table `produit`
 --
 ALTER TABLE `produit`
-    ADD PRIMARY KEY (`id_produit`),
     ADD KEY `categorie` (`categorie`);
 
 --
@@ -190,13 +164,16 @@ ALTER TABLE `produit`
     MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 14;
 
---
--- Contraintes pour les tables déchargées
---
+ALTER TABLE `user`
+    MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 1;
 
---
--- Contraintes pour la table `produit`
---
+ALTER TABLE `produits_boite`
+    ADD FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id_produit`);
+
+ALTER TABLE `produits_boite`
+    ADD FOREIGN KEY (`id_boite`) REFERENCES `boite` (`id_boite`);
+
 ALTER TABLE `produit`
     ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`categorie`) REFERENCES `categorie` (`id_categorie`);
 COMMIT;
