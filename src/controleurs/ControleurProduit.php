@@ -10,7 +10,6 @@ use custombox\vue\VueAccount;
 use custombox\vue\VueProduit;
 use custombox\controleurs\Controleur;
 use custombox\models\Boite;
-use custombox\models\Categorie;
 use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -29,7 +28,7 @@ class ControleurProduit extends Controleur
     {
         $products = Produit::all();
         foreach ($products as $p) {
-            $categString = Categorie::where("id", "=", $p->categorie)->get("nom")->toArray()[0]["nom"];
+            $categString = Categorie::where("id_categorie", "=", $p->categorie)->get("nom")->toArray()[0]["nom"];
             $p["categorie"] = $categString;
         }
         $v = new VueProduit($this->container, $products);
