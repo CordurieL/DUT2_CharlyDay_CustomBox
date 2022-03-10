@@ -66,6 +66,6 @@ class ControleurProduit extends Controleur
         $newProduct->createProduct($productName, $productDescription, $productCategory, $productWeight);
         
         // on revoie sur la page ou sont tous les produits
-        return($this->displayProducts($rq, $rs, $args));
+        return($rs->withRedirect($this->container->router->pathFor("produits")));
     }
 }
