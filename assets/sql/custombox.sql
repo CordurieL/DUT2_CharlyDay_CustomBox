@@ -41,11 +41,11 @@ DROP TABLE IF EXISTS `boite`;
 CREATE TABLE `boite`
 (
     `id_boite` int(11) NOT NULL,
-    `taille`   text    NOT NULL,
-    `poidsmax` float   NOT NULL,
-    `couleur` text   NOT NULL,`
-    `message` text   NOT NULL,
-    `id_user` text   NOT NULL,
+  `taille` text NOT NULL,
+  `poidsmax` float NOT NULL,
+  `message` varchar(120) NOT NULL,
+  `couleur` varchar(40) NOT NULL,
+  `id_user` int(10) NOT NULL,
     primary key (`id_boite`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -175,11 +175,11 @@ ALTER TABLE `user`
 ALTER TABLE `produits_boite`
     ADD FOREIGN KEY (`id_produit`) REFERENCES `produit` (`id_produit`);
 
-ALTER TABLE `produits_boite`
+ALTER TABLE `boite`
     ADD FOREIGN KEY (`id_boite`) REFERENCES `boite` (`id_boite`);
 
 ALTER TABLE `boite`
-    ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+    ADD FOREIGN KEY (`id_user`) REFERENCES `boite` (`id_user`);
 
 ALTER TABLE `produit`
     ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`categorie`) REFERENCES `categorie` (`id_categorie`);
