@@ -141,6 +141,11 @@ CREATE TABLE `user`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
+CREATE TABLE `produits_boite` (
+  `id_boite` int(10) NOT NULL,
+  `id_produit` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 --
 -- Déchargement des données de la table `user`
 --
