@@ -6,29 +6,10 @@ use custombox\vue\Vue;
 use Slim\Container;
 
 class VueBoite extends Vue {
-
-	public function render($selecteur): string {
-		/**
+	/**
 		* Création d'une boite qui amène sur la liste des produits
 		*/
 		private function render_createBox():String{
-			if($this->objet!==null){
-				$res="<section><ol>Toutes les listes publiques :";
-				foreach($this->objet as $l){
-					if(isset($l->user)){
-						$creator = $l->user->username;
-					}else{
-						$creator = "";
-					}
-					if($l->publique=='x' && $l->valide=='x' && $l->expiration>=date('Y-m-d', time())){
-						$res.="<li>$creator - <a href=". $this->container->router->pathFor('liste',['no'=>$l->no]).">".$l->titre."</a></li>";
-					}
-				}
-				$res=$res."</ol></section>";
-			}
-			else{
-				$res="<section><p>Il n'y a actuellement aucune liste publique.</p></section>";
-			}
 
 			return $res;
 		}
@@ -36,7 +17,7 @@ class VueBoite extends Vue {
 		/**
 		* Affiche toutes les boites pour les administrateurs
 		*/
-		private function render_createBox():String{
+		private function render_displayBox():String{
 			if($this->objet!==null){
 				$res="<section><ol>Toutes les boites :";
 				foreach($this->objet as $l){
@@ -51,7 +32,8 @@ class VueBoite extends Vue {
 
 			return $res;
 		}
-		
+
+	public function render($selecteur): string {
 		switch ($selecteur) {
 			case 1 : {
 				$content = $this->render_createBox();

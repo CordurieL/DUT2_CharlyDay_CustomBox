@@ -8,8 +8,9 @@ use custombox\models\User;
 use custombox\vue\VueAccount;
 use custombox\vue\VueBoite;
 use custombox\vue\VueItem;
-use custombox\models\Liste;
+use custombox\models\Boite;
 use custombox\controleurs\Controleur;
+use custombox\controleurs\ControleurBOite;
 use custombox\models\Item;
 use Slim\Container;
 use Slim\Http\Request;
@@ -43,7 +44,7 @@ class ControleurBoite extends Controleur {
 		$container = $this->container ;
 		
 		$items=Boite::all();
-		$v = new VueListe($this->container,$items);
+		$v = new VueBoite($this->container,$items);
 		$rs->getBody()->write($v->render(2)) ;
 		
 		return $rs ;
