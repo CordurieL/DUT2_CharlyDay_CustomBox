@@ -53,6 +53,7 @@ HTML;
 
 	function renderFooter() {
 		return <<<HTML
+                </main>
                     <footer>
                         <nav class="container-large ">
                             <h1>
