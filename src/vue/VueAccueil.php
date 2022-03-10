@@ -37,25 +37,28 @@ class VueAccueil extends Vue {
                 <div class="center-logo">
 					<img src="assets/img/logo/logo_grand.png" alt="" srcset="" class="">
 				</div>
-				<div>
-					<div class="container-products-accueil container-large">
-						<div class = "category-image-acceuil">
-							<img src="assets/img/categories/1.png" alt="" srcset="">
-						</div>
-						<div class = "category-image-acceuil">
-							<img src="assets/img/categories/2.png" alt="" srcset="">
-						</div>
-						<div class = "category-image-acceuil">
-							<img src="assets/img/categories/3.png" alt="" srcset="">
-						</div>
-						<div class = "category-image-acceuil">
-							<img src="assets/img/categories/4.png" alt="" srcset="">
-						</div>
-						<div class = "category-image-acceuil">
-							<img src="assets/img/categories/5.png" alt="" srcset="">
+				<a href="/produits">
+					<div>
+						<div class="container-products-accueil container-large">
+							<div class = "category-image-acceuil">
+								<img src="assets/img/categories/1.png" alt="" srcset="">
+							</div>
+							<div class = "category-image-acceuil">
+								<img src="assets/img/categories/2.png" alt="" srcset="">
+							</div>
+							<div class = "category-image-acceuil">
+								<img src="assets/img/categories/3.png" alt="" srcset="">
+							</div>
+							<div class = "category-image-acceuil">
+								<img src="assets/img/categories/4.png" alt="" srcset="">
+							</div>
+							<div class = "category-image-acceuil">
+								<img src="assets/img/categories/5.png" alt="" srcset="">
+							</div>
 						</div>
 					</div>
-				</div>
+				</a>
+				
 				</main>
 HTML;
 
