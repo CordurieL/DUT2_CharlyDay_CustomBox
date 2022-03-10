@@ -158,6 +158,7 @@ VALUES (0, 'Admin', 'CustomBox', 'contact@custombox.fr',
 -- Index pour les tables déchargées
 --
 
+
 --
 -- Index pour la table `boite`
 --
@@ -182,6 +183,9 @@ ALTER TABLE `produit`
 --
 ALTER TABLE `user`
     ADD PRIMARY KEY (`id_user`);
+
+ALTER TABLE `user`
+    AUTO_INCREMENT = 1;
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
