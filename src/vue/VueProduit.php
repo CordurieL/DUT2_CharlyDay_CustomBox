@@ -54,6 +54,9 @@ class VueProduit
                 <p><label>Description du produit : </label><input type='text' name='productDescription' size=40 required='true'></p>
 				<p><label>Catégorie du produit : </label>$selectBox</p>
 				<p><label>Poids du produit : </label><input type='float' name='productWeight' size=60 required='true'></p>
+                <label>Uploader une image : </label>
+                <input type='file' name='file_img' id='img'>
+                </br>
 				<input type='submit' value='Confirmer'>
 			</form></section>";
     }
