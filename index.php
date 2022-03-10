@@ -44,16 +44,29 @@ $app->post('/produits[/]',
 
 
 /**
- * Faire un formulaire pour
+ * Faire un formulaire pour creer un nouveau produit
  */
-$app->get('/createProductForm[/]',
+$app->get('/creerProduit[/]',
 	ControleurProduit::class . ":formCreateProduct")->setName("createProductForm");
 
 /**
- * Voir tous les produits disponibles sur le site
+ * redirection qui permet de creer le produit et retourner sur l affichage des produits
  */
 $app->post('/createProduct[/]',
 	ControleurProduit::class . ":createProduct")->setName("createProduct");
+
+
+/**
+ * Faire un formulaire pour pouvoir modifier un produit
+ */
+$app->get('/modifierProduit/{id_product}',
+	ControleurProduit::class . ":formModifyProduct")->setName("modifyProductForm");
+
+/**
+ * redirection qui permet de retourner sur la page des items apres en avoir modifier un
+ */
+$app->post('/modifyProduct[/]',
+	ControleurProduit::class . ":modifyProduct")->setName("modifyProduct");
 
 
 // BOITES  -------------------------------
