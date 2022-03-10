@@ -103,12 +103,13 @@ header nav .user-icon {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  max-width: 50px;
+  max-width: 100px;
   min-width: 20px;
 }
 
 .center-logo {
   padding-top: 30px;
+  padding-bottom: 30px;
   margin: 0 auto;
   width: 200px;
 }
@@ -116,5 +117,56 @@ header nav .user-icon {
 .center-logo img {
   max-width: 400px;
   height: auto;
+}
+
+.container-products-accueil {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 10px;
+}
+
+.container-products-accueil .category-image-acceuil {
+  max-width: 400px;
+  height: auto;
+}
+
+.container-products-accueil img {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.container-products-accueil img:hover {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
+}
+
+.container-products-accueil img:not(:hover) {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
 }
 /*# sourceMappingURL=main.css.map */
