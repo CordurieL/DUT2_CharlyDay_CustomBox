@@ -11,25 +11,42 @@ class VueProduit
 {
     protected $objet;
     protected $container;
+    protected array $tab;
 
-    public function __construct(Container $c, $ob = null)
+    public function __construct(Container $c, $ob = null, $t = null)
     {
         $this->container = $c;
         $this->objet = $ob;
+        $this->tab = $t;
     }
 
     public function displayProducts() : string
     {
         $products = $this->objet;
+        $searchBarContent = $this->tab[0];
+        $selectBox = "<select name=\"choixCategorie\" class='styleinput'>";
+        $selectBox = $selectBox . "<option value=\"0\">Tous</option>";
+        foreach ($this->tab[1] as $categ) {
+            if ($categ['id_categorie'] == $this->tab[2]) {
+                $selectBox = $selectBox . "<option value='$categ[id_categorie]' selected='selected'>$categ[nom]</option>";
+            } else {
+                $selectBox = $selectBox . "<option value='$categ[id_categorie]'>$categ[nom]</option>";
+            }
+        }
+        $selectBox = $selectBox . "</select>";
         $content = <<<HTML
-		<input type="text" id="" placeholder="Rechercher un produit"/>
+        <form method='POST' name='formSearchbar' id='formSearchbar'>
+		    <input type="text" name="searchbar" id="" placeholder="Rechercher un produit" value='$searchBarContent'/>
+            <p><label>Catégorie du produit : </label>$selectBox</p>
+            <input type='submit' value='Rechercher'>
+        </form>
 		<div id="\">
 		<div class='' id=''>
 			<div class=''>Nom de produit</div>
-			<div = class=''>Descriptif</div>
+			<div class=''>Descriptif</div>
 			<div class =''>Catégorie</div>
 			<div class=''>Poids (Kg)</div>
-		</div>"
+		</div>
         <div class="products-container container-large">
 HTML;
         foreach ($products as $p) {
@@ -39,7 +56,7 @@ HTML;
                     <img src='../assets/img/produits/$p[image]' style='max-width: 300px' alt='Image du produit $p[titre]'>
                 </div>
                 <div class=''>$p[titre]</div>
-                <div = class=''>$p[description]</div>
+                <div class=''>$p[description]</div>
                 <div class =''>$p[categorie]</div>
                 <div class=''>$p[poids]</div>
             </div>
