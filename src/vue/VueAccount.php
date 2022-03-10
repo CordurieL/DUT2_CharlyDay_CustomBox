@@ -2,6 +2,8 @@
 
 namespace custombox\vue;
 
+use custombox\models\User;
+
 class VueAccount extends Vue {
 
 	public function render($selecteur): string {
@@ -77,14 +79,18 @@ HTML;
 	private function render_connexion(): string {
 		$url = $this->container->router->pathFor('connexion');
 		$inscription = $this->container->router->pathFor('inscription');
+		if (isset($_SESSION['id_user'])) {
+			$user_id = $_SESSION['id_user'];
+		}
+		$user_id = $_SESSION['user_id'];
 		return <<<HTML
 			<section>
 				<h2>Connexion</h2>
 				<p>Pas de compte ?<a href=$inscription>S'inscrire</a></p>
 				<form action='$url' method='POST' name='formConnex' id='formConnex'>
-					<p><label>Adresse email : </label><input type='text' name='email' size=40 required='true'></p>
+					<p><label>Adresse email : </label><input type='text' name='email' size=40 required='true'></p>$user_id fr erefre
 					<p><label>Mot de passe : </label><input type='password' name='password' size=60 required='true'></p>
-					<input type='submit' value='Connexion'>
+					<input type='submit' name='submit' value='connexion'>
 				</form>
 			</section>
 		HTML;
@@ -111,9 +117,11 @@ HTML;
 	}
 
 	private function render_profil(): string {
+		$user = User::where('id_user', '=', $_SESSION['id_user'])->get()->toArray();
 		return <<<HTML
 			<section>
 				<h2>Mon compte</h2>
+				<h3>{$user->prenom} {$user->nom}</h3>
 			</section>
 		HTML;
 	}

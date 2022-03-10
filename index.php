@@ -40,16 +40,16 @@ $app->get('/produits[/]',
 	ControleurProduit::class . ":displayProducts")->setName("produits");
 
 /**
- * Faire un formulaire pour 
+ * Faire un formulaire pour
  */
-$app->get('/createProductForm[/]', 
-    ControleurProduit::class . ":formCreateProduct")->setName("createProductForm");
+$app->get('/createProductForm[/]',
+	ControleurProduit::class . ":formCreateProduct")->setName("createProductForm");
 
 /**
- * Voir tous les produits disponibles sur le site 
+ * Voir tous les produits disponibles sur le site
  */
-$app->post('/createProduct[/]', 
-    ControleurProduit::class . ":createProduct")->setName("createProduct");
+$app->post('/createProduct[/]',
+	ControleurProduit::class . ":createProduct")->setName("createProduct");
 
 
 // BOITES  -------------------------------
@@ -65,62 +65,62 @@ $app->get('/boites[/]',
 $app->post('/item/participer_cagnotte/{id}[/]',
 	ControleurProduit::class . ':giveCagnotte')->setName('donner_cagnotte');
 
-    // USER -----------------------------------------------
+// USER -----------------------------------------------
 
 
 /**
  * Formulaire inscription
  */
 $app->get('/inscription[/]',
-ControleurUser::class . ':inscription')->setName('formInscription');
+	ControleurUser::class . ':inscription')->setName('formInscription');
 
 /**
-* Inscription
-*/
+ * Inscription
+ */
 $app->post('/inscription[/]',
-ControleurUser::class . ':inscription')->setName('inscription');
+	ControleurUser::class . ':inscription')->setName('inscription');
 
 /**
  * Formulaire connexion
  */
 $app->get('/connexion[/]',
-ControleurUser::class . ':connexion')->setName('formConnexion');
+	ControleurUser::class . ':connexion')->setName('formConnexion');
 
 /**
-* Connexion
-*/
+ * Connexion
+ */
 $app->post('/connexion[/]',
-ControleurUser::class . ':connexion')->setName('connexion');
+	ControleurUser::class . ':connexion')->setName('connexion');
 
 /**
-* Deconnexion
-*/
+ * Deconnexion
+ */
 $app->get('/deconnexion[/]',
-ControleurUser::class . ':deconnexion')->setName('deconnexion');
+	ControleurUser::class . ':deconnexion')->setName('deconnexion');
 
 /**
-* Voir profil
-*/
+ * Voir profil
+ */
 $app->get('/profil[/]',
-ControleurUser::class . ':voirProfil')->setName('voirProfil');
+	ControleurUser::class . ':voirProfil')->setName('profil');
 
 /**
-* formulaire Modification de compte
-*/
+ * formulaire Modification de compte
+ */
 $app->get('/myProfile/formulaire_Modif[/]',
-ControleurUser::class . ':formModifCompte')->setName('formModifCompte');
+	ControleurUser::class . ':formModifCompte')->setName('formModifCompte');
 
 /**
-* Modification de compte
-*/
+ * Modification de compte
+ */
 $app->post('/myProfile/modification[/]',
-ControleurUser::class . ':modifCompte')->setName('modifCompte');
+	ControleurUser::class . ':modifCompte')->setName('modifCompte');
 
 /**
-* Suppression de compte
-*/
+ * Suppression de compte
+ */
 $app->post('/myProfile/deleteAccount[/]',
-ControleurUser::class . ':supprimerCompte')->setName('supprimerCompte');
+	ControleurUser::class . ':supprimerCompte')->setName('supprimerCompte');
 
 
 $app->run();
