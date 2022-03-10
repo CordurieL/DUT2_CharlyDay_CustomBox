@@ -1,19 +1,50 @@
 .form-inscription {
-    width: max-content;
+    width: 800px;
     margin: 0 auto;
-    margin-top: 30px;
-    background-color: $color-green;
-    padding: 20px;
-    border-radius: 5px 5px 5px 5px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    flex-direction: row;
+    padding-bottom: 60px;
+    padding-top: 60px;
+
+
+    .inscription-left {
+        background-color: $color-green-pastel;
+        border-radius: 6px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .inscription-right {
+        background-color: $color-base;
+        border-radius: 6px;
+        padding: 20px;
+
+    }
+
+    .inscription-nom-prenom {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .inscription-mdp {
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 40px;
+
+    }
+
+    h1, h3 {
+        padding-bottom: 40px;
+    }
 
     input {
         border-radius: 5px;
         padding: 10px 15px;
         background-color: $color-base;
+        border: $color-green-pastel solid;
     }
 
     &__label {
@@ -31,10 +62,51 @@
 
     button {
         padding: 10px 15px;
-        background: $color-orange;
+        background: $color-green-pastel;
         border: 0 none;
         cursor: pointer;
         border-radius: 5px 5px 5px 5px;
         color: $color-base;
+
+        &:hover {
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+            transition: box-shadow 0.5s ease 0s;
+    
+        }
+    
+        &:not(:hover) {
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+            transition: box-shadow 0.5s ease 0s;
+        }
     }
+
+    p {
+        padding-bottom: 30px;
+    }
+
+    img {
+        padding-top: 20px;
+        max-width: 100px;
+        width: fit-content;
+        height: auto;
+    }
+
+    a {
+        padding: 10px;
+        background-color: $color-green;
+        border-radius: 6px;
+
+        &:hover {
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+            transition: box-shadow 0.5s ease 0s;
+    
+        }
+    
+        &:not(:hover) {
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+            transition: box-shadow 0.5s ease 0s;
+        }
+    }
+
 }
+

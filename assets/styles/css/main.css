@@ -128,6 +128,7 @@ header nav .icon {
 }
 
 .products-container {
+  padding-top: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -147,8 +148,14 @@ header nav .icon {
   padding-bottom: 40px;
 }
 
+.search-product {
+  border-radius: 5px;
+  padding: 10px 15px;
+  background-color: white;
+  border: #93C8C4 solid;
+}
+
 .product {
-  padding: 10px;
   border-radius: 5px;
   background-color: #93C8C4;
   display: -webkit-box;
@@ -158,12 +165,27 @@ header nav .icon {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  justify-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  gap: 10px;
   min-width: 200px;
   min-height: 300px;
+  max-width: 200px;
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}
+
+.product img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 6px 6px 0 0;
 }
 
 .product:hover {
@@ -184,20 +206,24 @@ header nav .icon {
   transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
 }
 
-.productLineImage {
-  max-width: 200px;
-  height: auto;
+.form-inscription {
+  width: 800px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding-bottom: 60px;
+  padding-top: 60px;
 }
 
-.form-inscription {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  margin: 0 auto;
-  margin-top: 30px;
-  background-color: #47ACA4;
+.form-inscription .inscription-left {
+  background-color: #93C8C4;
+  border-radius: 6px;
   padding: 20px;
-  border-radius: 5px 5px 5px 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -205,14 +231,50 @@ header nav .icon {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form-inscription .inscription-right {
+  background-color: white;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.form-inscription .inscription-nom-prenom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.form-inscription .inscription-mdp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding-bottom: 40px;
+}
+
+.form-inscription h1, .form-inscription h3 {
+  padding-bottom: 40px;
 }
 
 .form-inscription input {
   border-radius: 5px;
   padding: 10px 15px;
   background-color: white;
+  border: #93C8C4 solid;
 }
 
 .form-inscription__label {
@@ -237,11 +299,66 @@ header nav .icon {
 
 .form-inscription button {
   padding: 10px 15px;
-  background: #E77441;
+  background: #93C8C4;
   border: 0 none;
   cursor: pointer;
   border-radius: 5px 5px 5px 5px;
   color: white;
+}
+
+.form-inscription button:hover {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
+}
+
+.form-inscription button:not(:hover) {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
+}
+
+.form-inscription p {
+  padding-bottom: 30px;
+}
+
+.form-inscription img {
+  padding-top: 20px;
+  max-width: 100px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: auto;
+}
+
+.form-inscription a {
+  padding: 10px;
+  background-color: #47ACA4;
+  border-radius: 6px;
+}
+
+.form-inscription a:hover {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
+}
+
+.form-inscription a:not(:hover) {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
 }
 
 .form-profil {
@@ -300,14 +417,23 @@ header nav .icon {
 }
 
 .form-connexion {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+  width: 800px;
   margin: 0 auto;
-  margin-top: 30px;
-  background-color: #47ACA4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding-bottom: 60px;
+  padding-top: 60px;
+}
+
+.form-connexion .connexion-left {
+  background-color: #EAAD87;
+  border-radius: 6px;
   padding: 20px;
-  border-radius: 5px 5px 5px 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -315,14 +441,29 @@ header nav .icon {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form-connexion .connexion-right {
+  background-color: white;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.form-connexion h1, .form-connexion h3 {
+  padding-bottom: 40px;
 }
 
 .form-connexion input {
   border-radius: 5px;
   padding: 10px 15px;
   background-color: white;
+  border: #EAAD87 solid;
 }
 
 .form-connexion__label {
@@ -347,11 +488,66 @@ header nav .icon {
 
 .form-connexion button {
   padding: 10px 15px;
-  background: #E77441;
+  background: #EAAD87;
   border: 0 none;
   cursor: pointer;
   border-radius: 5px 5px 5px 5px;
   color: white;
+}
+
+.form-connexion button:hover {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
+}
+
+.form-connexion button:not(:hover) {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
+}
+
+.form-connexion p {
+  padding-bottom: 30px;
+}
+
+.form-connexion img {
+  padding-top: 20px;
+  max-width: 100px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: auto;
+}
+
+.form-connexion a {
+  padding: 10px;
+  background-color: #E77441;
+  border-radius: 6px;
+}
+
+.form-connexion a:hover {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.705);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
+}
+
+.form-connexion a:not(:hover) {
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
+  -webkit-transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: -webkit-box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s;
+  transition: box-shadow 0.5s ease 0s, -webkit-box-shadow 0.5s ease 0s;
 }
 
 .center-logo {

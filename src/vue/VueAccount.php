@@ -38,38 +38,52 @@ class VueAccount extends Vue {
 		$url = $this->container->router->pathFor('inscription');
 		$connection = $this->container->router->pathFor('connexion');
 		return <<<HTML
-			<form action='$url' method='POST' class="form-inscription">
-			    <h2>INSCRIPTION</h2>
-			    
-			    <p>Déjà un compte ? <a href=$connection>Se connecter</a></p>
-			    
-				<div class="form-inscription__label">
-					<label>Entrez votre prénom</label>
-					<input required type='text' name='prenom' placeholder='Prénom'><br>
-				</div>
+<div class="form-inscription">
+    <div class="inscription-left">
+        <h3>INFORMATIONS</h3>
 
-			    <div class="form-inscription__label">
-					<label>Entrez votre nom</label>
-					<input required ='text' name='nom' placeholder='Nom'><br>
-				</div>
+        <p>Si vous avez déja un compte, connectez vous</p>
+        <a href="/connexion" class="connexion-inscription">connexion</a>
 
-				<div class="form-inscription__label">
-			    	<label>Entrez votre adresse e-mail</label>
-			    	<input required type='text' name='email' placeholder='Adresse e-mail'><br>
-				</div>
-			
-				<div class="form-inscription__label">
-			 		<label>Entrez un mot de passe</label>
-			    	<input required type='password' name='password' placeholder='Mot de passe'><br>
-				</div>
-			    
-				<div class="form-inscription__label">
-			    	<label>Entrez à nouveau le mot de passe</label>
-			    	<input required type='password' name='password2' placeholder='Mot de passe'><br>
-				</div>
-				
-			    <button type='submit' name='submit' value='inscription'>S'inscrire</button>
-			</form>
+		<img src="/assets/img/logo/logo_grand.png" alt="" srcset="">
+    </div>
+    <div class="inscription-right">
+        <form action='$url' method='POST' class="">
+            <h1>INSCRIPTION</h1>
+
+            <div class="inscription-nom-prenom">
+                <div class="form-inscription__label">
+                    <label>Prénom</label>
+                    <input required type='text' name='prenom' placeholder='Prénom'><br>
+                </div>
+            
+                <div class="form-inscription__label">
+                    <label>Nom</label>
+                    <input required='text' name='nom' placeholder='Nom'><br>
+                </div>
+            </div>
+            <div class="inscription-email">
+                <div class="form-inscription__label">
+                    <label>E-mail</label>
+                    <input required type='text' name='email' placeholder='Adresse e-mail'><br>
+                </div>
+            </div>
+
+        <div class="inscription-mdp">
+            <div class="form-inscription__label">
+                <label>Mot de passe</label>
+                <input required type='password' name='password' placeholder='Mot de passe'><br>
+            </div>
+        
+            <div class="form-inscription__label">
+                <label>Confirmer</label>
+                <input required type='password' name='password2' placeholder='Mot de passe'><br>
+            </div>
+        </div>
+        <button type='submit' name='submit' value='inscription'>S'inscrire</button>
+        </form>
+    </div>
+</div>
 HTML;
 	}
 
@@ -80,13 +94,19 @@ HTML;
 		$url = $this->container->router->pathFor('connexion');
 		$inscription = $this->container->router->pathFor('inscription');
 		return <<<HTML
-			<section class="form-connexion">
-				<h2>Connexion</h2>
-				<p>Pas de compte ?
-					<a href=$inscription>S'inscrire</a>
-				</p>
-				<form action='$url' method='POST' name='formConnex' id='formConnex'>
-					<p class="form-connexion__label">
+<div class="form-connexion">
+    <div class="connexion-left">
+        <h3>INFORMATIONS</h3>
+
+        <p>Si vous n'avez pas de compte, enregistrez vous</p>
+        <a href="/inscription" class="connexion-inscription">S'enregistrer</a>
+
+		<img src="/assets/img/logo/logo_grand.png" alt="" srcset="">
+    </div>
+    <div class="connexion-right">
+        <form action='$url' method='POST' class="">
+            <h1>SE CONNECTER</h1>
+			<p class="form-connexion__label">
 						<label>Adresse email : </label>
 						<input type='text' name='email' size=40 required='true'>
 					</p>
@@ -94,10 +114,11 @@ HTML;
 						<label>Mot de passe : </label>
 						<input type='password' name='password' size=60 required='true'>
 					</p>
-					<input type='submit' name='submit' value='connexion'>
-				</form>
-			</section>
-		HTML;
+        	<button type='submit' name='submit' value='inscription'>S'inscrire</button>
+        </form>
+    </div>
+</div>
+HTML;
 	}
 
 	private function render_accessDenied(): string {
@@ -121,41 +142,12 @@ HTML;
 	}
 
 	private function render_profil(): string {
-		$user = User::where('id_user', '=', $_SESSION['id_user'])->get()->toArray();
+		$user = User::where('id_user', '=', $_SESSION['id_user'])->first()->toArray();
 		return <<<HTML
 			<section>
     <h2>Mon compte</h2>
-    <h3>{$user->prenom} {$user->nom}</h3>
-</section>
-<div>
-	<form action="" method="post" class="form-profil">
-		<div>
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="">
-		</div>
-		<div>
-			<label for="name">Prénom</label>
-			<input type="text" name="name" id="">
-		</div>
-		<div>
-			<label for="name">Email</label>
-			<input type="text" name="name" id="">
-		</div>
-		<div>
-			<label for="name">Mot de passe</label>
-			<input type="text" name="name" id="">
-		</div>
-		<div>
-			<label for="name">Confirmer mot de passe</label>
-			<input type="text" name="name" id="">
-		</div>
-		<div>
-			<button type="submit">Sauvegarder</button>
-		</div>
-	</form>
-
-
-</div>
+    <h3>{$user['prenom']} {$user['nom']}</h3>
+	<a href={$user['email']}>{$user['email']}</a>
 HTML;
 	}
 

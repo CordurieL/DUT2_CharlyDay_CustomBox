@@ -22,14 +22,7 @@ class VueProduit
     {
         $products = $this->objet;
         $content = <<<HTML
-		<input type="text" id="" placeholder="Rechercher un produit"/>
-		<div id="\">
-		<div class='' id=''>
-			<div class=''>Nom de produit</div>
-			<div = class=''>Descriptif</div>
-			<div class =''>Catégorie</div>
-			<div class=''>Poids (Kg)</div>
-		</div>"
+		<input type="text" class = "search-product"id="" placeholder="Rechercher un produit"/>
         <div class="products-container container-large">
 HTML;
         foreach ($products as $p) {
@@ -73,6 +66,30 @@ HTML;
 			</form></section>";
     }
 
+    /**
+     * @return string La chaine html correspondant à un formulaire de modification
+     */
+    private function render_formulaireModification(): string
+    {
+        $url = $this->container->router->pathFor('modifyProduct');
+        $url_retour = $this->container->router->pathFor('produits');
+        $produit = $this->objet;
+        return <<<HTML
+        <section>
+            <a href=$url_retour><button>Retourner au listing des items</button></a>
+            <h2>Modification du produit "$produit->titre"</h2>
+            <form action=$url method='POST' name='formCreateProduct' id='formCreateProduct' enctype='multipart/form-data'>
+                <input type='hidden' name="id_product" value=$produit->id_produit>
+				<p><label>Nouvelle désignation du produit : </label><input type='text' name='productName' size=40 required='true'></p>
+                <label>Voulez-vous changer l'image ? </label>
+                <input type='file' name='file_img' id='img'>
+                </br>
+				<input type='submit' value='Confirmer'>
+			</form>
+        </section>
+HTML;
+    }
+
     public function render($selecteur): string
     {
         $vueItem = new VueElements($this->container);
@@ -87,6 +104,10 @@ HTML;
             {
                 $content .= $this->render_formulaireCreation();
                 break;
+            }
+            case 3 :
+            {
+                $content .= $this->render_formulaireModification();
             }
             default:
             {
