@@ -2,3 +2,6 @@
 .idea/
 /src/conf/conf.ini
 composer.lock
+
+*.zip
+.DS_Store

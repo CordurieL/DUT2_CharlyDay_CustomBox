@@ -34,19 +34,18 @@ class VueAccount extends Vue {
 
 		<html lang='fr'>
 			<head>
-				<meta charset='utf-8'/>
-				<link rel='stylesheet' media='screen' type='text/css' href='web/css/style.css'/>
-				<link rel='icon' type='image/x-icon' href='../../assets/img/logo/logo_200x200.jpg'>
-				<title>CustomBox</title>
+				<meta charset=\"utf-8\"/>
+				<link rel=\"stylesheet\" media=\"screen\" type=\"text/css\" href=\"web/css/input.css\"/>
+				<title>sometext</title>
 			</head>
 			<body>
 				<header>
 					<nav>
-						<h1><a href =' . $this->container->router->pathFor('accueil') . '>The Wishlist</a></h1>
+						<h1><a href =" . $this->container->router->pathFor("accueil") . ">The Wishlist</a></h1>
 					</nav>
 				</header>
 				
-                <div class='content'>
+                <div class=\"content\">
 					$content
 				</div>
 				<footer>
@@ -61,11 +60,11 @@ class VueAccount extends Vue {
 	 */
 	private function render_formulaireInscription(): string {
 		return "<section><h2>Inscription</h2>
-            <form action='" . $this->container->router->pathFor('inscription') . "' method='POST' name='formInscr' id='formInscr'>
-				<p><label>Pseudo : </label><input type='text' name='username' size=40 required='true'></p>
-				<p><label>Adresse email : </label><input type='text' name='email' size=40 required='true'></p>
-				<p><label>Password : </label><input type='password' name='password' size=60 required='true'></p>
-				<input type='submit' value='S'inscrire'>
+            <form action=\"" . $this->container->router->pathFor('inscription') . "\" method=\"POST\" name=\"formInscr\" id=\"formInscr\">
+				<p><label>Pseudo : </label><input type=\"text\" name=\"username\" size=40 required=\"true\"></p>
+				<p><label>Adresse email : </label><input type=\"text\" name=\"email\" size=40 required=\"true\"></p>
+				<p><label>Password : </label><input type=\"password\" name=\"password\" size=60 required=\"true\"></p>
+				<input type=\"submit\" value=\"S'inscrire\">
 			</form></section>";
 	}
 
@@ -74,19 +73,19 @@ class VueAccount extends Vue {
 	 */
 	private function render_formulaireConnexion(): string {
 		return "<section><h2>Connexion</h2>
-            <form action='" . $this->container->router->pathFor('connexion') . "' method='POST' name='formConnex' id='formConnex'>
-				<p><label>Pseudo : </label><input type='text' name='username' size=40 required='true'></p>
-				<p><label>Password : </label><input type='password' name='password' size=60 required='true'></p>
-				<input type='submit' value='Connexion'>
+            <form action=\"" . $this->container->router->pathFor('connexion') . "\" method=\"POST\" name=\"formConnex\" id=\"formConnex\">
+				<p><label>Pseudo : </label><input type=\"text\" name=\"username\" size=40 required=\"true\"></p>
+				<p><label>Password : </label><input type=\"password\" name=\"password\" size=60 required=\"true\"></p>
+				<input type=\"submit\" value=\"Connexion\">
 			</form></section>";
 	}
 
 	private function render_connexion(): string {
-		return "<a href ='..'>Accueil</a> <script>window.alert('Vous êtes connecté')</script>";
+		return "<a href =\"..\">Accueil</a> <script>window.alert(\"Vous êtes connecté\")</script>";
 	}
 
 	private function render_deconnexion(): string {
-		return "<a href ='..'>Accueil</a> <script>window.alert('Vous êtes déconnecté')</script>";
+		return "<a href =\"..\">Accueil</a> <script>window.alert(\"Vous êtes déconnecté\")</script>";
 	}
 
 	private function render_profile(): string {
