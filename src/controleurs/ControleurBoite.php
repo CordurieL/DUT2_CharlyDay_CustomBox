@@ -22,49 +22,25 @@ class ControleurBoite extends Controleur {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet de créer une boite
-	*/
-	public function createBox(Request $rq, Response $rs, array $args) :Response{
-		$container = $this->container ;
-		
-		$param=$rq->getParsedBody();
-		$box=new Boite();
-		
-		$userid = $_SESSION['id_user'];
-		if(isset($param['id_user'])){
-=======
 	 * Permet de créer une boite
 	 */
 	public function createBox(Request $rq, Response $rs, array $args): Response {
 		$container = $this->container;
+		$param=$rq->getParsedBody();
+		$box=new Boite();
 
-		/*$userid = $_SESSION['profile']['userid'];
-		if(isset($param['profile']['userid'])){
->>>>>>> 509e58b5658824fb3e55a42e03091eee4bb9dcbe
-            $publique = true;
+		$userid = $_SESSION['id_user'];
+		if(isset($param['id_user'])){
+            $box->createBox($param['taille'],$param['couleur'],$param['message'],$param['id_user']);
         }
         else{
-            $publique = false;
-<<<<<<< HEAD
+            $box->createBox($param['taille'],$param['couleur'],$param['message']);
         }
 		
-		$box->createBox($param['taille'],$param['couleur'],$param['message']);
 		$v = new VueBoite($this->container,$box);
 		$rs->getBody()->write($v->render(2)) ;
 		
 		return $rs ;
-=======
-        }*/
-
-		$param = $rq->getParsedBody();
-		$box = new Boite();
-		$box->createBox($param['taille'], $param['couleur'], $param['message']);
-		$v = new VueListe($this->container, $box);
-		$rs->getBody()->write($v->render(2));
-
-		return $rs;
->>>>>>> 509e58b5658824fb3e55a42e03091eee4bb9dcbe
 	}
 
 	/**
@@ -92,20 +68,24 @@ class ControleurBoite extends Controleur {
 		
 		return $rs ;
 	}
-<<<<<<< HEAD
 	
 	/**
-	* Permet d'afficher toutes les boites
+	* Permet d'afficher toutes les boites d'un compte
 	*/
 	public function listesBoites(Request $rq, Response $rs, array $args) :Response{
 		$container = $this->container ;
 		
-		$items=Boite::all();
-		$v = new VueBoite($this->container,$items);
-		$rs->getBody()->write($v->render(1)) ;
+		$userid = $_SESSION['id_user'];
+		if(isset($param['id_user'])){
+            $items=Boite->where('id_user','=',$param['id_user'])->get();
+			$v = new VueBoite($this->container,$items);
+			$rs->getBody()->write($v->render(4)) ;
+        }
 		
 		return $rs ;
 	}
+	
+	
 }
 
 
@@ -117,6 +97,6 @@ class ControleurBoite extends Controleur {
 
 
 
-=======
-}
->>>>>>> 509e58b5658824fb3e55a42e03091eee4bb9dcbe
+
+
+
