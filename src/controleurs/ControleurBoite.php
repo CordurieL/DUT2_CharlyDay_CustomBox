@@ -26,18 +26,17 @@ class ControleurBoite extends Controleur {
 	 */
 	public function createBox(Request $rq, Response $rs, array $args): Response {
 		$container = $this->container;
+		$param=$rq->getParsedBody();
+		$box=new Boite();
 
 		$userid = $_SESSION['id_user'];
 		if(isset($param['id_user'])){
-            $publique = true;
+            $box->createBox($param['taille'],$param['couleur'],$param['message'],$param['id_user']);
         }
         else{
-            $publique = false;
+            $box->createBox($param['taille'],$param['couleur'],$param['message']);
         }
 		
-		$param=$rq->getParsedBody();
-		$box=new Boite();
-		$box->createBox($param['taille'],$param['couleur'],$param['message']);
 		$v = new VueBoite($this->container,$box);
 		$rs->getBody()->write($v->render(2)) ;
 		
@@ -69,6 +68,24 @@ class ControleurBoite extends Controleur {
 		
 		return $rs ;
 	}
+	
+	/**
+	* Permet d'afficher toutes les boites d'un compte
+	*/
+	public function listesBoites(Request $rq, Response $rs, array $args) :Response{
+		$container = $this->container ;
+		
+		$userid = $_SESSION['id_user'];
+		if(isset($param['id_user'])){
+            $items=Boite->where('id_user','=',$param['id_user'])->get();
+			$v = new VueBoite($this->container,$items);
+			$rs->getBody()->write($v->render(4)) ;
+        }
+		
+		return $rs ;
+	}
+	
+	
 }
 
 
