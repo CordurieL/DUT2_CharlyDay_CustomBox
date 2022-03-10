@@ -39,6 +39,12 @@ $app->get('/',
 $app->get('/produits[/]', 
     ControleurProduit::class . ":displayProducts")->setName("produits");
 
+// BOITES  -------------------------------
+/**
+ * Voir toutes les boites
+ */
+$app->get('/boites[/]', 
+    ControleurBoite::class . ":displayBox")->setName("boites");
 
 // LISTE -----------------------------
 /**
@@ -274,6 +280,6 @@ $app->post('/myProfile/modification[/]',
  * Suppression de compte
  */
 $app->post('/myProfile/deleteAccount[/]',
-	ControleurUser::class . ':supprimerCompte')->setName('supprimerCompte');
+	ControleurUser::class . ':supprimerCompte')->setName('supprimerCompte');																		
 
 $app->run();
