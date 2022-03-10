@@ -94,13 +94,19 @@ HTML;
 		$url = $this->container->router->pathFor('connexion');
 		$inscription = $this->container->router->pathFor('inscription');
 		return <<<HTML
-			<section class="form-connexion">
-				<h2>Connexion</h2>
-				<p>Pas de compte ?
-					<a href=$inscription>S'inscrire</a>
-				</p>
-				<form action='$url' method='POST' name='formConnex' id='formConnex'>
-					<p class="form-connexion__label">
+<div class="form-connexion">
+    <div class="connexion-left">
+        <h3>INFORMATIONS</h3>
+
+        <p>Si vous n'avez pas de compte, enregistrez vous</p>
+        <a href="/connexion" class="connexion-inscription">S'enregistrer</a>
+
+		<img src="/assets/img/logo/logo_grand.png" alt="" srcset="">
+    </div>
+    <div class="connexion-right">
+        <form action='$url' method='POST' class="">
+            <h1>SE CONNECTER</h1>
+			<p class="form-connexion__label">
 						<label>Adresse email : </label>
 						<input type='text' name='email' size=40 required='true'>
 					</p>
@@ -108,10 +114,11 @@ HTML;
 						<label>Mot de passe : </label>
 						<input type='password' name='password' size=60 required='true'>
 					</p>
-					<input type='submit' name='submit' value='connexion'>
-				</form>
-			</section>
-		HTML;
+        	<button type='submit' name='submit' value='inscription'>S'inscrire</button>
+        </form>
+    </div>
+</div>
+HTML;
 	}
 
 	private function render_accessDenied(): string {
