@@ -39,6 +39,10 @@ $app->get('/',
 $app->get('/produits[/]',
 	ControleurProduit::class . ":displayProducts")->setName("produits");
 
+$app->post('/produits[/]',
+	ControleurProduit::class . ":displayProducts")->setName("searchProduits");
+
+
 /**
  * Faire un formulaire pour 
  */
