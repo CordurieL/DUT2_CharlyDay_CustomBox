@@ -69,14 +69,7 @@ class VueAccueil extends Vue {
 					<img src="assets/img/logo/logo_grand.png" alt="" srcset="" class="">
 				</div>
 				<div>
-					<h1>
-						Notre mission
-					</h1>
-					<p>
-						Achetez des box et aidez des personnes dans le besoin
-					</p>
-
-					<div class="container-products-accueil container-min">
+					<div class="container-products-accueil container-large">
 						<div class = "category-image-acceuil">
 							<img src="assets/img/categories/1.png" alt="" srcset="">
 						</div>
