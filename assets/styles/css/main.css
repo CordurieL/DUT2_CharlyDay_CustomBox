@@ -108,8 +108,8 @@ header nav .user-icon {
   max-width: 50px;
   min-width: 20px;
 }
-/*# sourceMappingURL=main.css.map */
 
+/*pleins de trucs osef qu'on va enlever*/
 .productLine {
   width: auto;
   height: 25px;
@@ -147,3 +147,16 @@ header nav .user-icon {
   height: 50px;
   background-color: #b3b3b3;
 }
+/*Fin des trucs osef*/
+
+.center-logo {
+  padding-top: 30px;
+  margin: 0 auto;
+  width: 200px;
+}
+
+.center-logo img {
+  max-width: 400px;
+  height: auto;
+}
+/*# sourceMappingURL=main.css.map */

@@ -45,10 +45,16 @@ class ControleurUser {
 	/**
 	 * Créé un formulaire d'inscription pour un utilisateur
 	 */
-	public function inscription(Request $rq, Response $rs, array $args): Response {
+	public function formulaireInscription(Request $rq, Response $rs, array $args): Response {
 		$vue = new VueAccount($this->container);
-		$html = $vue->render(1);
+		$rs->write($vue->render(1));
 		return $rs;
+	}
+
+	/**
+	 * Inscrit un utilisateur
+	 */
+	public function inscription(Request $rq, Response $rs, array $args): Response {
 		$data = $rq->getParsedBody();
 		$username = filter_var($data['username'], FILTER_SANITIZE_STRING);
 		$password = filter_var($data['password'], FILTER_SANITIZE_STRING);

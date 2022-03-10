@@ -8,7 +8,59 @@ use Slim\Container;
 class VueBoite extends Vue {
 
 	public function render($selecteur): string {
+		/**
+		* Création d'une boite qui amène sur la liste des produits
+		*/
+		private function render_createBox():String{
+			if($this->objet!==null){
+				$res="<section><ol>Toutes les listes publiques :";
+				foreach($this->objet as $l){
+					if(isset($l->user)){
+						$creator = $l->user->username;
+					}else{
+						$creator = "";
+					}
+					if($l->publique=='x' && $l->valide=='x' && $l->expiration>=date('Y-m-d', time())){
+						$res.="<li>$creator - <a href=". $this->container->router->pathFor('liste',['no'=>$l->no]).">".$l->titre."</a></li>";
+					}
+				}
+				$res=$res."</ol></section>";
+			}
+			else{
+				$res="<section><p>Il n'y a actuellement aucune liste publique.</p></section>";
+			}
+
+			return $res;
+		}
+		
+		/**
+		* Affiche toutes les boites pour les administrateurs
+		*/
+		private function render_createBox():String{
+			if($this->objet!==null){
+				$res="<section><ol>Toutes les boites :";
+				foreach($this->objet as $l){
+					$res=$res."<li><p>Numéro : $l->id_boite Etat : $l->etat
+					Message : $l->message Poids max : $l->poidsmax Taille : $l->taille</p></li>";
+				}
+				$res=$res."</ol></section>";
+			}
+			else{
+				$res="<section><p>Il n'y a actuellement aucune boite.</p></section>";
+			}
+
+			return $res;
+		}
+		
 		switch ($selecteur) {
+			case 1 : {
+				$content = $this->render_createBox();
+				break;
+			}
+			case 2 : {
+				$content = $this->render_displayBox();
+				break;
+			}
 			default :
 			{
 				$content = "Pas de contenu<br>";
