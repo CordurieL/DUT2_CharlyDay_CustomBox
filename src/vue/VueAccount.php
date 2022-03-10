@@ -126,10 +126,11 @@ HTML;
 	}
 
 	private function render_formModifCompte(): string {
+		$compte = $this->objet;
 		$html = "<section><h2>Modifier mon compte</h2>
         <form action='" . $this->container->router->pathFor('modifCompte') . "' method='POST'>
         <ul>
-            <li><input type='text' name='email' placeholder='email'></li>
+            <li><input type='text' name='email' value='$compte->email'></li>
             <li><input type='password' name='password' placeholder='password'></li>
             <li> <input type='submit' name='enter' value='Modifier mon compte'></li>
         </ul>    
@@ -142,19 +143,44 @@ HTML;
 	}
 
 	private function render_profil(): string {
-		$user = User::where('id_user', '=', $_SESSION['id_user'])->first()->toArray();
-		$a = '';
-		if ($user['admin'] == 1) {
-			$admin = "Administrateur";
-			$a = "<a href='" . $this->container->router->pathFor('listeCommandes') . "'>Administration</a>";
-		} else {
-			$admin = "Utilisateur";
-		}
+		$user = User::where('id_user', '=', $_SESSION['id_user'])->first();
+		$url = $this->container->router->pathFor('modifCompte');
 		return <<<HTML
-			<section>
-    <h2>Mon compte</h2>
-    <h3>{$user['prenom']} {$user['nom']} ({$admin})</h3>
-	<a href={$user['email']}>{$user['email']}</a>
+<div class="form-profil">
+    <div class="profil-left">
+        <h3>INFORMATIONS</h3>
+
+        <p>Si vous avez fini, retournez à l'accueil</p>
+        <a href="/" class="">Accueil</a>
+
+		<img src="/assets/img/logo/logo_grand.png" alt="" srcset="">
+    </div>
+    <div class="profil-right">
+        <form action='$url' method='POST' class="">
+            <h1>MES INFORMATIONS</h1>
+			<div class="profil-inscription__label profil-nom-prenom">
+				<div>
+				<label for="nom">Mon nom : </label>
+				<input type='nom' name='nom' value='$user->nom'>
+				</div>
+				<div>
+				<label for="prenom">Mon prenom : </label><input type='prenom' name='prenom' value='$user->prenom'>
+				</div>
+
+
+
+			</div>
+			<div class="profil-inscription__label">
+				<label for="email">Mon email : </label><input type='text' name='email' value='$user->email'></li>
+			</div>
+			<div>
+				<label for="password">Mon nouveau mot de passe (optionel)</label><input type='password' name='password' placeholder='new password'>
+			</div>
+
+        	<button type='submit' name='submit' value='Modifier mon compte'>Mettre à jour</button>
+        </form>
+    </div>
+</div>
 HTML;
 	}
 

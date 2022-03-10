@@ -67,6 +67,26 @@ class VueBoite extends Vue {
 
 		return $res;
 	}
+	
+	/**
+	* Listes des boites d'un compte
+	*/
+	private function render_contenuBoite():String{
+		if($this->objet!==null){
+			$res="<section><ol>Toutes les objets de la boite :";
+			foreach($this->objet as $l){
+				$res=$res."<li>
+				<p>Titre : $l->titre Description : $l->description
+				Categorie : $l->categorie</p></li>";
+			}
+			$res=$res."</ol></section>";
+		}
+		else{
+			$res="<section><p>Il n'y a actuellement aucune boite.</p></section>";
+		}
+
+		return $res;
+	}
 
 	public function render($selecteur): string {
 		$vueElements = new VueElements($this->container);
@@ -86,6 +106,10 @@ class VueBoite extends Vue {
 			}
 			case 4 : {
 				$content .= $this->render_listesBoites();
+				break;
+			}
+			case 5 : {
+				$content .= $this->render_contenuBoite();
 				break;
 			}
 			default :
