@@ -12,9 +12,9 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT = @@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS = @@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION = @@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
@@ -27,25 +27,27 @@ SET time_zone = "+00:00";
 -- Structure de la table `boite`
 --
 
-CREATE TABLE `boite` (
-  `id_boite` int(11) NOT NULL,
-  `taille` text NOT NULL,
-  `poidsmax` float NOT NULL,
-  `message` varchar(120) NOT NULL,
-  `couleur` varchar(40) NOT NULL,
-  `id_user` int(10) NOT NULL,
-  `id_modele` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `boite`
+(
+    `id_boite`  int(11)      NOT NULL,
+    `taille`    text         NOT NULL,
+    `poidsmax`  float        NOT NULL,
+    `message`   varchar(120) NOT NULL,
+    `couleur`   varchar(40)  NOT NULL,
+    `id_user`   int(10)      NOT NULL,
+    `id_modele` int(10)      NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 --
 -- Déchargement des données de la table `boite`
 --
 
-INSERT INTO `boite` (`id_boite`, `taille`, `poidsmax`, `message`, `couleur`, `id_user`, `id_modele`) VALUES
-(0, '', 0, '', '', 0, 0),
-(1, 'petite', 0.7, '', '', 0, 0),
-(2, 'moyenne', 1.5, '', '', 0, 0),
-(3, 'grande', 3.2, '', '', 0, 0);
+INSERT INTO `boite` (`id_boite`, `taille`, `poidsmax`, `message`, `couleur`, `id_user`, `id_modele`)
+VALUES (0, '', 0, '', '', 0, 0),
+       (1, 'petite', 0.7, '', '', 0, 0),
+       (2, 'moyenne', 1.5, '', '', 0, 0),
+       (3, 'grande', 3.2, '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -53,21 +55,23 @@ INSERT INTO `boite` (`id_boite`, `taille`, `poidsmax`, `message`, `couleur`, `id
 -- Structure de la table `categorie`
 --
 
-CREATE TABLE `categorie` (
-  `id_categorie` int(11) NOT NULL,
-  `nom` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `categorie`
+(
+    `id_categorie` int(11) NOT NULL,
+    `nom`          text    NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 --
 -- Déchargement des données de la table `categorie`
 --
 
-INSERT INTO `categorie` (`id_categorie`, `nom`) VALUES
-(1, 'Beauté'),
-(2, 'Bijoux'),
-(3, 'Décoration'),
-(4, 'Produit ménager'),
-(5, 'Upcycling');
+INSERT INTO `categorie` (`id_categorie`, `nom`)
+VALUES (1, 'Beauté'),
+       (2, 'Bijoux'),
+       (3, 'Décoration'),
+       (4, 'Produit ménager'),
+       (5, 'Upcycling');
 
 -- --------------------------------------------------------
 
@@ -75,32 +79,34 @@ INSERT INTO `categorie` (`id_categorie`, `nom`) VALUES
 -- Structure de la table `produit`
 --
 
-CREATE TABLE `produit` (
-  `id` int(11) NOT NULL,
-  `titre` text NOT NULL,
-  `description` text NOT NULL,
-  `categorie` int(11) NOT NULL,
-  `poids` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `produit`
+(
+    `id`          int(11) NOT NULL,
+    `titre`       text    NOT NULL,
+    `description` text    NOT NULL,
+    `categorie`   int(11) NOT NULL,
+    `poids`       float   NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 --
 -- Déchargement des données de la table `produit`
 --
 
-INSERT INTO `produit` (`id`, `titre`, `description`, `categorie`, `poids`) VALUES
-(1, 'Crème', 'Une crème hydratante et parfumée qui rend la peau douce', 1, 0.3),
-(2, 'Savon', 'Un savon qui respecte la peau', 1, 0.2),
-(3, 'Shampoing', 'Shampoing doux et démêlant', 1, 0.4),
-(4, 'Bracelet', 'Un bracelet en tissu aux couleurs plaisantes', 2, 0.15),
-(5, 'Tableau', 'Aquarelle ou peinture à l\'huile', 3, 0.6),
-(6, 'Essuie-main', 'Utile au quotidien', 4, 0.45),
-(7, 'Gel', 'Gel hydroalcoolique et Antibactérien', 4, 0.25),
-(8, 'Masque', 'masque chirurgical jetable categorie 1', 4, 0.35),
-(9, 'Gilet', 'Gilet décoré par nos couturières', 5, 0.55),
-(10, 'Marque page', 'Joli marque page pour accompagner vos lectures favorites', 5, 0.1),
-(11, 'Sac', 'Sac éco-responsable avec décorations variées', 5, 0.26),
-(12, 'Surprise', 'Pochette surprise pour faire plaisir aux petits et grands', 5, 0.7),
-(13, 'T-shirt', 'T-shirt peint à la main et avec pochoir', 5, 0.32);
+INSERT INTO `produit` (`id`, `titre`, `description`, `categorie`, `poids`)
+VALUES (1, 'Crème', 'Une crème hydratante et parfumée qui rend la peau douce', 1, 0.3),
+       (2, 'Savon', 'Un savon qui respecte la peau', 1, 0.2),
+       (3, 'Shampoing', 'Shampoing doux et démêlant', 1, 0.4),
+       (4, 'Bracelet', 'Un bracelet en tissu aux couleurs plaisantes', 2, 0.15),
+       (5, 'Tableau', 'Aquarelle ou peinture à l\'huile', 3, 0.6),
+       (6, 'Essuie-main', 'Utile au quotidien', 4, 0.45),
+       (7, 'Gel', 'Gel hydroalcoolique et Antibactérien', 4, 0.25),
+       (8, 'Masque', 'masque chirurgical jetable categorie 1', 4, 0.35),
+       (9, 'Gilet', 'Gilet décoré par nos couturières', 5, 0.55),
+       (10, 'Marque page', 'Joli marque page pour accompagner vos lectures favorites', 5, 0.1),
+       (11, 'Sac', 'Sac éco-responsable avec décorations variées', 5, 0.26),
+       (12, 'Surprise', 'Pochette surprise pour faire plaisir aux petits et grands', 5, 0.7),
+       (13, 'T-shirt', 'T-shirt peint à la main et avec pochoir', 5, 0.32);
 
 -- --------------------------------------------------------
 
@@ -108,12 +114,15 @@ INSERT INTO `produit` (`id`, `titre`, `description`, `categorie`, `poids`) VALUE
 -- Structure de la table `typebox`
 --
 
-CREATE TABLE `typebox` (
-  `id_modele` int(2) NOT NULL,
-  `designation` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `poidsmax` float NOT NULL,
-  `poidsobjetmax` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `typebox`
+(
+    `id_modele`     int(2)                              NOT NULL,
+    `designation`   varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+    `poidsmax`      float                               NOT NULL,
+    `poidsobjetmax` float                               NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -121,20 +130,24 @@ CREATE TABLE `typebox` (
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `prenom` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `user`
+(
+    `id_user`  int(11)      NOT NULL,
+    `nom`      varchar(255) NOT NULL,
+    `prenom`   varchar(255) NOT NULL,
+    `email`    varchar(255) NOT NULL,
+    `password` varchar(255) NOT NULL,
+    `admin`    int(1)       NOT NULL DEFAULT '0'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id_user`, `nom`, `prenom`, `email`, `password`) VALUES
-(0, 'gg', 'gg', 'gg', '$2y$10$HDvb8qFDCLFCiiNOTwak5OWCWDsGnFpYvgzI2YyhDOjGdUl2OQWc2');
+INSERT INTO `user` (`id_user`, `nom`, `prenom`, `email`, `password`, `admin`)
+VALUES (0, 'Admin', 'CustomBox', 'contact@custombox.fr',
+        '$2y$10$exMdTkaAZ2P2mYU3ciRF4eQ9wGbi2wEGpxUNZUr9tPn/EJDLQHjIq', 1);
 
 --
 -- Index pour les tables déchargées
@@ -144,26 +157,26 @@ INSERT INTO `user` (`id_user`, `nom`, `prenom`, `email`, `password`) VALUES
 -- Index pour la table `boite`
 --
 ALTER TABLE `boite`
-  ADD PRIMARY KEY (`id_boite`);
+    ADD PRIMARY KEY (`id_boite`);
 
 --
 -- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  ADD PRIMARY KEY (`id_categorie`);
+    ADD PRIMARY KEY (`id_categorie`);
 
 --
 -- Index pour la table `produit`
 --
 ALTER TABLE `produit`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `categorie` (`categorie`);
+    ADD PRIMARY KEY (`id`),
+    ADD KEY `categorie` (`categorie`);
 
 --
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
+    ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -173,13 +186,15 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+    MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 6;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 14;
 
 --
 -- Contraintes pour les tables déchargées
@@ -189,9 +204,9 @@ ALTER TABLE `produit`
 -- Contraintes pour la table `produit`
 --
 ALTER TABLE `produit`
-  ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`categorie`) REFERENCES `categorie` (`id_categorie`);
+    ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`categorie`) REFERENCES `categorie` (`id_categorie`);
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS = @OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;

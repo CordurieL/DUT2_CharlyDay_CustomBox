@@ -13,31 +13,30 @@ class VueBoite extends Vue {
 		$res="";
 		return $res;
 	}
-		
+
 	/**
-	* Affiche toutes les boites pour les administrateurs
-	*/
-	private function render_displayBox():String{
-		if($this->objet!==null){
-			$res="<section><ol>Toutes les boites :";
-			foreach($this->objet as $l){
-				$res=$res."<li><p>Numéro : $l->id_boite Etat : $l->etat
+	 * Affiche toutes les boites pour les administrateurs
+	 */
+	private function render_displayBox(): string {
+		if ($this->objet !== null) {
+			$res = "<section><ol>Toutes les boites :";
+			foreach ($this->objet as $l) {
+				$res = $res . "<li><p>Numéro : $l->id_boite Etat : $l->etat
 				Message : $l->message Poids max : $l->poidsmax Taille : $l->taille</p></li>";
 			}
-			$res=$res."</ol></section>";
-		}
-		else{
-			$res="<section><p>Il n'y a actuellement aucune boite.</p></section>";
+			$res = $res . "</ol></section>";
+		} else {
+			$res = "<section><p>Il n'y a actuellement aucune boite.</p></section>";
 		}
 
 		return $res;
 	}
-	
+
 	/**
-	* Formulaire de création d'une boite
-	*/
-	private function render_formBox():String{
-		$res="<div><form method=\"POST\" name=\"formboite\"action='".$this->container->router->pathFor('createBox')."'>
+	 * Formulaire de création d'une boite
+	 */
+	private function render_formBox(): string {
+		$res = "<div><form action='" . $this->container->router->pathFor('createBox') . "'>
 				<p><label>Taille : </label><input type=\"text\" name=\"taille\" size=40 required=\"true\"></p>
 				<p><label>Couleur : </label><input type=\"text\" name=\"couleur\" size=40 required=\"true\"></p>
 				<p><label>Message : </label><input type=\"text\" name=\"message\" size=100 required=\"true\"></p>
@@ -69,15 +68,18 @@ class VueBoite extends Vue {
 
 	public function render($selecteur): string {
 		switch ($selecteur) {
-			case 1 : {
+			case 1 :
+			{
 				$content = $this->render_displayBox();
 				break;
 			}
-			case 2 : {
+			case 2 :
+			{
 				$content = $this->render_createBox();
 				break;
 			}
-			case 3 : {
+			case 3 :
+			{
 				$content = $this->render_formBox();
 				break;
 			}
