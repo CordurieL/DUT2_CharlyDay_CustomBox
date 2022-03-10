@@ -1,0 +1,37 @@
+.productLine {
+  width: auto;
+  height: 25px;
+  line-height: 25px;
+  margin-bottom: 5px;
+  padding: 5px;
+  padding-left: 10px;
+  border-style: solid;
+  border-radius: 0.2em;
+  border-color: white;
+  border-width: 1px;
+  display: grid;
+  grid-template-columns: 15% 45% 15% 15%;
+  grid-gap: 3%;
+  background-color: #8b8b8b;
+}
+
+.productLine > .productLineTitle {
+  grid-column: 1;
+}
+
+.productLine > .productLineDescr {
+  grid-column: 2;
+}
+
+.productLine > .productLineCateg {
+  grid-column: 3;
+}
+
+.productLine > .productLineWeight {
+  grid-column: 4;
+}
+
+#productLineRef {
+  height: 50px;
+  background-color: #b3b3b3;
+}
